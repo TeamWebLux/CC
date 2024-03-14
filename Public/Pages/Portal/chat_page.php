@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
-    <script src="script.js"></script> <!-- Include your JavaScript code -->
+     <!-- Include your JavaScript code -->
 </head>
 <body>
     <!-- Your main content goes here -->
