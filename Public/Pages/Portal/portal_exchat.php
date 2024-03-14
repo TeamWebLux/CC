@@ -51,7 +51,7 @@
     }
     ?>
 
-    <link rel="stylesheet" href="./assets/css/chat_styles.css">
+    <link rel="stylesheet" href="../../../assets/css/chat_styles.css">
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 
