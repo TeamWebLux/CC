@@ -20,14 +20,14 @@ $query = "INSERT INTO chat_records (sender_id, receiver_id, status, chat_msg) VA
 if ($stmt = $conn->prepare($query)) {
     // Bind the parameters
     $stmt->bind_param("iiis", $sender_id, $receiver_id, $status, $message);
-
+    
     // Execute the statement
     if ($stmt->execute()) {
         echo "Message sent successfully";
     } else {
         echo "Error sending message: " . $stmt->error;
     }
-
+    
     // Close the statement
     $stmt->close();
 } else {
@@ -36,3 +36,4 @@ if ($stmt = $conn->prepare($query)) {
 
 // Close the connection
 $conn->close();
+?>

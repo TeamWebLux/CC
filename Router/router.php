@@ -83,10 +83,12 @@ if ($uri == $firstparam || $uri == $secondparam) {
         $prefix . $root . '/Portal_Page_Management'               => './Public/Pages/Portal/manage_page.php',
         $prefix . $root . '/Portal_Cashup_Management'             => './Public/Pages/Portal/manage_cashup.php',
         $prefix . $root . '/Portal_Platform_Management'             => './Public/Pages/Portal/manage_platform.php',
-        $prefix . $root . '/Portal_Chats'                         => './Public/Pages/Portal/chat_page.php',
         $prefix . $root . '/Portal_Notes'                         => './Public/Pages/Portal/notes_page.php',
         $prefix . $root . '/Portal_Settings'                      => './Public/Pages/Portal/portal_settings.php',
         $prefix . $root . '/See_All_Reports'                      => './Public/Pages/Portal/see_all_record.php',
+        $prefix . $root . '/Portal_Chats'                         => './Public/Pages/Portal/chat_page.php',
+        $prefix . $root . '/Portal_exchat'                        => './Public/Pages/Portal/portal_exchat.php',
+
 
     ];
 
