@@ -441,14 +441,6 @@
 
                 <?php endif; ?>
                 <?php if (in_array($role, ['User'])) : ?>
-
-
-
-                <?php endif; ?>
-
-                <?php if (in_array($role, ['Manager', 'Admin'])) : ?>
-
-
                     <li class="nav-item">
                         <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/CustCount/index.php/User_Report') echo 'active';  ?>  " aria-current="page" href="../index.php/User_Report">
                             <i class="icon" data-bs-toggle="tooltip" title="Crypto" data-bs-placement="right">
@@ -462,6 +454,15 @@
                             <span class="item-name">See Your Report</span>
                         </a>
                     </li>
+
+
+
+
+                <?php endif; ?>
+
+                <?php if (in_array($role, ['Manager', 'Admin'])) : ?>
+
+
 
 
 
