@@ -196,11 +196,8 @@
                                         <th>Bonus Amount</th>
                                         <th>Free Play</th>
                                         <th>Platform Name</th>
-                                        <th>Page Name</th>
                                         <th>CashApp Name</th>
                                         <th>Timestamp</th>
-                                        <th>Username</th>
-                                        <th>By</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -220,14 +217,10 @@
                                             <td><?= $row['excess'] ?></td>
                                             <td><?= $row['bonus'] ?></td>
                                             <td><?= $row['freepik'] ?></td>
-
                                             <td><?= $row['platform'] ?></td>
-                                            <td><?= $row['page'] ?></td>
                                             <td><?= $row['cashapp'] ?></td>
 
                                             <td><?= $createdAtFormatted ?></td>
-                                            <td><?= $row['username'] ?></td>
-                                            <td><?= $row['by_u'] ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
