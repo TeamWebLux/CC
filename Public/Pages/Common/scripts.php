@@ -82,3 +82,20 @@
 <!-- Include DateRangePicker CSS -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
+<script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    "order": [
+                        [9, "desc"]
+                    ],
+                    dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+
+                    buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+                });
+            });
+
+
+
+    </script>

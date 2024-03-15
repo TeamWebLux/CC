@@ -20,6 +20,7 @@
         echoToastScript($toast['type'], $toast['message']);
         unset($_SESSION['toast']); // Clear the toast message from session
     }
+    $_SESSION['timezone']='America/New_York';
 
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
