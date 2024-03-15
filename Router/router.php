@@ -53,6 +53,8 @@ if ($uri == $firstparam || $uri == $secondparam) {
         $prefix . $root . '/Recharge_Platform'                         => './Public/Pages/Portal/temp.php',
         $prefix . $root . '/Redeem_cashapp'                         => './Public/Pages/Portal/temp.php',
         $prefix . $root . '/Redeem_platform'                         => './Public/Pages/Portal/temp.php',
+        $prefix . $root . '/User_Report'                         => './Public/Pages/Portal/user_report.php',
+
 
         $prefix . $root . '/Add_User'                         => './Public/Pages/Portal/temp.php',
 
