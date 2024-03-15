@@ -239,7 +239,7 @@
             $(document).ready(function() {
                 $('#example').DataTable({
                     "order": [
-                        [9, "desc"]
+                        [8, "desc"]
                     ],
                     dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
