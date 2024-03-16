@@ -95,8 +95,7 @@
 			background-color: aqua;
 			color: black;
 		}
-
-		.rtext {
+		.rtext{
 			background-color: blue;
 			color: aliceblue;
 		}
@@ -184,18 +183,12 @@
 						</div>
 					<?php } ?>
 				</div>
-					<div class="form-group mb-2">
-						<label for="msg">Enter Your Message</label>
-						<input type="text" class="form-control" name="" id="message" aria-describedby="helpId" placeholder="">
-						<button class="btn btn-primary" id="sendBtn">
+				<div class="input-group mb-3">
+					<textarea cols="3" id="message" class="form-control"></textarea>
+					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
-
-					</div>
-					<!-- <textarea cols="3" id="message" class="form-control"></textarea> -->
-					<!-- <button class="btn btn-primary" id="sendBtn">
-						<i class="fa fa-paper-plane">Send</i>
-					</button> -->
+				</div>
 
 			</div>
 
