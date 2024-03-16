@@ -54,19 +54,20 @@
 
 		opened($chatWith['id'], $conn, $chats);
 	}
-	
+
 
 	// print($uri);
 	?>
 	<style>
-        .chatBox {
-            overflow-y: auto; /* Enable vertical scrollbar */
-            max-height: 300px; /* Set maximum height for the chat box */
-        }
-    </style>
-
-
+		.chatBox {
+			overflow-y: auto;
+			/* Enable vertical scrollbar */
+			max-height: 300px;
+			/* Set maximum height for the chat box */
+		}
 	</style>
+
+
 
 </head>
 
