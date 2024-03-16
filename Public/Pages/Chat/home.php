@@ -58,6 +58,8 @@
 
 	// print($uri);
 	?>
+	<script src="https://unpkg.com/emoji-picker-element"></script>
+
 	<style>
 		/* Custom CSS styles */
 		.chat-box {
@@ -95,9 +97,20 @@
 			background-color: blueviolet;
 			color: black;
 		}
-		.rtext{
+
+		.rtext {
 			background-color: blue;
 			color: aliceblue;
+		}
+
+		emoji-picker {
+			position: absolute;
+			bottom: 50px;
+			/* Adjust based on your layout */
+			right: 20px;
+			/* Adjust based on your layout */
+			display: none;
+			/* Hide by default */
 		}
 	</style>
 
@@ -185,6 +198,7 @@
 				</div>
 				<div class="input-group mb-3">
 					<textarea cols="3" id="message" class="form-control"></textarea>
+					<emoji-picker></emoji-picker>
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
@@ -194,6 +208,20 @@
 
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					const picker = document.querySelector('emoji-picker');
+					const textarea = document.getElementById('message');
+
+					picker.addEventListener('emoji-click', event => {
+						const {
+							emoji
+						} = event.detail;
+						textarea.value += emoji; // Append the selected emoji to the textarea content
+						textarea.focus(); // Optional: bring focus back to textarea
+					});
+				});
+			</script>
 
 			<script>
 				var scrollDown = function() {
