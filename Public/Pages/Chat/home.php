@@ -197,15 +197,46 @@
 					<?php } ?>
 				</div>
 				<div class="input-group mb-3">
+					<!-- Button to toggle emoji picker -->
+					<button class="btn btn-outline-secondary" type="button" id="emojiPickerToggle">😊</button>
+
+					<!-- Textarea for the message -->
 					<textarea cols="3" id="message" class="form-control"></textarea>
-					<emoji-picker></emoji-picker>
+
+					<!-- Send button -->
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
 				</div>
+				<emoji-picker id="emojiPicker" style="position: absolute; bottom: 100px; right: 20px; display: none;"></emoji-picker>
 
 			</div>
 
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					const emojiPicker = document.getElementById('emojiPicker');
+					const toggleButton = document.getElementById('emojiPickerToggle');
+					const textarea = document.getElementById('message');
+
+					// Toggle emoji picker display
+					toggleButton.addEventListener('click', () => {
+						emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
+					});
+
+					// Insert emoji into textarea
+					emojiPicker.addEventListener('emoji-click', event => {
+						textarea.value += event.detail.emoji;
+						textarea.focus(); // Bring focus back to textarea
+					});
+
+					// Optional: Hide emoji picker when clicking outside
+					document.addEventListener('click', (event) => {
+						if (!emojiPicker.contains(event.target) && !toggleButton.contains(event.target)) {
+							emojiPicker.style.display = 'none';
+						}
+					});
+				});
+			</script>
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script>
