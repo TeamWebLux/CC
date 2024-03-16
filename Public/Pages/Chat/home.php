@@ -187,11 +187,15 @@
 					<div class="form-group mb-2">
 						<label for="msg">Enter Your Message</label>
 						<input type="text" class="form-control" name="" id="message" aria-describedby="helpId" placeholder="">
-					</div>
-					<!-- <textarea cols="3" id="message" class="form-control"></textarea> -->
-					<button class="btn btn-primary" id="sendBtn">
+						<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
+
+					</div>
+					<!-- <textarea cols="3" id="message" class="form-control"></textarea> -->
+					<!-- <button class="btn btn-primary" id="sendBtn">
+						<i class="fa fa-paper-plane">Send</i>
+					</button> -->
 
 			</div>
 
