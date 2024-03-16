@@ -25,7 +25,7 @@ if (isset($_SESSION['username'])) {
          	if ($user['id'] == $_SESSION['user_id']) continue;
        ?>
        <li class="list-group-item">
-		<a href="./Chat_screen?user=<?=$user['username']?>"
+		<a href="./Chat_Screen?user=<?=$user['username']?>"
 		   class="d-flex
 		          justify-content-between
 		          align-items-center p-2">
