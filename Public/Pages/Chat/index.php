@@ -29,10 +29,10 @@
 	}
 	if (isset($_SESSION['username'])) {
 		# database connection file
-		include './Public/Pages/Chat/app/db.conn.php';
+		include '../Public/Pages/Chat/app/db.conn.php';
 	// include './Public/Pages/Chat/./Public/Pages/Chat/app/';
-		include './Public/Pages/Chat/app/helpers/user.php';
-		include './Public/Pages/Chat/app/helpers/conversations.php';
+		include '../Public/Pages/Chat/app/helpers/user.php';
+		include '../Public/Pages/Chat/app/helpers/conversations.php';
 		include './Public/Pages/Chat/app/helpers/timeAgo.php';
 		include './Public/Pages/Chat/app/helpers/last_chat.php';
 	
@@ -138,7 +138,7 @@
 					$("#searchText").on("input", function() {
 						var searchText = $(this).val();
 						if (searchText == "") return;
-						$.post('./Public/Pages/Chat/app/ajax/search.php', {
+						$.post('../Public/Pages/Chat/app/ajax/search.php', {
 								key: searchText
 							},
 							function(data, status) {
@@ -150,7 +150,7 @@
 					$("#serachBtn").on("click", function() {
 						var searchText = $("#searchText").val();
 						if (searchText == "") return;
-						$.post('./Public/Pages/Chat/app/ajax/search.php', {
+						$.post('../Public/Pages/Chat/app/ajax/search.php', {
 								key: searchText
 							},
 							function(data, status) {
@@ -164,7 +164,7 @@
 					for logged in user
 					**/
 					let lastSeenUpdate = function() {
-						$.get("./Public/Pages/Chat/app/ajax/update_last_seen.php");
+						$.get("../Public/Pages/Chat/app/ajax/update_last_seen.php");
 					}
 					lastSeenUpdate();
 					/** 
