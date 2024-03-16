@@ -166,7 +166,7 @@
 				<div class="input-group mb-3">
 					<textarea cols="3" id="message" class="form-control"></textarea>
 					<button class="btn btn-primary" id="sendBtn">
-						<i class="fa fa-paper-plane"></i>
+						<i class="fa fa-paper-plane">Send</i>
 					</button>
 				</div>
 
