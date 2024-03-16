@@ -184,7 +184,7 @@
 					<?php } ?>
 				</div>
 				<div class="input-group mb-3">
-					<textarea cols="3" id="message" class="form-control"></textarea>
+					<textarea cols="3" id="message" class="form-control"> Enter Your Messages Here</textarea>
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
