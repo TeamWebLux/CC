@@ -29,10 +29,10 @@
 	}
 	if (isset($_SESSION['username'])) {
 		# database connection file
-		include '.app/db.conn.php';
+		include 'app/db.conn.php';
 	// include './Public/Pages/Chat/./Public/Pages/Chat/app/';
-		include '.app/helpers/user.php';
-		include '.app/helpers/conversations.php';
+		include 'app/helpers/user.php';
+		include 'app/helpers/conversations.php';
 		include 'app/helpers/timeAgo.php';
 		include 'app/helpers/last_chat.php';
 	
