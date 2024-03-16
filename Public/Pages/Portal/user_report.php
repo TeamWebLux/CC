@@ -40,7 +40,7 @@
             $_SESSION[$key] = $value;
         }
     }
-    $_SESSION['timezone']='America/New_York';
+    $_SESSION['timezone'] = 'America/New_York';
 
     if (isset($_SESSION['timezone'])) {
         $selectedTimezone = $_SESSION['timezone'];
@@ -143,7 +143,7 @@
 
                     <?php
                     include "./App/db/db_connect.php";
-                    $username=$_SESSION['username'];
+                    $username = $_SESSION['username'];
 
                     $sql = "SELECT * FROM transaction WHERE username='$username'"; // Always true condition to start the WHERE clause
                     if (isset($_SESSION['start_date']) && isset($_SESSION['end_date']) && $_SESSION['start_date'] !== '' && $_SESSION['end_date'] !== '') {
@@ -244,14 +244,11 @@
                     dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
                     buttons: [
-            'copy', 'excel', 'pdf'
-        ]
+                        'copy', 'excel', 'pdf'
+                    ]
                 });
             });
-
-
-
-    </script>
+        </script>
 
         <!-- echo -->
 
