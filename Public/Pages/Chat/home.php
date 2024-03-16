@@ -58,14 +58,28 @@
 
 	// print($uri);
 	?>
-	<style>
-		.chat-box {
-			overflow-y: auto;
-			/* Enable vertical scrollbar */
-			max-height: 300px;
-			/* Set maximum height for the chat box */
-		}
-	</style>
+    <style>
+        /* Custom CSS styles */
+        .chat-box {
+            max-height: 300px; /* Limit the height of the chat box */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .chat-box p {
+            margin: 5px 0; /* Add spacing between chat messages */
+        }
+        .chat-input-group {
+            position: relative; /* Set position to relative for proper alignment */
+        }
+        #message {
+            border-radius: 20px; /* Adjust border radius for message input */
+            resize: none; /* Disable resizing of textarea */
+        }
+        #sendBtn {
+            position: absolute; /* Position the send button */
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
 
 
 
