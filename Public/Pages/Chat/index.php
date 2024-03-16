@@ -104,7 +104,7 @@
 												<?= $conversation['name'] ?><br>
 												<small>
 													<?php
-													echo lastChat($_SESSION['user_id'], $conversation['user_id'], $conn);
+													echo lastChat($_SESSION['user_id'], $conversation['id'], $conn);
 													?>
 												</small>
 											</h3>
