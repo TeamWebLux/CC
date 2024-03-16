@@ -59,7 +59,7 @@
 	// print($uri);
 	?>
 	<style>
-        .chatbox {
+        .chatBox {
             overflow-y: auto; /* Enable vertical scrollbar */
             max-height: 300px; /* Set maximum height for the chat box */
         }
