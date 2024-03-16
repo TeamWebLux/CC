@@ -79,6 +79,20 @@
             right: 10px;
             bottom: 10px;
         }
+        .online-indicator {
+            display: flex;
+            align-items: center;
+        }
+        .online {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: green;
+            margin-right: 5px;
+        }
+        .error {
+            color: red;
+        }
     </style>
 
 
@@ -99,160 +113,110 @@
 
 	?>
 
-	<main class="main-content">
-		<?php
-		include("./Public/Pages/Common/main_content.php");
-		?>
+<main class="main-content">
+        <?php
+        include("./Public/Pages/Common/main_content.php");
+        ?>
 
+        <div class="content-inner container-fluid pb-0" id="page_layout">
+            <!-- Chat container -->
+            <div class="w-400 shadow p-4 rounded">
+                <!-- Back button -->
+                <a href="home.php" class="fs-4 link-dark">&#8592;</a>
 
-		<div class="content-inner container-fluid pb-0" id="page_layout">
-			<div class="w-400 shadow p-4 rounded">
-				<a href="home.php" class="fs-4 link-dark">&#8592;</a>
+                <!-- Chat header -->
+                <div class="d-flex align-items-center">
+                    <img src="uploads/<?= $chatWith['p_p'] ?>" class="w-15 rounded-circle">
+                    <h3 class="display-4 fs-sm m-2"><?= $chatWith['name'] ?></h3>
+                    <!-- Online status -->
+                    <div class="online-indicator">
+                        <?php
+                        if (last_seen($chatWith['last_seen']) == "Active") {
+                            echo "<div class='online'></div><small class='d-block p-1'>Online</small>";
+                        } else {
+                            echo "<small class='d-block p-1'>Last seen: " . last_seen($chatWith['last_seen']) . "</small>";
+                        }
+                        ?>
+                    </div>
+                </div>
 
-				<div class="d-flex align-items-center">
-					<img src="uploads/<?= $chatWith['p_p'] ?>" class="w-15 rounded-circle">
+                <!-- Chat messages -->
+                <div class="shadow p-4 rounded mt-2 chat-box" id="chatBox">
+                    <?php
+                    if (!empty($chats)) {
+                        foreach ($chats as $chat) {
+                            if ($chat['from_id'] == $_SESSION['user_id']) {
+                                echo "<p class='rtext border rounded p-2 mb-1'>" . $chat['message'] . "<br><small class='d-block'>" . $chat['created_at'] . "</small></p>";
+                            } else {
+                                echo "<p class='ltext border rounded p-2 mb-1'>" . $chat['message'] . "<br><small class='d-block'>" . $chat['created_at'] . "</small></p>";
+                            }
+                        }
+                    } else {
+                        echo "<div class='alert alert-info text-center'><i class='fa fa-comments d-block fs-big'></i>No messages yet, Start the conversation</div>";
+                    }
+                    ?>
+                </div>
 
-					<h3 class="display-4 fs-sm m-2">
-						<?= $chatWith['name'] ?> <br>
-						<div class="d-flex
-               	              align-items-center" title="online">
-							<?php
-							if (last_seen($chatWith['last_seen']) == "Active") {
-							?>
-								<div class="online"></div>
-								<small class="d-block p-1">Online</small>
-							<?php } else { ?>
-								<small class="d-block p-1">
-									Last seen:
-									<?= last_seen($chatWith['last_seen']) ?>
-								</small>
-							<?php } ?>
-						</div>
-					</h3>
-				</div>
+                <!-- Chat input -->
+                <div class="input-group mb-3 chat-input-group">
+                    <textarea cols="3" id="message" class="form-control"></textarea>
+                    <button class="btn btn-primary" id="sendBtn"><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
 
-				<div class="shadow p-4 rounded
-    	               d-flex flex-column
-    	               mt-2 chat-box" id="chatBox">
-					<?php
-					if (!empty($chats)) {
-						foreach ($chats as $chat) {
-							if ($chat['from_id'] == $_SESSION['user_id']) { ?>
-								<p class="rtext align-self-end
-						        border rounded p-2 mb-1">
-									<?= $chat['message'] ?>
-									<small class="d-block">
-										<?= $chat['created_at'] ?>
-									</small>
-								</p>
-							<?php } else { ?>
-								<p class="ltext border 
-					         rounded p-2 mb-1">
-									<?= $chat['message'] ?>
-									<small class="d-block">
-										<?= $chat['created_at'] ?>
-									</small>
-								</p>
-						<?php }
-						}
-					} else { ?>
-						<div class="alert alert-info 
-    				            text-center">
-							<i class="fa fa-comments d-block fs-big"></i>
-							No messages yet, Start the conversation
-						</div>
-					<?php } ?>
-				</div>
-				<div class="input-group mb-3">
-					<textarea cols="3" id="message" class="form-control"></textarea>
-					<button class="btn btn-primary" id="sendBtn">
-						<i class="fa fa-paper-plane">Send</i>
-					</button>
-				</div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                // Function to scroll chat box to the bottom
+                var scrollDown = function() {
+                    let chatBox = document.getElementById('chatBox');
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
 
-			</div>
+                // Execute scrollDown function when document is loaded
+                $(document).ready(scrollDown);
 
+                $(document).ready(function() {
+                    // Function to send message
+                    $("#sendBtn").on('click', function() {
+                        message = $("#message").val();
+                        if (message == "") return;
 
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                        $.post("../Public/Pages/Chat/app/ajax/insert.php", {
+                            message: message,
+                            to_id: <?= $chatWith['id'] ?>
+                        }, function(data, status) {
+                            $("#message").val("");
+                            $("#chatBox").append(data);
+                            scrollDown();
+                        });
+                    });
 
-			<script>
-				var scrollDown = function() {
-					let chatBox = document.getElementById('chatBox');
-					chatBox.scrollTop = chatBox.scrollHeight;
-				}
+                    // Function to update last seen status
+                    let lastSeenUpdate = function() {
+                        $.get("../Public/Pages/Chat/app/ajax/update_last_seen.php");
+                    }
+                    lastSeenUpdate();
+                    setInterval(lastSeenUpdate, 10000); // Update every 10 seconds
 
-				scrollDown();
+                    // Function to fetch new messages
+                    let fetchData = function() {
+                        $.post("../Public/Pages/Chat/app/ajax/getMessage.php", {
+                            id_2: <?= $chatWith['id'] ?>
+                        }, function(data, status) {
+                            $("#chatBox").append(data);
+                            if (data != "") scrollDown();
+                        });
+                    }
+                    fetchData();
+                    setInterval(fetchData, 500); // Fetch every 0.5 seconds
+                });
+            </script>
+        </div>
 
-				$(document).ready(function() {
-
-					$("#sendBtn").on('click', function() {
-						message = $("#message").val();
-						if (message == "") return;
-
-						$.post("../Public/Pages/Chat/app/ajax/insert.php", {
-								message: message,
-								to_id: <?= $chatWith['id'] ?>
-							},
-							function(data, status) {
-								$("#message").val("");
-								$("#chatBox").append(data);
-								scrollDown();
-							});
-					});
-
-					/** 
-					auto update last seen 
-					for logged in user
-					**/
-					let lastSeenUpdate = function() {
-						$.get("../Public/Pages/Chat/app/ajax/update_last_seen.php");
-					}
-					lastSeenUpdate();
-					/** 
-					auto update last seen 
-					every 10 sec
-					**/
-					setInterval(lastSeenUpdate, 10000);
-
-
-
-					// auto refresh / reload
-					let fechData = function() {
-						$.post("../Public/Pages/Chat/app/ajax/getMessage.php", {
-								id_2: <?= $chatWith['id'] ?>
-							},
-							function(data, status) {
-								$("#chatBox").append(data);
-								if (data != "") scrollDown();
-							});
-					}
-
-					fechData();
-					/** 
-					auto update last seen 
-					every 0.5 sec
-					**/
-					setInterval(fechData, 500);
-
-				});
-			</script>
-
-
-
-
-		</div>
-
-
-
-
-
-
-		<?
-		include("./Public/Pages/Common/footer.php");
-		// print_r($_SESSION);
-		?>
-
-	</main>
+        <?php
+        include("./Public/Pages/Common/footer.php");
+        ?>
+    </main>
 	<!-- Wrapper End-->
 	<!-- Live Customizer start -->
 	<!-- Setting offcanvas start here -->
