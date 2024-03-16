@@ -184,7 +184,7 @@
 					<?php } ?>
 				</div>
 				<div class="input-group mb-3">
-					<div class="form-group">
+					<div class="form-group mb-2">
 					  <label for="msg">Enter Your Message</label>
 					  <input type="text"
 						class="form-control" name="" id="message" aria-describedby="helpId" placeholder="">
