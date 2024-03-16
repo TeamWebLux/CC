@@ -90,10 +90,15 @@
 			right: 10px;
 			bottom: 10px;
 		}
-		.ltext {
-        color: blue;
-    }
 
+		.ltext {
+			background-color: aqua;
+			color: black;
+		}
+		.rtext{
+			background-color: blue;
+			color: aliceblue;
+		}
 	</style>
 
 
