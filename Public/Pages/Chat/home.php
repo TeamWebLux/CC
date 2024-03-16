@@ -219,25 +219,26 @@
 					const textarea = document.getElementById('message');
 
 					// Toggle emoji picker display
-					toggleButton.addEventListener('click', () => {
-						emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
+					toggleButton.addEventListener('click', function(event) {
+						// Prevent the document click listener from immediately hiding the picker
+						event.stopPropagation();
+						emojiPicker.style.display = 'block';
 					});
 
 					// Insert emoji into textarea
-					emojiPicker.addEventListener('emoji-click', event => {
+					emojiPicker.addEventListener('emoji-click', function(event) {
 						textarea.value += event.detail.emoji;
-						textarea.focus(); // Bring focus back to textarea
+						textarea.focus(); // Optional: bring focus back to textarea
 					});
 
 					// Optional: Hide emoji picker when clicking outside
-					document.addEventListener('click', (event) => {
-						if (!emojiPicker.contains(event.target) && !toggleButton.contains(event.target)) {
+					document.addEventListener('click', function(event) {
+						if (event.target !== emojiPicker && event.target !== toggleButton) {
 							emojiPicker.style.display = 'none';
 						}
 					});
 				});
 			</script>
-
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
