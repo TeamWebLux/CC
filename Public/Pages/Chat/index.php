@@ -29,12 +29,12 @@
 	}
 	if (isset($_SESSION['username'])) {
 		# database connection file
-		include '../Public/Pages/Chat/app/db.conn.php';
+		include '.app/db.conn.php';
 	// include './Public/Pages/Chat/./Public/Pages/Chat/app/';
-		include '../Public/Pages/Chat/app/helpers/user.php';
-		include '../Public/Pages/Chat/app/helpers/conversations.php';
-		include './Public/Pages/Chat/app/helpers/timeAgo.php';
-		include './Public/Pages/Chat/app/helpers/last_chat.php';
+		include '.app/helpers/user.php';
+		include '.app/helpers/conversations.php';
+		include 'app/helpers/timeAgo.php';
+		include 'app/helpers/last_chat.php';
 	
 		# Getting User data data
 		$user = getUser($_SESSION['username'], $conn);
