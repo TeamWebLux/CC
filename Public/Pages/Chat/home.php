@@ -239,20 +239,6 @@
 			</script>
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script>
-				document.addEventListener('DOMContentLoaded', function() {
-					const picker = document.querySelector('emoji-picker');
-					const textarea = document.getElementById('message');
-
-					picker.addEventListener('emoji-click', event => {
-						const {
-							emoji
-						} = event.detail;
-						textarea.value += emoji; // Append the selected emoji to the textarea content
-						textarea.focus(); // Optional: bring focus back to textarea
-					});
-				});
-			</script>
 
 			<script>
 				var scrollDown = function() {
