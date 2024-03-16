@@ -90,6 +90,10 @@
 			right: 10px;
 			bottom: 10px;
 		}
+		.ltext {
+        color: blue;
+    }
+
 	</style>
 
 
