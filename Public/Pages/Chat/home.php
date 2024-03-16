@@ -58,7 +58,7 @@
 
 	// print($uri);
 	?>
-	<script src="https://unpkg.com/emoji-picker-element"></script>
+	<script src="vanillaEmojiPicker.js"></script>
 
 	<style>
 		/* Custom CSS styles */
@@ -111,6 +111,23 @@
 			/* Adjust based on your layout */
 			display: none;
 			/* Hide by default */
+		}
+
+		.emoji-picker {
+			position: absolute;
+			bottom: 60px;
+			/* Adjust based on your layout */
+			border: 1px solid #ddd;
+			padding: 5px;
+			background-color: white;
+			width: 200px;
+			/* Adjust as necessary */
+			display: grid;
+			grid-template-columns: repeat(8, 1fr);
+			/* Adjust column count based on preference */
+			gap: 5px;
+			overflow-y: auto;
+			max-height: 200px;
 		}
 	</style>
 
@@ -192,23 +209,18 @@
 						<div class="alert alert-info 
     				            text-center">
 							<i class="fa fa-comments d-block fs-big"></i>
-							No messages yet, Start the conversation
 						</div>
 					<?php } ?>
 				</div>
+				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<!-- Button to toggle emoji picker -->
-					<button class="btn btn-outline-secondary" type="button" id="emojiPickerToggle">😊</button>
-
-					<!-- Textarea for the message -->
+					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
 					<textarea cols="3" id="message" class="form-control"></textarea>
-
-					<!-- Send button -->
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
 					</button>
 				</div>
-				<emoji-picker id="emojiPicker" style="position: absolute; bottom: 100px; right: 20px; display: none;"></emoji-picker>
+				<div id="emojiPicker" class="emoji-picker" style="display: none;"></div>
 
 			</div>
 
@@ -218,22 +230,32 @@
 					const toggleButton = document.getElementById('emojiPickerToggle');
 					const textarea = document.getElementById('message');
 
+					// Emoji list example, add more as needed
+					const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗'];
+
+					// Populate the emoji picker
+					emojis.forEach(emoji => {
+						const button = document.createElement('button');
+						button.textContent = emoji;
+						button.style.border = 'none';
+						button.style.background = 'transparent';
+						button.style.cursor = 'pointer';
+						button.onclick = function() {
+							textarea.value += emoji;
+							emojiPicker.style.display = 'none'; // Hide picker after selection
+						};
+						emojiPicker.appendChild(button);
+					});
+
 					// Toggle emoji picker display
-					toggleButton.addEventListener('click', function(event) {
-						// Prevent the document click listener from immediately hiding the picker
-						event.stopPropagation();
-						emojiPicker.style.display = 'block';
+					toggleButton.addEventListener('click', function() {
+						const isDisplayed = window.getComputedStyle(emojiPicker).display !== 'none';
+						emojiPicker.style.display = isDisplayed ? 'none' : 'block';
 					});
 
-					// Insert emoji into textarea
-					emojiPicker.addEventListener('emoji-click', function(event) {
-						textarea.value += event.detail.emoji;
-						textarea.focus(); // Optional: bring focus back to textarea
-					});
-
-					// Optional: Hide emoji picker when clicking outside
+					// Hide emoji picker when clicking outside
 					document.addEventListener('click', function(event) {
-						if (event.target !== emojiPicker && event.target !== toggleButton) {
+						if (!emojiPicker.contains(event.target) && event.target !== toggleButton) {
 							emojiPicker.style.display = 'none';
 						}
 					});
