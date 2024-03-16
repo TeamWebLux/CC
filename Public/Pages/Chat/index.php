@@ -94,7 +94,7 @@
 
 							foreach ($conversations as $conversation) { ?>
 								<li class="list-group-item">
-									<a href="chat.php?user=<?= $conversation['username'] ?>" class="d-flex
+									<a href="./Chat_Screen?user=<?= $conversation['username'] ?>" class="d-flex
 	    				          justify-content-between
 	    				          align-items-center p-2">
 										<div class="d-flex
