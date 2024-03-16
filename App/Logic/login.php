@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['loggedin'] = true;
                     $_SESSION['username'] = $username;
                     $_SESSION['userid'] = $row['id'];
+                    $_SESSION['user_id'] = $row['id'];
+
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['fullname'] = $row['name'];
                     // Clear retained form values upon successful login
