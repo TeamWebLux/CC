@@ -92,7 +92,7 @@
 		}
 
 		.ltext {
-			background-color: aqua;
+			background-color: blueviolet;
 			color: black;
 		}
 		.rtext{
