@@ -88,7 +88,7 @@
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
-					<ul id="chatList" class="list-group mvh-50 overflow-auto">
+					<ul id="chatList" class="list-group mvh-50 overflow-auto" id="chat-box">
 						<?php if (!empty($conversations)) { ?>
 							<?php
 
