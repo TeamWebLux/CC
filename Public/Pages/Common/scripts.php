@@ -69,16 +69,17 @@
    <script src="../../assets/js/sidebarf700.js?v=1.0.1" defer></script>
 
    <script src="../../assets/js/vendors.min.js"></script>
-	<script src="../../assets/js/pages/chat-popup.js"></script>
-    <script src="../../assets/js/icons/feather-icons/feather.min.js"></script>	
-	<script src="../../assets/js/vendor_components/datatable/datatables.min.js"></script>
-	
-	<!-- CRMi App -->
-	<script src="../../assets/js/template.js"></script>
-	
-	<script src="../../assets/js/pages/data-table.js"></script>
-<!-- Include Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
-<!-- Include DateRangePicker CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+   <script src="../../assets/js/pages/chat-popup.js"></script>
+   <script src="../../assets/js/icons/feather-icons/feather.min.js"></script>
+   <script src="../../assets/js/vendor_components/datatable/datatables.min.js"></script>
 
+   <!-- CRMi App -->
+   <script src="../../assets/js/template.js"></script>
+
+   <script src="../../assets/js/pages/data-table.js"></script>
+   <!-- Include Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <!-- Include DateRangePicker CSS -->
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
