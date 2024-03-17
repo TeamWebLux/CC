@@ -363,58 +363,58 @@
 	?>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-			const emojiPicker = document.getElementById('emojiPicker');
-			const toggleButton = document.querySelector('.emoji-picker-button');
-			const textarea = document.getElementById('message');
+    const emojiPicker = document.getElementById('emojiPicker');
+    const toggleButton = document.querySelector('.emoji-picker-button');
+    const textarea = document.getElementById('message');
 
-			// Emoji list example, add more as needed
-			const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗'];
+    // Emoji list example, add more as needed
+    const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗'];
 
-			// Populate the emoji picker
-			emojis.forEach(emoji => {
-				const button = document.createElement('button');
-				button.textContent = emoji;
-				button.style.border = 'none';
-				button.style.background = 'transparent';
-				button.style.cursor = 'pointer';
-				button.onclick = function() {
-					textarea.value += emoji;
-					emojiPicker.style.display = 'none'; // Hide picker after selection
-				};
-				emojiPicker.appendChild(button);
-			});
+    // Populate the emoji picker
+    emojis.forEach(emoji => {
+        const button = document.createElement('button');
+        button.textContent = emoji;
+        button.style.border = 'none';
+        button.style.background = 'transparent';
+        button.style.cursor = 'pointer';
+        button.onclick = function() {
+            textarea.value += emoji;
+            emojiPicker.style.display = 'none'; // Hide picker after selection
+        };
+        emojiPicker.appendChild(button);
+    });
 
-			// Toggle emoji picker display
-			toggleButton.addEventListener('click', function() {
-				const isDisplayed = window.getComputedStyle(emojiPicker).display !== 'none';
-				emojiPicker.style.display = isDisplayed ? 'none' : 'block';
-			});
+    // Toggle emoji picker display
+    toggleButton.addEventListener('click', function() {
+        const isDisplayed = window.getComputedStyle(emojiPicker).display !== 'none';
+        emojiPicker.style.display = isDisplayed ? 'none' : 'block';
+    });
 
-			// Hide emoji picker when clicking outside
-			document.addEventListener('click', function(event) {
-				if (!emojiPicker.contains(event.target) && event.target !== toggleButton) {
-					emojiPicker.style.display = 'none';
-				}
-			});
+    // Hide emoji picker when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!emojiPicker.contains(event.target) && event.target !== toggleButton) {
+            emojiPicker.style.display = 'none';
+        }
+    });
 
-			// Send message on Enter key press
-			textarea.addEventListener('keydown', function(event) {
-				if (event.key === 'Enter' && !event.shiftKey) {
-					event.preventDefault(); // Prevent new line in textarea
-					sendMessage();
-				}
-			});
+    // Send message on Enter key press
+    textarea.addEventListener('keydown', function(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault(); // Prevent new line in textarea
+            sendMessage();
+        }
+    });
 
-			// Function to send the message
-			function sendMessage() {
-				const message = textarea.value.trim();
-				if (message !== '') {
-					// Add your code to send the message here
-					console.log('Message sent:', message);
-					textarea.value = ''; // Clear the textarea after sending
-				}
-			}
-		});
+    // Function to send the message
+    function sendMessage() {
+        const message = textarea.value.trim();
+        if (message !== '') {
+            console.log('Message sent:', message);
+            textarea.value = ''; // Clear the textarea after sending
+        }
+    }
+
+});
 	</script>
 
 </body>
