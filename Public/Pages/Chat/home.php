@@ -230,7 +230,18 @@
 		}
 
 		/* Set width and height for the buttons */
-		button.btn i {
+		/* Adjust button styling */
+		button.btn {
+			padding: 0;
+			/* Remove default padding */
+			background: none;
+			/* Remove default background */
+			border: none;
+			/* Remove default border */
+		}
+
+		/* Set width and height for the buttons */
+		button.btn svg {
 			width: 30px;
 			/* Set width of icon */
 			height: 30px;
