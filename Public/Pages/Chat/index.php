@@ -42,8 +42,170 @@
 		# Getting User conversations
 		$conversations = getConversation($user['id'], $conn);
 	}
-	print($uri);
+	// print($uri);
+	
 	?>
+		<style>
+		.vh-100 {
+			min-height: 100vh;
+		}
+
+		.w-400 {
+			width: 800px;
+		}
+
+		.fs-xs {
+			font-size: 1rem;
+		}
+
+		.w-10 {
+			width: 10%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.fs-big {
+			font-size: 5rem !important;
+		}
+
+		.online {
+			width: 10px;
+			height: 10px;
+			background: green;
+			border-radius: 50%;
+		}
+
+		.w-15 {
+			width: 10%;
+		}
+
+		.fs-sm {
+			font-size: 2rem;
+		}
+
+		.display-4 {
+			font-size: 1.5rem !important;
+		}
+
+		small {
+			color: #bbb;
+			font-size: 0.7rem;
+			text-align: right;
+		}
+
+		.chat-box {
+			overflow-y: auto;
+			overflow-x: hidden;
+			max-height: 50vh;
+		}
+
+		.rtext {
+			width: 65%;
+			background: #f8f9fa;
+			color: #444;
+		}
+
+		.ltext {
+			width: 65%;
+			background: #3289c8;
+			color: #fff;
+		}
+
+		/* width */
+		*::-webkit-scrollbar {
+			width: 3px;
+		}
+
+		/* Track */
+		*::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		*::-webkit-scrollbar-thumb {
+			background: #aaa;
+		}
+
+		/* Handle on hover */
+		*::-webkit-scrollbar-thumb:hover {
+			background: #3289c8;
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		/*message_status*/
+		/* Custom CSS styles */
+		.chat-box {
+			max-width: 750px;
+			max-height: 300px;
+			/* Limit the height of the chat box */
+			overflow-y: auto;
+			/* Enable vertical scrolling */
+		}
+
+		.chat-box p {
+			margin: 5px 0;
+			/* Add spacing between chat messages */
+		}
+
+		.chat-input-group {
+			position: relative;
+			/* Set position to relative for proper alignment */
+		}
+
+		#message {
+			border-radius: 20px;
+			/* Adjust border radius for message input */
+			resize: none;
+			/* Disable resizing of textarea */
+		}
+
+		#sendBtn {
+			position: absolute;
+			/* Position the send button */
+			right: 10px;
+			bottom: 10px;
+		}
+
+		.ltext {
+			background-color: blueviolet;
+			color: black;
+			max-width: 50%;
+			font-size: large;
+		}
+
+		.rtext {
+			background-color: blue;
+			color: aliceblue;
+			max-width: 50%;
+			font-size: large;
+
+
+		}
+
+
+		.emoji-picker {
+			position: absolute;
+			bottom: 60px;
+			/* Adjust based on your layout */
+			border: 1px solid #ddd;
+			padding: 5px;
+			background-color: white;
+			width: 400px;
+			/* Adjust as necessary */
+			display: grid;
+			grid-template-columns: repeat(8, 1fr);
+			/* Adjust column count based on preference */
+			gap: 5px;
+			overflow-y: auto;
+			max-height: 400px;
+		}
+	</style>
+
 
 </head>
 
