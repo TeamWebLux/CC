@@ -219,24 +219,6 @@
 			max-height: 400px;
 		}
 
-		/* Adjust button styling */
-		button.btn {
-			padding: 0;
-			/* Remove default padding */
-			background: none;
-			/* Remove default background */
-			border: none;
-			/* Remove default border */
-		}
-
-		/* Set width and height for the buttons */
-		button.btn i {
-			width: 30px;
-			/* Set width of icon */
-			height: 30px;
-			/* Set height of icon */
-		}
-
 		.emoji-picker button {
 			font-size: 2rem;
 			/* Increase font size for larger emojis */
@@ -435,22 +417,22 @@
 
 				scrollDown();
 
-				$(document).ready(function() {
+				 $(document).ready(function() {
 
-					// 	$("#sendBtn").on('click', function() {
-					// 		message = $("#message").val();
-					// 		if (message == "") return;
+				// 	$("#sendBtn").on('click', function() {
+				// 		message = $("#message").val();
+				// 		if (message == "") return;
 
-					// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
-					// 				message: message,
-					// 				to_id: <?= $chatWith['id'] ?>
-					// 			},
-					// 			function(data, status) {
-					// 				$("#message").val("");
-					// 				$("#chatBox").append(data);
-					// 				scrollDown();
-					// 			});
-					// 	});
+				// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+				// 				message: message,
+				// 				to_id: <?= $chatWith['id'] ?>
+				// 			},
+				// 			function(data, status) {
+				// 				$("#message").val("");
+				// 				$("#chatBox").append(data);
+				// 				scrollDown();
+				// 			});
+				// 	});
 
 					/** 
 					auto update last seen 
@@ -493,7 +475,7 @@
 					const textarea = document.getElementById('message');
 
 					// Emoji list example, add more as needed
-					const emojis = ['👍', '👎', '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
+					const emojis = ['👍', '👎','😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
 
 					// Populate the emoji picker
 					emojis.forEach(emoji => {
