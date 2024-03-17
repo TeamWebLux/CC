@@ -183,6 +183,7 @@
 		}
 
 		.ltext {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			background-color: white;
 			color: black;
 			max-width: 50%;
@@ -190,6 +191,8 @@
 		}
 
 		.rtext {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 			background-color: blue;
 			color: aliceblue;
 			max-width: 50%;
