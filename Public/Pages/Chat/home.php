@@ -225,23 +225,12 @@
 			/* Remove default padding */
 			background: none;
 			/* Remove default background */
-			/* border: none; */
-			/* Remove default border */
-		}
-
-		/* Set width and height for the buttons */
-		/* Adjust button styling */
-		button.btn {
-			padding: 0;
-			/* Remove default padding */
-			background: none;
-			/* Remove default background */
 			border: none;
 			/* Remove default border */
 		}
 
 		/* Set width and height for the buttons */
-		button.btn svg {
+		button.btn i {
 			width: 30px;
 			/* Set width of icon */
 			height: 30px;
@@ -351,14 +340,10 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn"><svg class="bi" width="32" height="32" fill="currentColor">
-							<use xlink:href="#paperclip-fill" />
-						</svg></button>
+					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn">📎</button>
 					<input type="file" id="fileInput" style="display: none;">
 
-					<button class="btn btn-outline-secondary emoji-picker-button" type="button"><svg class="bi" width="32" height="32" fill="currentColor">
-							<use xlink:href="#smile-fill" />
-						</svg></button>
+					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
 					<textarea cols="3" id="message" class="form-control"></textarea>
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
