@@ -323,7 +323,7 @@
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" style="max-width: 5%; padding: 0;" type="button" id="attachmentBtn">
-						<img src="../uploads/pin.png" alt="Attachment" style="max-width: 100%; height: 100%;">
+						<img src="../uploads/pin.png" alt="Attachment" style="max-width: 90%; height: 90%; border-radius: none;">
 					</button>
 					<input type="file" id="fileInput" style="display: none;">
 
