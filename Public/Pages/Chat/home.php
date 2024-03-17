@@ -246,7 +246,7 @@
 
 		<div class="content-inner container-fluid pb-0" id="page_layout">
 			<div class="w-400 shadow p-4 rounded">
-				<a href="home.php" class="fs-4 link-dark">&#8592;</a>
+				<a href="./Chat_l" class="fs-4 link-dark">&#8592;</a>
 
 				<div class="d-flex align-items-center">
 					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
