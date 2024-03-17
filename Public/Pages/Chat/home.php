@@ -290,6 +290,10 @@
 									<?php
 									$attachmentHTML = 'hhhhhhh';
 									if (!empty($chat['attachment'])) {
+										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
+										$fileInfo = pathinfo($file);
+										$fileExtension = strtolower($fileInfo['extension']);
+							
 										// Assuming the attachment field contains the filename of the image
 										switch ($fileExtension) {
 											case 'jpg':
@@ -337,6 +341,10 @@
 									<?php
 									$attachmentHTML = 'hhhhhhh';
 									if (!empty($chat['attachment'])) {
+										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
+										$fileInfo = pathinfo($file);
+										$fileExtension = strtolower($fileInfo['extension']);
+							
 										// Assuming the attachment field contains the filename of the image
 										switch ($fileExtension) {
 											case 'jpg':
