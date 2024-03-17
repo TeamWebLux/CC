@@ -3,8 +3,8 @@
 
 
 // echo $uri;
-$firstparam ="/CC/";
-$secondparam ="/CC/index.php";
-$thirdparam ="/CC";
+$firstparam ="/";
+$secondparam ="/index.php";
+$thirdparam ="";
 $fourthparam ="/index.php";
 ?>
