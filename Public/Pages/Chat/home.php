@@ -253,7 +253,7 @@
 			<br><br><br>
 			<div class="w-400 shadow p-4 rounded">
 
-			<a href="./Chat_l" class="btn btn-dark">Back</a>
+				<a href="./Chat_l" class="btn btn-dark">Back</a>
 
 				<div class="d-flex align-items-center">
 					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
@@ -291,8 +291,33 @@
 									$attachmentHTML = 'hhhhhhh';
 									if (!empty($chat['attachment'])) {
 										// Assuming the attachment field contains the filename of the image
-										$imageUrl = "../uploads/" . $chat['attachment']; // Adjust the path as needed
-										$attachmentHTML = "<img src='{$imageUrl}' alt='Attachment' style='max-width: 200px; display: block;'>";
+										switch ($fileExtension) {
+											case 'jpg':
+											case 'jpeg':
+											case 'png':
+											case 'gif':
+												// Link that opens the image in a new tab
+												$attachmentHTML = "<a href='{$file}' target='_blank' class='image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
+												// Add a download button
+												$attachmentHTML .= "<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											case 'mp4':
+												// Video with a download button
+												$attachmentHTML = "<video controls style='max-width: 200px; display: block;'>
+																		<source src='{$file}' type='video/mp4'>
+																		Your browser does not support the video tag.
+																	</video>
+																	<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											case 'pdf':
+												// PDF link with a download button
+												$attachmentHTML = "<a href='{$file}' target='_blank'>Open PDF</a>
+																   <a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											default:
+												$attachmentHTML = "Unsupported file format";
+												break;
+										}
 									}
 									// echo $attachmentHTML;
 
@@ -300,7 +325,7 @@
 									<?= $attachmentHTML ?>
 
 
-									
+
 									<small class="d-block">
 										<?= $chat['created_at'] ?>
 									</small>
@@ -313,8 +338,33 @@
 									$attachmentHTML = 'hhhhhhh';
 									if (!empty($chat['attachment'])) {
 										// Assuming the attachment field contains the filename of the image
-										$imageUrl = "../uploads/" . $chat['attachment']; // Adjust the path as needed
-										$attachmentHTML = "<img src='{$imageUrl}' alt='Attachment' style='max-width: 200px; display: block;'>";
+										switch ($fileExtension) {
+											case 'jpg':
+											case 'jpeg':
+											case 'png':
+											case 'gif':
+												// Link that opens the image in a new tab
+												$attachmentHTML = "<a href='{$file}' target='_blank' class='image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
+												// Add a download button
+												$attachmentHTML .= "<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											case 'mp4':
+												// Video with a download button
+												$attachmentHTML = "<video controls style='max-width: 200px; display: block;'>
+																		<source src='{$file}' type='video/mp4'>
+																		Your browser does not support the video tag.
+																	</video>
+																	<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											case 'pdf':
+												// PDF link with a download button
+												$attachmentHTML = "<a href='{$file}' target='_blank'>Open PDF</a>
+																   <a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
+												break;
+											default:
+												$attachmentHTML = "Unsupported file format";
+												break;
+										}
 									}
 									// echo $attachmentHTML;
 
