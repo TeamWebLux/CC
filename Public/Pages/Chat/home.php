@@ -322,7 +322,7 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" style="max-width: fit-content;" type="button" id="attachmentBtn">📎</button>
+					<button class="btn btn-outline-secondary" style="max-width: fit-content; font-size: 1.5rem;" type="button" id="attachmentBtn">📎</button>
 					<input type="file" id="fileInput" style="display: none;">
 
 					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
@@ -417,22 +417,22 @@
 
 				scrollDown();
 
-				 $(document).ready(function() {
+				$(document).ready(function() {
 
-				// 	$("#sendBtn").on('click', function() {
-				// 		message = $("#message").val();
-				// 		if (message == "") return;
+					// 	$("#sendBtn").on('click', function() {
+					// 		message = $("#message").val();
+					// 		if (message == "") return;
 
-				// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
-				// 				message: message,
-				// 				to_id: <?= $chatWith['id'] ?>
-				// 			},
-				// 			function(data, status) {
-				// 				$("#message").val("");
-				// 				$("#chatBox").append(data);
-				// 				scrollDown();
-				// 			});
-				// 	});
+					// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+					// 				message: message,
+					// 				to_id: <?= $chatWith['id'] ?>
+					// 			},
+					// 			function(data, status) {
+					// 				$("#message").val("");
+					// 				$("#chatBox").append(data);
+					// 				scrollDown();
+					// 			});
+					// 	});
 
 					/** 
 					auto update last seen 
@@ -475,7 +475,7 @@
 					const textarea = document.getElementById('message');
 
 					// Emoji list example, add more as needed
-					const emojis = ['👍', '👎','😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
+					const emojis = ['👍', '👎', '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
 
 					// Populate the emoji picker
 					emojis.forEach(emoji => {
