@@ -60,8 +60,101 @@
 	?>
 
 	<style>
+		.vh-100 {
+			min-height: 100vh;
+		}
+
+		.w-400 {
+			width: 800px;
+		}
+
+		.fs-xs {
+			font-size: 1rem;
+		}
+
+		.w-10 {
+			width: 10%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.fs-big {
+			font-size: 5rem !important;
+		}
+
+		.online {
+			width: 10px;
+			height: 10px;
+			background: green;
+			border-radius: 50%;
+		}
+
+		.w-15 {
+			width: 10%;
+		}
+
+		.fs-sm {
+			font-size: 2rem;
+		}
+
+		.display-4 {
+			font-size: 1.5rem !important;
+		}
+
+		small {
+			color: #bbb;
+			font-size: 0.7rem;
+			text-align: right;
+		}
+
+		.chat-box {
+			overflow-y: auto;
+			overflow-x: hidden;
+			max-height: 50vh;
+		}
+
+		.rtext {
+			width: 65%;
+			background: #f8f9fa;
+			color: #444;
+		}
+
+		.ltext {
+			width: 65%;
+			background: #3289c8;
+			color: #fff;
+		}
+
+		/* width */
+		*::-webkit-scrollbar {
+			width: 3px;
+		}
+
+		/* Track */
+		*::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		*::-webkit-scrollbar-thumb {
+			background: #aaa;
+		}
+
+		/* Handle on hover */
+		*::-webkit-scrollbar-thumb:hover {
+			background: #3289c8;
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		/*message_status*/
 		/* Custom CSS styles */
 		.chat-box {
+			max-width: 750px;
 			max-height: 300px;
 			/* Limit the height of the chat box */
 			overflow-y: auto;
@@ -95,22 +188,19 @@
 		.ltext {
 			background-color: blueviolet;
 			color: black;
+			max-width: 50%;
+			font-size: large;
 		}
 
 		.rtext {
 			background-color: blue;
 			color: aliceblue;
+			max-width: 50%;
+			font-size: large;
+
+
 		}
 
-		emoji-picker {
-			position: absolute;
-			bottom: 50px;
-			/* Adjust based on your layout */
-			right: 20px;
-			/* Adjust based on your layout */
-			display: none;
-			/* Hide by default */
-		}
 
 		.emoji-picker {
 			position: absolute;
@@ -119,14 +209,14 @@
 			border: 1px solid #ddd;
 			padding: 5px;
 			background-color: white;
-			width: 200px;
+			width: 400px;
 			/* Adjust as necessary */
 			display: grid;
 			grid-template-columns: repeat(8, 1fr);
 			/* Adjust column count based on preference */
 			gap: 5px;
 			overflow-y: auto;
-			max-height: 200px;
+			max-height: 400px;
 		}
 	</style>
 
@@ -159,9 +249,9 @@
 				<a href="home.php" class="fs-4 link-dark">&#8592;</a>
 
 				<div class="d-flex align-items-center">
-					<img src="uploads/<?= $chatWith['p_p'] ?>" class="w-15 rounded-circle">
+					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 
-					<h3 class="display-4 fs-sm m-2">
+					<h3 class="display-4">
 						<?= $chatWith['name'] ?> <br>
 						<div class="d-flex
                	              align-items-center" title="online">
@@ -171,7 +261,7 @@
 								<div class="online"></div>
 								<small class="d-block p-1">Online</small>
 							<?php } else { ?>
-								<small class="d-block p-1">
+								<small style="max-width: small;" class="d-block p-1">
 									Last seen:
 									<?= last_seen($chatWith['last_seen']) ?>
 								</small>
@@ -198,7 +288,19 @@
 								<p class="ltext border 
 					         rounded p-2 mb-1">
 									<?= $chat['message'] ?>
-									<small class="d-block">
+									<?php
+									$attachmentHTML = '';
+									if (!empty($chat['attachment'])) {
+										// Assuming the attachment field contains the filename of the image
+										$imageUrl = "../uploads/" . $chat['attachment']; // Adjust the path as needed
+										$attachmentHTML = "<img src='{$imageUrl}' alt='Attachment' style='max-width: 200px; display: block;'>";
+									}
+									// echo $attachmentHTML;
+
+									?>
+									<?= $attachmentHTML ?>
+
+									<small style="" class="d-block">
 										<?= $chat['created_at'] ?>
 									</small>
 								</p>
@@ -213,6 +315,9 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
+					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn">📎</button>
+					<input type="file" id="fileInput" style="display: none;">
+
 					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
 					<textarea cols="3" id="message" class="form-control"></textarea>
 					<button class="btn btn-primary" id="sendBtn">
@@ -226,6 +331,78 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
+				document.getElementById('attachmentBtn').addEventListener('click', function() {
+					document.getElementById('fileInput').click(); // Simulate click on the file input when attachment button is clicked
+				});
+
+				document.getElementById('fileInput').addEventListener('change', function() {
+					sendMessage(); // Trigger message send when a file is selected
+				});
+
+				function sendMessage() {
+					const message = document.getElementById('message').value.trim();
+					const fileInput = document.getElementById('fileInput');
+					const formData = new FormData();
+
+					formData.append('message', message);
+					if (fileInput.files[0]) {
+						formData.append('attachment', fileInput.files[0]);
+					}
+
+					formData.append('to_id', <?= json_encode($chatWith['id']) ?>); // Adjust to ensure correct variable handling
+
+					// Make the AJAX call using formData
+					$.ajax({
+						url: "../Public/Pages/Chat/app/ajax/insert.php",
+						type: "POST",
+						data: formData,
+						processData: false, // Prevent jQuery from automatically transforming the data into a query string
+						contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+						success: function(data) {
+							document.getElementById('message').value = ""; // Clear the message input field
+							document.getElementById('fileInput').value = ""; // Reset the file input
+							$("#chatBox").append(data); // Assuming you want to append the message to the chat box
+							scrollDown(); // Ensure the chat box scrolls to the latest message
+						}
+					});
+				}
+
+				document.addEventListener('DOMContentLoaded', function() {
+					const textarea = document.getElementById('message');
+					const sendBtn = document.getElementById('sendBtn'); // Reference to the send button
+
+					// Function to send the message
+					function sendMessage() {
+						const message = textarea.value.trim();
+						console.log(message);
+						if (message !== '') {
+							// Perform AJAX call to insert.php
+							$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+									message: message,
+									to_id: <?= json_encode($chatWith['id']) ?> // Ensure PHP variable is correctly encoded for JavaScript
+								},
+								function(data, status) {
+									$("#message").val(""); // Clear the textarea after sending
+									$("#chatBox").append(data); // Assuming you want to append the message to the chat box
+									scrollDown(); // Ensure the chat box scrolls to the latest message
+								});
+						}
+					}
+
+					// Event listener for the send button
+					sendBtn.addEventListener('click', function() {
+						sendMessage();
+					});
+
+					// Event listener for the Enter key in the textarea
+					textarea.addEventListener('keydown', function(event) {
+						if (event.key === "Enter" && !event.shiftKey) {
+							event.preventDefault(); // Prevent new line
+							sendMessage(); // Send the message
+						}
+					});
+				});
+
 				var scrollDown = function() {
 					let chatBox = document.getElementById('chatBox');
 					chatBox.scrollTop = chatBox.scrollHeight;
