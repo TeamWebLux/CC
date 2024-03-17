@@ -288,7 +288,7 @@
 						        border rounded p-2 mb-1">
 									<?= $chat['message'] ?>
 									<?php
-									$attachmentHTML = 'hhhhhhh';
+									$attachmentHTML = '';
 									if (!empty($chat['attachment'])) {
 										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
 										$fileInfo = pathinfo($file);
@@ -339,7 +339,7 @@
 					         rounded p-2 mb-1">
 									<?= $chat['message'] ?>
 									<?php
-									$attachmentHTML = 'hhhhhhh';
+									$attachmentHTML = '';
 									if (!empty($chat['attachment'])) {
 										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
 										$fileInfo = pathinfo($file);
