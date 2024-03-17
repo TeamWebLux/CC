@@ -44,7 +44,7 @@
 <!-- Finally Toastr JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="vanillaEmojiPicker.js"></script>
+<!-- <script src=". vanillaEmojiPicker.js"></script> -->
 
 
 <!-- Include Toastr CSS -->
