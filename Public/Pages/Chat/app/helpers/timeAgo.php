@@ -3,7 +3,7 @@
 // setting up the time Zone
 // It Depends on your location or your P.c settings
 // Use system's default timezone
-date_default_timezone_set(''); // Empty string sets it to the system default
+// date_default_timezone_set(''); // Empty string sets it to the system default
 
 function last_seen($date_time){
    $timestamp = strtotime($date_time);	
