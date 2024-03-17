@@ -244,8 +244,8 @@
 		?>
 
 
+<button><a href="./Chat_l" class="">Back</a></button>
 		<div class="content-inner container-fluid pb-0" id="page_layout">
-			<button><a href="./Chat_l" class="">Back</a></button>
 			<div class="w-400 shadow p-4 rounded">
 
 				<div class="d-flex align-items-center">
