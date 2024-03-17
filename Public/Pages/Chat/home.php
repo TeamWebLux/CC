@@ -191,7 +191,7 @@
 		}
 
 		.rtext {
-			font-family:serif;
+			font-family: serif;
 
 			background-color: blue;
 			color: aliceblue;
@@ -218,10 +218,11 @@
 			overflow-y: auto;
 			max-height: 400px;
 		}
-		.emoji-picker button {
-    font-size: 2rem; /* Increase font size for larger emojis */
-}
 
+		.emoji-picker button {
+			font-size: 2rem;
+			/* Increase font size for larger emojis */
+		}
 	</style>
 
 
@@ -249,7 +250,7 @@
 
 
 		<div class="content-inner container-fluid pb-0" id="page_layout">
-		<br><br><br>
+			<br><br><br>
 			<div class="w-400 shadow p-4 rounded">
 
 				<button><a href="./Chat_l" class="">Back</a></button>
@@ -474,7 +475,7 @@
 					const textarea = document.getElementById('message');
 
 					// Emoji list example, add more as needed
-					const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗'];
+					const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
 
 					// Populate the emoji picker
 					emojis.forEach(emoji => {
@@ -485,7 +486,7 @@
 						button.style.cursor = 'pointer';
 						button.onclick = function() {
 							textarea.value += emoji;
-							emojiPicker.style.display = 'none'; // Hide picker after selection
+							// emojiPicker.style.display = 'none'; // Hide picker after selection
 						};
 						emojiPicker.appendChild(button);
 					});
