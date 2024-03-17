@@ -183,7 +183,7 @@
 		}
 
 		.ltext {
-			background-color: blueviolet;
+			background-color: white;
 			color: black;
 			max-width: 50%;
 			font-size: large;
