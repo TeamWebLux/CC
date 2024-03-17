@@ -38,7 +38,7 @@
 		include 'app/helpers/timeAgo.php';
 
 		if (!isset($_GET['user'])) {
-			header("Location: home.php");
+			header("Location: ./Chat_l");
 			exit;
 		}
 
@@ -46,7 +46,7 @@
 		$chatWith = getUser($_GET['user'], $conn);
 
 		if (empty($chatWith)) {
-			header("Location: home.php");
+			header("Location: ./Chat_l");
 			exit;
 		}
 
@@ -253,7 +253,7 @@
 			<br><br><br>
 			<div class="w-400 shadow p-4 rounded">
 
-				<button><a href="./Chat_l" class="">Back</a></button>
+			<a href="./Chat_l" class="btn btn-dark">Back</a>
 
 				<div class="d-flex align-items-center">
 					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">

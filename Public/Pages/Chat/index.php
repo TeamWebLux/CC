@@ -242,13 +242,12 @@
 							<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 							<h3 class="fs-xs m-2"><?= $user['name'] ?></h3>
 						</div>
-						<a href="logout.php" class="btn btn-dark">Logout</a>
 					</div>
 
 					<div class="input-group mb-3">
 						<input type="text" placeholder="Search..." id="searchText" class="form-control">
 						<button class="btn btn-primary" id="serachBtn">
-							<i class="fa fa-search"></i>
+							<i class="fa fa-search">Search</i>
 						</button>
 					</div>
 					<ul id="chatList" class="list-group mvh-50 overflow-auto" id="chat-box">
