@@ -58,7 +58,6 @@
 
 	// print($uri);
 	?>
-	<script src="vanillaEmojiPicker.js"></script>
 
 	<style>
 		/* Custom CSS styles */
