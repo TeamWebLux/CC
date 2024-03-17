@@ -417,22 +417,22 @@
 
 				scrollDown();
 
-				$(document).ready(function() {
+				 $(document).ready(function() {
 
-					$("#sendBtn").on('click', function() {
-						message = $("#message").val();
-						if (message == "") return;
+				// 	$("#sendBtn").on('click', function() {
+				// 		message = $("#message").val();
+				// 		if (message == "") return;
 
-						$.post("../Public/Pages/Chat/app/ajax/insert.php", {
-								message: message,
-								to_id: <?= $chatWith['id'] ?>
-							},
-							function(data, status) {
-								$("#message").val("");
-								$("#chatBox").append(data);
-								scrollDown();
-							});
-					});
+				// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+				// 				message: message,
+				// 				to_id: <?= $chatWith['id'] ?>
+				// 			},
+				// 			function(data, status) {
+				// 				$("#message").val("");
+				// 				$("#chatBox").append(data);
+				// 				scrollDown();
+				// 			});
+				// 	});
 
 					/** 
 					auto update last seen 
