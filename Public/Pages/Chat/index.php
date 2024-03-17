@@ -30,22 +30,23 @@
 	if (isset($_SESSION['username'])) {
 		# database connection file
 		include 'app/db.conn.php';
-	// include './Public/Pages/Chat/./Public/Pages/Chat/app/';
+		// include './Public/Pages/Chat/./Public/Pages/Chat/app/';
 		include 'app/helpers/user.php';
 		include 'app/helpers/conversations.php';
 		include 'app/helpers/timeAgo.php';
 		include 'app/helpers/last_chat.php';
-	
+
 		# Getting User data data
 		$user = getUser($_SESSION['username'], $conn);
-	
+
 		# Getting User conversations
 		$conversations = getConversation($user['id'], $conn);
-	}	
+	}
 	print($uri);
 	?>
 
 </head>
+
 <body class="  ">
 	<!-- loader Start -->
 	<?php
@@ -76,7 +77,7 @@
 			            align-items-center">
 						<div class="d-flex
     			            align-items-center">
-							<img src="uploads/<?= $user['p_p'] ?>" class="w-25 rounded-circle">
+							<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 							<h3 class="fs-xs m-2"><?= $user['name'] ?></h3>
 						</div>
 						<a href="logout.php" class="btn btn-dark">Logout</a>
@@ -99,7 +100,7 @@
 	    				          align-items-center p-2">
 										<div class="d-flex
 	    					            align-items-center">
-											<img src="uploads/<?= $conversation['p_p'] ?>" class="w-10 rounded-circle">
+											<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 											<h3 class="fs-xs m-2">
 												<?= $conversation['name'] ?><br>
 												<small>
