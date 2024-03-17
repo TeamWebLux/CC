@@ -295,16 +295,23 @@
 									case 'jpeg':
 									case 'png':
 									case 'gif':
-										$attachmentHTML = "<img src='{$file}' alt='Image' style='max-width: 200px; display: block;'>";
+										// Link that opens the image in a new tab
+										$attachmentHTML = "<a href='{$file}' target='_blank' class='image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
+										// Add a download button
+										$attachmentHTML .= "<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
 										break;
 									case 'mp4':
+										// Video with a download button
 										$attachmentHTML = "<video controls style='max-width: 200px; display: block;'>
-                                            <source src='{$file}' type='video/mp4'>
-                                            Your browser does not support the video tag.
-                                        </video>";
+																<source src='{$file}' type='video/mp4'>
+																Your browser does not support the video tag.
+															</video>
+															<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
 										break;
 									case 'pdf':
-										$attachmentHTML = "<a href='{$file}' target='_blank'>Open PDF</a>";
+										// PDF link with a download button
+										$attachmentHTML = "<a href='{$file}' target='_blank'>Open PDF</a>
+														   <a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
 										break;
 									default:
 										$attachmentHTML = "Unsupported file format";
