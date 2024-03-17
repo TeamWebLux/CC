@@ -76,9 +76,6 @@
 			width: 10%;
 		}
 
-		a {
-			text-decoration: none;
-		}
 
 		.fs-big {
 			font-size: 5rem !important;
