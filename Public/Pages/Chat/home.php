@@ -281,54 +281,46 @@
     	               d-flex flex-column
     	               mt-2 chat-box" id="chatBox">
 					<?php
-if (!empty($chats)) {
-    foreach ($chats as $chat) {
-        $attachmentHTML = ''; // Initialize as empty
-        if (!empty($chat['attachment'])) {
-            // Assuming the attachment field contains the filename of the image
-            $file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
-            $fileInfo = pathinfo($file);
-            $fileExtension = strtolower($fileInfo['extension']);
+					if (!empty($chats)) {
+						foreach ($chats as $chat) {
+							if ($chat['from_id'] == $_SESSION['user_id']) { ?>
+								<p class="rtext align-self-end
+						        border rounded p-2 mb-1">
+									<?= $chat['message'] ?>
+									
+									<small class="d-block">
+										<?= $chat['created_at'] ?>
+									</small>
+								</p>
+							<?php } else { ?>
+								<p class="ltext border 
+					         rounded p-2 mb-1">
+									<?= $chat['message'] ?>
+									<?php
+									$attachmentHTML = 'hhhhhhh';
+									if (!empty($chat['attachment'])) {
+										// Assuming the attachment field contains the filename of the image
+										$imageUrl = "../uploads/" . $chat['attachment']; // Adjust the path as needed
+										$attachmentHTML = "<img src='{$imageUrl}' alt='Attachment' style='max-width: 200px; display: block;'>";
+									}
+									// echo $attachmentHTML;
 
-            switch ($fileExtension) {
-                case 'jpg':
-                case 'jpeg':
-                case 'png':
-                case 'gif':
-                    $attachmentHTML = "<img src='{$file}' alt='Image' style='max-width: 200px; display: block;'>";
-                    break;
-                case 'mp4':
-                    $attachmentHTML = "<video controls style='max-width: 200px; display: block;'>
-                                            <source src='{$file}' type='video/mp4'>
-                                            Your browser does not support the video tag.
-                                        </video>";
-                    break;
-                case 'pdf':
-                    $attachmentHTML = "<a href='{$file}' target='_blank'>Open PDF</a>";
-                    break;
-                default:
-                    $attachmentHTML = "Unsupported file format";
-                    break;
-            }
-        }
+									?>
+									<?= $attachmentHTML ?>
 
-        // Message class based on sender
-        $messageClass = $chat['from_id'] == $_SESSION['user_id'] ? 'rtext align-self-end border rounded p-2 mb-1' : 'ltext border rounded p-2 mb-1';
-
-        // Output the chat message
-        echo "<p class='{$messageClass}'>
-                {$chat['message']}
-                {$attachmentHTML}
-                <small class='d-block'>{$chat['created_at']}</small>
-              </p>";
-    }
-} else {
-    echo "<div class='alert alert-info text-center'>
-            <i class='fa fa-comments d-block fs-big'></i>
-            No messages yet, start the conversation.
-          </div>";
-}
-?>
+									<small style="font-size: x-small;" class="d-block">
+										<?= $chat['created_at'] ?>
+									</small>
+								</p>
+						<?php }
+						}
+					} else { ?>
+						<div class="alert alert-info 
+    				            text-center">
+							<i class="fa fa-comments d-block fs-big"></i>
+						</div>
+					<?php } ?>
+				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" style="max-width: 5%; padding: 0;" type="button" id="attachmentBtn">
