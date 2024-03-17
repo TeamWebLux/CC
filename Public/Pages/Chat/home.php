@@ -58,7 +58,6 @@
 
 	// print($uri);
 	?>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-vxI2WT6n5JBOH1bwe3D2CyPkJ9XoWKc9pu3Uip/rB9zW1YJqzgRbvm6YlLOf6fDI" crossorigin="anonymous">
 
 	<style>
 		.vh-100 {
@@ -226,7 +225,7 @@
 			/* Remove default padding */
 			background: none;
 			/* Remove default background */
-			border: none;
+			/* border: none; */
 			/* Remove default border */
 		}
 
