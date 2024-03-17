@@ -396,6 +396,24 @@
 					emojiPicker.style.display = 'none';
 				}
 			});
+
+			// Send message on Enter key press
+			textarea.addEventListener('keydown', function(event) {
+				if (event.key === 'Enter' && !event.shiftKey) {
+					event.preventDefault(); // Prevent new line in textarea
+					sendMessage();
+				}
+			});
+
+			// Function to send the message
+			function sendMessage() {
+				const message = textarea.value.trim();
+				if (message !== '') {
+					// Add your code to send the message here
+					console.log('Message sent:', message);
+					textarea.value = ''; // Clear the textarea after sending
+				}
+			}
 		});
 	</script>
 
