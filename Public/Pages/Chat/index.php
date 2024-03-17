@@ -247,14 +247,14 @@
 						<h3>Online Agents Available for Chat</h3>
 						<ul>
 							<?php foreach ($agents as $agent) { ?>
-								<a href="./Chat_Screen?user=<?= $agents['username'] ?>" class="d-flex
+								<a href="./Chat_Screen?user=<?= $agent['username'] ?>" class="d-flex
 	    				          justify-content-between
 	    				          align-items-center p-2">
 									<div class="d-flex
 	    					            align-items-center">
-										<img src="../assets/images/avatars/<?= !empty($agents['p_p']) ? $agents['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+										<img src="../assets/images/avatars/<?= !empty($agent['p_p']) ? $agent['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 										<h3 class="fs-xs m-2">
-											<?= $agents['name'] ?><br>
+											<?= $agent['name'] ?><br>
 											<small>
 
 												<?php
