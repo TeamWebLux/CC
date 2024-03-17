@@ -307,7 +307,7 @@
 									?>
 									<?= $attachmentHTML ?>
 
-									<small style="" class="d-block">
+									<small style="font-size: x-small;" class="d-block">
 										<?= $chat['created_at'] ?>
 									</small>
 								</p>
