@@ -322,7 +322,9 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" style="max-width: fit-content; font-size: 1.5rem;" type="button" id="attachmentBtn">📎</button>
+					<button class="btn btn-outline-secondary" style="max-width: fit-content; padding: 0;" type="button" id="attachmentBtn">
+						<img src="../uploads/pin.png" alt="Attachment" style="max-width: 100%; height: auto;">
+					</button>
 					<input type="file" id="fileInput" style="display: none;">
 
 					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
