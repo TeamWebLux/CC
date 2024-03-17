@@ -37,7 +37,7 @@
 		include 'app/helpers/last_chat.php';
         if ($_SESSION['role'] == 'User') {
             // Fetch online agents in the same page
-            $pagename = $_SESSION['pagename'];
+            $pagename = $_SESSION['page'];
             $sql = "SELECT * FROM user WHERE role = 'Agent' AND last_seen(last_seen_column) = 'Active' AND pagename = ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$pagename]);
