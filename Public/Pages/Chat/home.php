@@ -218,6 +218,10 @@
 			overflow-y: auto;
 			max-height: 400px;
 		}
+		.emoji-picker button {
+    font-size: 2rem; /* Increase font size for larger emojis */
+}
+
 	</style>
 
 
