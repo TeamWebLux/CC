@@ -58,6 +58,7 @@
 
 	// print($uri);
 	?>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-vxI2WT6n5JBOH1bwe3D2CyPkJ9XoWKc9pu3Uip/rB9zW1YJqzgRbvm6YlLOf6fDI" crossorigin="anonymous">
 
 	<style>
 		.vh-100 {
@@ -219,6 +220,24 @@
 			max-height: 400px;
 		}
 
+		/* Adjust button styling */
+		button.btn {
+			padding: 0;
+			/* Remove default padding */
+			background: none;
+			/* Remove default background */
+			border: none;
+			/* Remove default border */
+		}
+
+		/* Set width and height for the buttons */
+		button.btn i {
+			width: 30px;
+			/* Set width of icon */
+			height: 30px;
+			/* Set height of icon */
+		}
+
 		.emoji-picker button {
 			font-size: 2rem;
 			/* Increase font size for larger emojis */
@@ -322,10 +341,10 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn">📎</button>
+					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn"><i class="fas fa-paperclip"></i></button>
 					<input type="file" id="fileInput" style="display: none;">
 
-					<button class="btn btn-outline-secondary emoji-picker-button" type="button">😊</button>
+					<button class="btn btn-outline-secondary emoji-picker-button" type="button"><i class="far fa-smile"></i></button>
 					<textarea cols="3" id="message" class="form-control"></textarea>
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
@@ -417,22 +436,22 @@
 
 				scrollDown();
 
-				 $(document).ready(function() {
+				$(document).ready(function() {
 
-				// 	$("#sendBtn").on('click', function() {
-				// 		message = $("#message").val();
-				// 		if (message == "") return;
+					// 	$("#sendBtn").on('click', function() {
+					// 		message = $("#message").val();
+					// 		if (message == "") return;
 
-				// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
-				// 				message: message,
-				// 				to_id: <?= $chatWith['id'] ?>
-				// 			},
-				// 			function(data, status) {
-				// 				$("#message").val("");
-				// 				$("#chatBox").append(data);
-				// 				scrollDown();
-				// 			});
-				// 	});
+					// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+					// 				message: message,
+					// 				to_id: <?= $chatWith['id'] ?>
+					// 			},
+					// 			function(data, status) {
+					// 				$("#message").val("");
+					// 				$("#chatBox").append(data);
+					// 				scrollDown();
+					// 			});
+					// 	});
 
 					/** 
 					auto update last seen 
@@ -475,7 +494,7 @@
 					const textarea = document.getElementById('message');
 
 					// Emoji list example, add more as needed
-					const emojis = ['👍', '👎','😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
+					const emojis = ['👍', '👎', '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '😇', '🥳', '😏', '😌', '😒', '😞', '😔', '😟', '😕', '🙃', '🤔', '🤨', '😳', '😬', '🥺', '😠', '😡', '🤯', '😭', '😱', '😤', '😪', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😴', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
 
 					// Populate the emoji picker
 					emojis.forEach(emoji => {
