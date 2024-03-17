@@ -45,8 +45,7 @@ if (isset($_SESSION['username'])) {
 
 
 	            ?>
-                  <p class="ltext border 
-					        rounded p-2 mb-1">
+                  <p class="ltext border rounded p-2 mb-1">
 					    <?=$chat['message']?> 
 						<?=$attachmentHTML?> 
 					    <small class="d-block">
