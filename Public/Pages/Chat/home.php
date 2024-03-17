@@ -296,7 +296,7 @@
 					         rounded p-2 mb-1">
 									<?= $chat['message'] ?>
 									<?php
-									$attachmentHTML = '';
+									$attachmentHTML = 'hhhhhhh';
 									if (!empty($chat['attachment'])) {
 										// Assuming the attachment field contains the filename of the image
 										$imageUrl = "../uploads/" . $chat['attachment']; // Adjust the path as needed
