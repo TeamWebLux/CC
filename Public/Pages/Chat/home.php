@@ -340,10 +340,14 @@
 				</div>
 				<!-- Remove the previous emoji-picker element -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn"><i class="fas fa-paperclip"></i></button>
+					<button class="btn btn-outline-secondary" type="button" id="attachmentBtn"><svg class="bi" width="32" height="32" fill="currentColor">
+							<use xlink:href="#paperclip-fill" />
+						</svg></button>
 					<input type="file" id="fileInput" style="display: none;">
 
-					<button class="btn btn-outline-secondary emoji-picker-button" type="button"><i class="far fa-smile"></i></button>
+					<button class="btn btn-outline-secondary emoji-picker-button" type="button"><svg class="bi" width="32" height="32" fill="currentColor">
+							<use xlink:href="#smile-fill" />
+						</svg></button>
 					<textarea cols="3" id="message" class="form-control"></textarea>
 					<button class="btn btn-primary" id="sendBtn">
 						<i class="fa fa-paper-plane">Send</i>
