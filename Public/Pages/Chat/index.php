@@ -42,7 +42,7 @@
 			$stmt = $conn->prepare($sql);
 			$stmt->execute([$pagename]);
 			$agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			$conversations = getConversation($agents['id'], $conn);
+			// $conversations = getConversation($agents['id'], $conn);
 		} else {
 
 			# Getting User data data
