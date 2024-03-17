@@ -35,25 +35,27 @@
 		include 'app/helpers/conversations.php';
 		include 'app/helpers/timeAgo.php';
 		include 'app/helpers/last_chat.php';
-        if ($_SESSION['role'] == 'User') {
-            // Fetch online agents in the same page
-            $pagename = $_SESSION['page'];
-            $sql = "SELECT * FROM user WHERE role = 'Agent' AND last_seen(last_seen) = 'Active' AND pagename = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$pagename]);
-            $agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
+		if ($_SESSION['role'] == 'User') {
+			// Fetch online agents in the same page
+			$pagename = $_SESSION['page'];
+			$sql = "SELECT * FROM user WHERE role = 'Agent' AND last_seen(last_seen) = 'Active' AND pagename = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->execute([$pagename]);
+			$agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$conversations = getConversation($agents['id'], $conn);
+		} else {
 
-		# Getting User data data
-		$user = getUser($_SESSION['username'], $conn);
+			# Getting User data data
+			$user = getUser($_SESSION['username'], $conn);
 
-		# Getting User conversations
-		$conversations = getConversation($user['id'], $conn);}
+			# Getting User conversations
+			$conversations = getConversation($user['id'], $conn);
+		}
 	}
 	// print($uri);
-	
+
 	?>
-		<style>
+	<style>
 		.vh-100 {
 			min-height: 100vh;
 		}
@@ -241,72 +243,89 @@
 			<div class="p-2 w-400
                 rounded shadow">
 				<?php if ($_SESSION['role'] == 'User') { ?>
-                    <div>
-                        <h3>Online Agents Available for Chat</h3>
-                        <ul>
-                            <?php foreach ($agents as $agent) { ?>
-                                <li><?= $agent['username'] ?></li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                <?php } else { ?>
+					<div>
+						<h3>Online Agents Available for Chat</h3>
+						<ul>
+							<?php foreach ($agents as $agent) { ?>
+								<a href="./Chat_Screen?user=<?= $agents['username'] ?>" class="d-flex
+	    				          justify-content-between
+	    				          align-items-center p-2">
+									<div class="d-flex
+	    					            align-items-center">
+										<img src="../assets/images/avatars/<?= !empty($agents['p_p']) ? $agents['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+										<h3 class="fs-xs m-2">
+											<?= $agents['name'] ?><br>
+											<small>
 
-				<div>
-					<div class="d-flex
+												<?php
+												// echo lastChat($_SESSION['user_id'], $conversation['id'], $conn);
+												?>
+											</small>
+										</h3>
+									</div>
+
+								<?php } ?>
+						</ul>
+					</div>
+				<?php } else { ?>
+
+					<div>
+						<div class="d-flex
     		            mb-3 p-3 bg-light
 			            justify-content-between
 			            align-items-center">
-						<div class="d-flex
+							<div class="d-flex
     			            align-items-center">
-							<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
-							<h3 class="fs-xs m-2"><?= $user['name'] ?></h3>
+								<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+								<h3 class="fs-xs m-2"><?= $user['name'] ?></h3>
+							</div>
 						</div>
-					</div>
 
-					<div class="input-group mb-3">
-						<input type="text" placeholder="Search..." id="searchText" class="form-control">
-						<button class="btn btn-primary" id="serachBtn">
-							<i class="fa fa-search">Search</i>
-						</button>
-					</div>
-					<ul id="chatList" class="list-group mvh-50 overflow-auto" id="chat-box">
-						<?php if (!empty($conversations)) { ?>
-							<?php
+						<div class="input-group mb-3">
+							<input type="text" placeholder="Search..." id="searchText" class="form-control">
+							<button class="btn btn-primary" id="serachBtn">
+								<i class="fa fa-search">Search</i>
+							</button>
+						</div>
+						<ul id="chatList" class="list-group mvh-50 overflow-auto" id="chat-box">
+							<?php if (!empty($conversations)) { ?>
+								<?php
 
-							foreach ($conversations as $conversation) { ?>
-								<li class="list-group-item">
-									<a href="./Chat_Screen?user=<?= $conversation['username'] ?>" class="d-flex
+								foreach ($conversations as $conversation) { ?>
+									<li class="list-group-item">
+										<a href="./Chat_Screen?user=<?= $conversation['username'] ?>" class="d-flex
 	    				          justify-content-between
 	    				          align-items-center p-2">
-										<div class="d-flex
+											<div class="d-flex
 	    					            align-items-center">
-											<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
-											<h3 class="fs-xs m-2">
-												<?= $conversation['name'] ?><br>
-												<small>
-													<?php
-													echo lastChat($_SESSION['user_id'], $conversation['id'], $conn);
-													?>
-												</small>
-											</h3>
-										</div>
-										<?php if (last_seen($conversation['last_seen']) == "Active") { ?>
-											<div title="online">
-												<div class="online"></div>
+												<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+												<h3 class="fs-xs m-2">
+													<?= $conversation['name'] ?><br>
+													<small>
+														<?php
+														echo lastChat($_SESSION['user_id'], $conversation['id'], $conn);
+														?>
+													</small>
+												</h3>
 											</div>
-										<?php } ?>
-									</a>
-								</li>
-							<?php } ?>
-						<?php } else { ?>
-							<div class="alert alert-info 
+											<?php if (last_seen($conversation['last_seen']) == "Active") { ?>
+												<div title="online">
+													<div class="online"></div>
+												</div>
+											<?php } ?>
+										</a>
+									</li>
+								<?php } ?>
+							<?php } else { ?>
+								<div class="alert alert-info 
     				            text-center">
-								<i class="fa fa-comments d-block fs-big"></i>
-								No messages yet, Start the conversation
-							</div>
-						<?php } }?>
-					</ul>
-				</div>
+									<i class="fa fa-comments d-block fs-big"></i>
+									No messages yet, Start the conversation
+								</div>
+						<?php }
+						} ?>
+						</ul>
+					</div>
 			</div>
 
 
