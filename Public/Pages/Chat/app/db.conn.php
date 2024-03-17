@@ -1,14 +1,14 @@
 <?php
 
 # server name
-$sName = "89.116.139.118";
+$sName = "193.203.184.53";
 # user name
-$uName = "jd";
+$uName = "u306273205_cc";
 # password
-$pass = "Jayesh8169";
+$pass = "Weblux@@1122";
 
 # database name
-$db_name = "cc";
+$db_name = "u306273205_cc";
 
 #creating database connection
 try {
