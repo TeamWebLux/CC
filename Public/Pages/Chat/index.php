@@ -35,12 +35,20 @@
 		include 'app/helpers/conversations.php';
 		include 'app/helpers/timeAgo.php';
 		include 'app/helpers/last_chat.php';
+        if ($_SESSION['role'] == 'User') {
+            // Fetch online agents in the same page
+            $pagename = $_SESSION['pagename'];
+            $sql = "SELECT * FROM user WHERE role = 'Agent' AND last_seen(last_seen_column) = 'Active' AND pagename = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$pagename]);
+            $agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
 
 		# Getting User data data
 		$user = getUser($_SESSION['username'], $conn);
 
 		# Getting User conversations
-		$conversations = getConversation($user['id'], $conn);
+		$conversations = getConversation($user['id'], $conn);}
 	}
 	// print($uri);
 	
@@ -232,6 +240,17 @@
 		<div class="content-inner container-fluid pb-0" id="page_layout">
 			<div class="p-2 w-400
                 rounded shadow">
+				<?php if ($_SESSION['role'] == 'User') { ?>
+                    <div>
+                        <h3>Online Agents Available for Chat</h3>
+                        <ul>
+                            <?php foreach ($agents as $agent) { ?>
+                                <li><?= $agent['username'] ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+
 				<div>
 					<div class="d-flex
     		            mb-3 p-3 bg-light
@@ -285,7 +304,7 @@
 								<i class="fa fa-comments d-block fs-big"></i>
 								No messages yet, Start the conversation
 							</div>
-						<?php } ?>
+						<?php } }?>
 					</ul>
 				</div>
 			</div>
