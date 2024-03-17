@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
 		# get the logged in user's username from the SESSION
 		$from_id = $_SESSION['user_id'];
 		// Get the root directory and append the target directory
-		$uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/CC/uploads/';
+		$uploadDir = $_SERVER['DOCUMENT_ROOT'] . 'uploads/';
 
 		// Check if the uploads directory exists, if not try to create it
 		if (!is_dir($uploadDir)) {
