@@ -36,7 +36,7 @@ if (isset($_SESSION['username'])) {
 	    		         WHERE chat_id = ?";
 	    		$stmt2 = $conn->prepare($sql2);
 	            $stmt2->execute([$opened, $chat_id]); 
-				$attachmentHTML = '';
+				$attachmentHTML = 'nnnnnn';
 				if (!empty($chat['attachment'])) {
 					// Assuming the attachment field contains the filename of the image
 					$imageUrl = "../uploads/". $chat['attachment']; // Adjust the path as needed
@@ -49,10 +49,9 @@ if (isset($_SESSION['username'])) {
 					        rounded p-2 mb-1">
 					    <?=$chat['message']?> 
 						<?=$attachmentHTML?> 
-
 					    <small class="d-block">
 					    	<?=$chat['created_at']?>
-					    </small>      	
+					    </small>     	
 				  </p>        
 	            <?php
 	    	}
