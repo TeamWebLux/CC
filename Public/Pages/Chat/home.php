@@ -183,20 +183,20 @@
 		}
 
 		.ltext {
-			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			font-family: serif;
 			background-color: white;
 			color: black;
 			max-width: 50%;
-			font-size: large;
+			font-size: larger;
 		}
 
 		.rtext {
-			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			font-family:serif;
 
 			background-color: blue;
 			color: aliceblue;
 			max-width: 50%;
-			font-size: large;
+			font-size: larger;
 
 
 		}
