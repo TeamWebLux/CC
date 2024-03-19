@@ -16,7 +16,7 @@ function fhead($title = "", $heading = "", $faction = "")
                     <form action=' . $faction . ' method="POST">';
     return $formstart;
 }
-function field($label, $type, $id, $placeholder, $value = "", $required = "", $ftype = "")
+function field($label, $type, $id, $placeholder, $value = "", $required = "required", $ftype = "")
 {
     $html = '<div class="form-group">
                 <label class="form-label" for="' . $id . '">' . $label . '</label>
