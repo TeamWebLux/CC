@@ -471,6 +471,8 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
+				const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+
 				function linkify(text) {
 					return text.replace(urlRegex, function(url) {
 						return '<a href="' + url + '" target="_blank">' + url + '</a>';
