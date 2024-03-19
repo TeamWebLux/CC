@@ -185,6 +185,7 @@
 		}
 
 		.ltext {
+			word-break: break-all;
 			font-family: serif;
 			background-color: white;
 			color: black;
@@ -194,7 +195,7 @@
 
 		.rtext {
 			font-family: serif;
-
+			word-break: break-all;
 			background-color: #bbb;
 			color: #444;
 			max-width: 50%;
@@ -334,13 +335,13 @@
 						</div>
 					</h3>
 				</div>
-<?php function linkify($text) {
-    $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
-    $text = preg_replace($urlPattern, '<a class="rtext align-self-end
-	border rounded p-2 mb-1" href="$0" target="_blank">$0</a>', $text);
-    return $text;
-}
-?>
+				<?php function linkify($text)
+				{
+					$urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+					$text = preg_replace($urlPattern, '<a class="rtext" href="$0" target="_blank">$0</a>', $text);
+					return $text;
+				}
+				?>
 				<div class="shadow p-4 rounded
     	               d-flex flex-column
     	               mt-2 chat-box" id="chatBox">
@@ -401,7 +402,7 @@
 							<?php } else { ?>
 								<p class="ltext border 
 					         rounded p-2 mb-1">
-									<?=linkify($chat['message'])?>
+									<?= linkify($chat['message']) ?>
 									<?php
 									$attachmentHTML = '';
 									if (!empty($chat['attachment'])) {
@@ -477,7 +478,6 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
-
 				// function onNewMessageReceived() {
 				// 	var chatSound = document.getElementById('chatNotificationSound');
 				// 	chatSound.play();
