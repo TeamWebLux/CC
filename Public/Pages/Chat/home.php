@@ -413,10 +413,42 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
+				// function onNewMessageReceived() {
+				// 	var chatSound = document.getElementById('chatNotificationSound');
+				// 	chatSound.play();
+				// }
+				document.addEventListener("visibilitychange", function() {
+					if (!document.hidden) {
+						// The user has switched back to the tab, fetch new messages immediately
+						fetchMessages();
+					}
+				});
+
+				$(document).ready(function() {
+					// Your existing $(document).ready setup
+					// Including the setInterval for fetchMessages
+
+					// Example: Request permission for Notifications
+					if ("Notification" in window) {
+						Notification.requestPermission();
+					}
+				});
+
 				function onNewMessageReceived() {
 					var chatSound = document.getElementById('chatNotificationSound');
 					chatSound.play();
+
+					// Show a notification if the tab is not active
+					if (document.hidden && Notification.permission === "granted") {
+						new Notification("New message", {
+							body: "You have received a new message.",
+							// icon: "/path/to/an/icon.png", // Optional: Add an icon
+						});
+					}
 				}
+
+				// Modify your fetchMessages function or its success callback to call onNewMessageReceived appropriately
+
 
 				document.getElementById('attachmentBtn').addEventListener('click', function() {
 					document.getElementById('fileInput').click(); // Simulate click on the file input when attachment button is clicked
