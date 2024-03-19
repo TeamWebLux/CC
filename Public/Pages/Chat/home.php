@@ -253,7 +253,9 @@
 		/* Small devices (phones, 600px and down) */
 		@media (max-width: 600px) {
 
-			.w-400,
+			.w-400{
+				width: 100%;
+			}
 			.w-15,
 			.w-10 {
 				width: 50%;
