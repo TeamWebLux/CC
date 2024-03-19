@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<?php
 	include("./Public/Pages/Common/header.php");
 	include "./Public/Pages/Common/auth_user.php";
@@ -222,6 +224,60 @@
 		.emoji-picker button {
 			font-size: 2rem;
 			/* Increase font size for larger emojis */
+		}
+
+		/* Base styles */
+		.chat-box {
+			max-width: 750px;
+			overflow-y: auto;
+		}
+
+		/* Medium devices (tablets, 768px and up) */
+		@media (max-width: 768px) {
+			.w-400 {
+				width: 100%;
+				/* Full width */
+			}
+
+			.chat-box {
+				max-height: 40vh;
+			}
+
+			.fs-sm,
+			.display-4 {
+				font-size: 1rem;
+				/* Adjust font size */
+			}
+		}
+
+		/* Small devices (phones, 600px and down) */
+		@media (max-width: 600px) {
+
+			.w-400,
+			.w-15,
+			.w-10 {
+				width: 100%;
+				/* Full width */
+			}
+
+			.chat-box {
+				max-height: 30vh;
+			}
+
+			.fs-big,
+			.fs-xs,
+			.fs-sm,
+			.display-4 {
+				font-size: 0.8rem;
+				/* Adjust font size */
+			}
+
+			.emoji-picker {
+				width: 100%;
+				/* Full width */
+				grid-template-columns: repeat(4, 1fr);
+				/* Less columns */
+			}
 		}
 	</style>
 
