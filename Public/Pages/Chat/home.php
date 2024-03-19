@@ -196,7 +196,7 @@
 			font-family: serif;
 
 			background-color: #bbb;
-			color: aliceblue;
+			color: #444;
 			max-width: 50%;
 			font-size: larger;
 
