@@ -359,7 +359,7 @@
 											case 'png':
 											case 'gif':
 												// Link that opens the image in a new tab
-												$attachmentHTML = "<a href='{$file}' target='_blank' class='image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
+												$attachmentHTML = "<a href='{$file}' target='_blank' class='w-15 image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
 												// Add a download button
 												$attachmentHTML .= "<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
 												break;
@@ -410,7 +410,7 @@
 											case 'png':
 											case 'gif':
 												// Link that opens the image in a new tab
-												$attachmentHTML = "<a href='{$file}' target='_blank' class='image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
+												$attachmentHTML = "<a href='{$file}' target='_blank' class='w-15 image-view-link'><img src='{$file}' alt='Image' style='max-width: 200px; display: block; cursor: pointer;'></a>";
 												// Add a download button
 												$attachmentHTML .= "<a href='{$file}' download='{$fileInfo['basename']}' class='btn btn-primary btn-sm'>Download</a>";
 												break;
