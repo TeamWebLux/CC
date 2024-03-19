@@ -195,7 +195,7 @@
 		.rtext {
 			font-family: serif;
 
-			background-color: blue;
+			background-color: #bbb;
 			color: aliceblue;
 			max-width: 50%;
 			font-size: larger;
@@ -336,7 +336,7 @@
 				</div>
 <?php function linkify($text) {
     $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
-    $text = preg_replace($urlPattern, '<a href="$0" target="_blank">$0</a>', $text);
+    $text = preg_replace($urlPattern, '<a class="" href="$0" target="_blank">$0</a>', $text);
     return $text;
 }
 ?>
