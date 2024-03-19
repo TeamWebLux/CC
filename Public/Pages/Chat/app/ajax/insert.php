@@ -1,6 +1,13 @@
 <?php
 
 session_start();
+function linkify($text)
+{
+	$urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+	$text = preg_replace($urlPattern, '<a class="rtext" href="$0" target="_blank">$0</a>', $text);
+	return $text;
+}
+
 
 # check if the user is logged in
 if (isset($_SESSION['username'])) {
