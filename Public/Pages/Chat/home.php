@@ -334,7 +334,12 @@
 						</div>
 					</h3>
 				</div>
-
+<?php function linkify($text) {
+    $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+    $text = preg_replace($urlPattern, '<a href="$0" target="_blank">$0</a>', $text);
+    return $text;
+}
+?>
 				<div class="shadow p-4 rounded
     	               d-flex flex-column
     	               mt-2 chat-box" id="chatBox">
@@ -344,7 +349,7 @@
 							if ($chat['from_id'] == $_SESSION['user_id']) { ?>
 								<p class="rtext align-self-end
 						        border rounded p-2 mb-1">
-									<?= $chat['message'] ?>
+									<?= linkify($chat['message']) ?>
 									<?php
 									$attachmentHTML = '';
 									if (!empty($chat['attachment'])) {
@@ -395,7 +400,7 @@
 							<?php } else { ?>
 								<p class="ltext border 
 					         rounded p-2 mb-1">
-									<?= $chat['message'] ?>
+									<?=linkify($chat['message'])?>
 									<?php
 									$attachmentHTML = '';
 									if (!empty($chat['attachment'])) {
@@ -471,22 +476,6 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
-				const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-
-				function linkify(text) {
-					return text.replace(urlRegex, function(url) {
-						return '<a href="' + url + '" target="_blank">' + url + '</a>';
-					});
-				}
-
-				function appendMessage(username, message) {
-					const chatBox = document.getElementById('chatBox');
-					const messageWithLinks = linkify(message);
-					const messageElement = `<p><strong>${username}:</strong> ${messageWithLinks}</p>`;
-
-					chatBox.innerHTML += messageElement;
-					// Make sure to scroll down to the latest message, etc.
-				}
 
 				// function onNewMessageReceived() {
 				// 	var chatSound = document.getElementById('chatNotificationSound');
