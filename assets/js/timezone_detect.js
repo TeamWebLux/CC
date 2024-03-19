@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(timezone);
     console.log("hiii");
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', './Public/Pages/Chat/app/ajax/set_timezone.php', true);
+    xhr.open('POST', '../Public/Pages/Chat/app/ajax/set_timezone.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
