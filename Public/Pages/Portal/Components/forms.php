@@ -258,7 +258,7 @@ echo '<br>';
         echo $Cancel;
         echo $formend;
     }
-    if ($action == "PLATFORM" && $role == "Admin") {
+    if ($action == "PLATFORM" && $role == "Admin" || $role =="Manager") {
         $title = "Add Platform Name";
         $heading = "Enter the Platform Information Below";
         $actionUrl = "../App/Logic/creation.php?action=platform"; // Adjust the action as needed
