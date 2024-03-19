@@ -336,7 +336,8 @@
 				</div>
 <?php function linkify($text) {
     $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
-    $text = preg_replace($urlPattern, '<a class="rtext" href="$0" target="_blank">$0</a>', $text);
+    $text = preg_replace($urlPattern, '<a class="rtext align-self-end
+	border rounded p-2 mb-1" href="$0" target="_blank">$0</a>', $text);
     return $text;
 }
 ?>
