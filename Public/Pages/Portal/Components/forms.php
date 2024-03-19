@@ -18,7 +18,7 @@ if (isset($action)) {
     // ...
 
     if ($action == 'ADD_USER' || $action == 'EDIT_USER') {
-        $r=isset($_POST['role']);
+        $r=isset($_POST['role']) ;
         $title = $action == 'ADD_USER' ? "Add ".$r : "Edit ".$r;
         $postUrl = $action == 'ADD_USER' ? "../App/Logic/register.php?action=register" : '../App/Logic/register.php?action=editregister';
 
@@ -189,7 +189,7 @@ echo '<br>';
         echo '<select class="form-select" id="cashAppname" name="cashAppname" onchange="showOtherField(this, \'cashAppname-other\')">' . $cashAppOptions . '</select>';
         echo '<input type="text" id="cashAppname-other" name="cashAppname_other" style="display:none;" placeholder="Enter cashApp Name">';
         echo field("Tip", "number", "tip", "Enter the Tip Amount");
-        echo field("Remark", "text", "remark", "Enter the Remark ");
+        echo field("Remark", "text", "remark", "Enter the Remark ","","");
 
         echo $Submit;
         echo $Cancel;
@@ -249,7 +249,7 @@ echo '<br>';
         echo '<input type="text" id="cashAppname-other" name="cashAppname_other" style="display:none;" placeholder="Enter cashApp Name">';
 
         echo field("Bonus Amount", "number", "bonusamount", "Enter the Bonus Amount");
-        echo field("Remark", "text", "remark", "Enter the Remark ");
+        echo field("Remark", "text", "remark", "Enter the Remark ","","");
 
         echo $Submit;
         echo $Cancel;
@@ -296,7 +296,7 @@ echo '<br>';
               </div>';
 
         echo field("Current Balance", "number", "currentbalance", "Enter the Current Balance");
-        echo field("CashApp Remark", "textarea", "remark", "Enter the Remar ");
+        echo field("CashApp Remark", "textarea", "remark", "Enter the Remar ","","");
 
 
         echo $Submit;
@@ -349,7 +349,7 @@ echo '<br>';
         // Remaining fields
         echo field("Cashtag", "text", "cashtag", "Enter the Cashtag");
         echo field("Amount", "number", "amount", "Enter the Amount");
-        echo field("Remark", "text", "remark", "Enter any remarks");
+        echo field("Remark", "text", "remark", "Enter any remarks","","");
 
         echo $Submit;
         echo $Cancel;
@@ -431,7 +431,7 @@ echo '<br>';
         if ($action == "RECHARGE_PLATFORM" || $action=="REDEEM_PLATFORM") {
             echo field("Platform Name", "text", "platform", "Enter Platform Name", isset($_GET['name']) ? $_GET['name'] : '', "required", "readonly");
             echo field("Amount", "number", "amount", "Enter Amount ");
-            echo field("Remark", "text", "remark", "Enter Remark ");
+            echo field("Remark", "text", "remark", "Enter Remark ","","");
             if($action=="RECHARGE_PLATFORM"){
                 echo '<input name="type" value="Recharge" hidden>';
             }elseif($action == "REDEEM_PLATFORM"){
@@ -444,7 +444,7 @@ echo '<br>';
         if ($action == "RECHARGE_CASHAPP" || $action=="REDEEM_CASHAPP") {
             echo field("CashApp Name", "text", "cashapp", "Enter CashApp Name", isset($_GET['name']) ? $_GET['name'] : '', "required", "readonly");
             echo field("Amount", "number", "amount", "Enter Amount " );
-            echo field("Remark", "text", "remark", "Enter Remark ");
+            echo field("Remark", "text", "remark", "Enter Remark ","","");
             if($action=="RECHARGE_CASHAPP"){
                 echo '<input name="type" value="Recharge" hidden>';
             }elseif($action == "REDEEM_CASHAPP"){
