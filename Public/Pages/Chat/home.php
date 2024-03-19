@@ -103,7 +103,7 @@
 		}
 
 		small {
-			color: #bbb;
+			color: #444;
 			font-size: 0.7rem;
 			text-align: right;
 		}
