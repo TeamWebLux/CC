@@ -471,6 +471,21 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
+				function linkify(text) {
+					return text.replace(urlRegex, function(url) {
+						return '<a href="' + url + '" target="_blank">' + url + '</a>';
+					});
+				}
+
+				function appendMessage(username, message) {
+					const chatBox = document.getElementById('chatBox');
+					const messageWithLinks = linkify(message);
+					const messageElement = `<p><strong>${username}:</strong> ${messageWithLinks}</p>`;
+
+					chatBox.innerHTML += messageElement;
+					// Make sure to scroll down to the latest message, etc.
+				}
+
 				// function onNewMessageReceived() {
 				// 	var chatSound = document.getElementById('chatNotificationSound');
 				// 	chatSound.play();
