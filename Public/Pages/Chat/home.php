@@ -104,7 +104,7 @@
 
 		small {
 			color: #444;
-			font-size: 0.7rem;
+			font-size: 0.5rem;
 			text-align: right;
 		}
 
