@@ -186,6 +186,9 @@
                                 <span class="item-name">Branch Management</span>
                             </a>
                         </li>
+                    <?php endif; ?>
+                    <?php if (in_array($role, ['Admin', 'Manager'])) : ?>
+
                         <li class="nav-item">
                             <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/CustCount/index.php/Portal_Platform_Management') echo 'active';  ?>  " aria-current="page" href="../index.php/Portal_Platform_Management">
                                 <i class="icon" data-bs-toggle="tooltip" title="Platform Management" data-bs-placement="right">
@@ -200,9 +203,9 @@
                             </a>
                         </li>
 
-
-
                     <?php endif; ?>
+
+
                     <!-- <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#" tabindex="-1">
                             <span class="default-icon">Add Data</span>
