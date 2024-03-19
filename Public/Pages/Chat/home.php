@@ -256,7 +256,7 @@
 			.w-400,
 			.w-15,
 			.w-10 {
-				width: 100%;
+				width: 50%;
 				/* Full width */
 			}
 
