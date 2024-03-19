@@ -76,7 +76,8 @@ if (isset($_SESSION['username'])) {
 		<?php
 
 			echo '<p class="rtext align-self-end border rounded p-2 mb-1">';
-			echo $message;
+			echo linkify($chat['message']);
+			;
 			if ($attachmentPath) {
 				echo '<img src="../uploads/' . htmlspecialchars($attachmentPath) . '" alt="Attachment" style="max-width:100%;display:block;">';
 			}
