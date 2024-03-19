@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     console.log(timezone);
+    console.log("hiii");
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'set_timezone.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
