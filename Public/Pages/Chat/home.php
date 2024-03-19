@@ -263,7 +263,7 @@
 			} */
 
 			.chat-box {
-				max-height: 30vh;
+				max-height: 40vh;
 			}
 
 			.fs-big,
