@@ -4,7 +4,7 @@
 // It Depends on your location or your P.c settings
 // Use system's default timezone
 // date_default_timezone_set(''); // Empty string sets it to the system default
-include '../ajax/set_timezone.php';
+include '../Public/Pages/Chat/app/ajax/set_timezone.php';
 
 function last_seen($date_time){
    $timestamp = strtotime($date_time);	
