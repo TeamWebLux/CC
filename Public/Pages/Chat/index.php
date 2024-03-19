@@ -406,7 +406,7 @@
 	include("./Public/Pages/Common/settings_link.php");
 
 	?>
-				<script src="timezone_detect.js"></script>
+				<script src="../assets/js/timezone_detect.js"></script>
 
 	<!-- Live Customizer end -->
     <script src="../assets/js/core/libs.min.js"></script>
