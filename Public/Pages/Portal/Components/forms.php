@@ -18,7 +18,7 @@ if (isset($action)) {
     // ...
 
     if ($action == 'ADD_USER' || $action == 'EDIT_USER') {
-        $r=$_POST['role'];
+        $r=isset($_POST['role']);
         $title = $action == 'ADD_USER' ? "Add ".$r : "Edit ".$r;
         $postUrl = $action == 'ADD_USER' ? "../App/Logic/register.php?action=register" : '../App/Logic/register.php?action=editregister';
 
@@ -45,6 +45,7 @@ if (isset($action)) {
             $sql="Select * from user where username='$username'";
             $result=$conn->query($sql);
             $row = $result->fetch_assoc();
+            $r=isset($row['role']);
             // print_r($row);
             $branchOptions = []; // Initialize an empty string for options
             $branchQuery = "SELECT name FROM page where status=1";
