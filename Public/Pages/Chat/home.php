@@ -293,7 +293,7 @@
 										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
 										$fileInfo = pathinfo($file);
 										$fileExtension = strtolower($fileInfo['extension']);
-							
+
 										// Assuming the attachment field contains the filename of the image
 										switch ($fileExtension) {
 											case 'jpg':
@@ -344,7 +344,7 @@
 										$file = "../uploads/" . $chat['attachment']; // Adjust the path as needed
 										$fileInfo = pathinfo($file);
 										$fileExtension = strtolower($fileInfo['extension']);
-							
+
 										// Assuming the attachment field contains the filename of the image
 										switch ($fileExtension) {
 											case 'jpg':
@@ -406,12 +406,18 @@
 					</button>
 				</div>
 				<div id="emojiPicker" class="emoji-picker" style="display: none;"></div>
+				<audio id="chatNotificationSound" src="../uploads/notification.wav" preload="auto"></audio>
 
 			</div>
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 			<script>
+				function onNewMessageReceived() {
+					var chatSound = document.getElementById('chatNotificationSound');
+					chatSound.play();
+				}
+
 				document.getElementById('attachmentBtn').addEventListener('click', function() {
 					document.getElementById('fileInput').click(); // Simulate click on the file input when attachment button is clicked
 				});
@@ -532,6 +538,8 @@
 							function(data, status) {
 								$("#chatBox").append(data);
 								if (data != "") scrollDown();
+								if (data != "") onNewMessageReceived();
+
 							});
 					}
 
