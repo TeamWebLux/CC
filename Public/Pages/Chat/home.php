@@ -253,14 +253,14 @@
 		/* Small devices (phones, 600px and down) */
 		@media (max-width: 600px) {
 
-			.w-400,
+			/* .w-400,
 			.w-10{
 				width: 100%;
 			}
 			.w-15 {
 				width: 50%;
-				/* Full width */
-			}
+				/* Full width 
+			} */
 
 			.chat-box {
 				max-height: 30vh;
