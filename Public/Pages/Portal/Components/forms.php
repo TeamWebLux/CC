@@ -21,7 +21,7 @@ if (isset($action)) {
         if(isset($_POST['role'])){
             $r=$_POST['role'];
         } ;
-        $title = $action == 'ADD_USER' ? "Add ".$r : "Edit ".$r;
+        $title = $action == 'ADD_USER' ? "Add ".$r : "Edit ";
         $postUrl = $action == 'ADD_USER' ? "../App/Logic/register.php?action=register" : '../App/Logic/register.php?action=editregister';
 
         echo fhead($title, $heading, $postUrl);
