@@ -94,9 +94,13 @@ if (isset($action)) {
             if ($_POST['role'] == 'Supervisor' || $_POST['role'] == 'Agent') {
                 echo '<label for="pagename">Page Name</label>';
                 echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $pageopt . '</select>';
+
+            } elseif($_POST['role']=='Manager'){
                 echo '<label for="pagename">Page Name</label>';
-                echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $pageopt . '</select>';
-            } elseif ($_POST['role'] == 'User') {
+                echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
+
+            }
+            elseif ($_POST['role'] == 'User') {
                 echo $fbLink = field("Facebook Link", "text", "fb_link", "Enter Your Facebook Link", isset($_POST['fb_link']) ? $_POST['fb_link'] : '',"");
 
             } else {
