@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
     $pageId = isset($_POST['page']);
     // $branchname = trim($_POST['branchname']);
     $by_u = $_SESSION['username'];
-
+    $branchId="";
     if (isset($_POST['branchname']) && $_POST['branchname'] !== '') {
         // If branchname is provided, sanitize and set the branchId
         $branchId = $_POST['branchname'];
