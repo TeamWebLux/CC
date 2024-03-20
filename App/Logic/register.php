@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
         $creationInstance = new Creation($conn);
         $branchId = $creationInstance->getBranchNameByPageName($pageId, $conn);
     }
+    echo $branchId,$pageId;
 print_r("the bra".$branchId);
 print_r($_POST);
     // Get the user's IP address
