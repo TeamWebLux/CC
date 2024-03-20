@@ -221,9 +221,9 @@ function processReferralCode($conn,$name) {
         }
 
     // Preserve form values and redirect
-    // $_SESSION['form_values'] = $_POST;
+     $_SESSION['form_values'] = $_POST;
     // header('Location: ' . $redirectTo);
-    // exit();
+     exit();
 }
 
 
