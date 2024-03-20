@@ -102,6 +102,8 @@ if (isset($action)) {
             }
             elseif ($_POST['role'] == 'User') {
                 echo $fbLink = field("Facebook Link", "text", "fb_link", "Enter Your Facebook Link", isset($_POST['fb_link']) ? $_POST['fb_link'] : '',"");
+                echo '<label for="pagename">Page Name</label>';
+                echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $pageopt . '</select>';
 
             } else {
                 echo "Invalid attempt";
