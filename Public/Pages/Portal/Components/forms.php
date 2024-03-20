@@ -97,7 +97,7 @@ if (isset($action)) {
 
             } elseif($_POST['role']=='Manager'){
                 echo '<label for="pagename">Branch  Name</label>';
-                echo '<select class="form-select" id="pagename" name="branch" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
+                echo '<select class="form-select" id="pagename" name="branchname" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
 
             }
             elseif ($_POST['role'] == 'User') {

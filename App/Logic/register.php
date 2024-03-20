@@ -19,15 +19,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
     $fullname = trim($_POST['name']);
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    $ref=$_POST['rfc'];
+    $ref=isset($_POST['rfc']);
     $refercode=generateReferralCode($fullname,$conn);
 
     $role = trim($_POST['role']);
     $termsAccepted = isset($_POST['terms']) && $_POST['terms'] == 'on';
 
     // Additional fields
-    $fbLink = trim($_POST['fb_link']);
-    $pageId = trim($_POST['page']);
+    $fbLink = isset($_POST['fb_link']);
+    $pageId = isset($_POST['page']);
     // $branchname = trim($_POST['branchname']);
     $by_u = $_SESSION['username'];
 
@@ -202,7 +202,7 @@ function processReferralCode($conn,$name) {
             // Referral code exists, fetch user's name and the name of the person who referred them
             $row = mysqli_fetch_assoc($result);
             $userName = $row['username'];
-            // $referredBy = $row['referred_by'];
+             $referredBy = $row['referred_by'];
 
             // Insert new entry into referral code table
             $insertQuery = "INSERT INTO refferal (name, refered_by, referred_by) VALUES ('$userName', '$referralCode', '$referredBy')";
