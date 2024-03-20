@@ -96,8 +96,8 @@ if (isset($action)) {
                 echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $pageopt . '</select>';
 
             } elseif($_POST['role']=='Manager'){
-                echo '<label for="pagename">Page Name</label>';
-                echo '<select class="form-select" id="pagename" name="page" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
+                echo '<label for="pagename">Branch  Name</label>';
+                echo '<select class="form-select" id="pagename" name="branch" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
 
             }
             elseif ($_POST['role'] == 'User') {
@@ -108,24 +108,8 @@ if (isset($action)) {
             }
         }
 
-        // echo '<div id="agentadd" style="display:none;">';
-        // echo '<label for="pagename">Page Name</label>';
-        // echo '<select class="form-select" id="pagename" name="pagename" onchange="showOtherField(this, \'cashAppname-other\')">' . $pageopt . '</select>';
-        // echo '</div>';
-
-        // echo '<div id="mageradd" style="display:none;">';
-        // echo '<label for="Branchname">Branch Name</label>';
-        // echo '<select class="form-select" id="branchname" name="branchname" onchange="showOtherField(this, \'cashAppname-other\')">' . $branchopt . '</select>';
-        // echo '</div>';
 
         echo '<div id="useradd" style="display:none;">';
-        // Assuming 'managerid' is a predefined array containing manager options
-        // echo $selectManager = select("Select Manager", "managerid", "managerid", $managerid, isset($_POST['managerid']) ? $_POST['managerid'] : '');
-
-        // echo $branchId = field("Branch ID", "text", "branch_id", "Enter Branch ID");
-
-        // Assuming 'agentid' is a predefined array containing agent options
-        // echo $selectAgent = select("Select Agent", "agentid", "agentid", $agentid, isset($_POST['agentid']) ? $_POST['agentid'] : '');
         echo '</div>';}
 echo '<br>';
 
