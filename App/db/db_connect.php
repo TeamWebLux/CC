@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost"; // or your server name
+$servername = "193.203.184.53"; // or your server name
 $username = "u306273205_cc";
 $password = "Weblux@@1122";
 $dbname = "u306273205_cc";

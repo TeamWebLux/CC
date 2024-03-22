@@ -1,7 +1,7 @@
 <?php
 
 # server name
-$sName = "localhost";
+$sName = "193.203.184.53";
 # user name
 $uName = "u306273205_cc";
 # password
