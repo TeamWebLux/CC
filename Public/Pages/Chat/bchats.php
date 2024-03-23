@@ -312,7 +312,7 @@
 			<br><br><br>
 			<div class="w-400 shadow p-4 rounded">
 
-				<a href="./Chat_l" class="btn btn-dark">Back</a>
+				<a href="./Page_Message" class="btn btn-dark">Back</a>
 
 				<div class="d-flex align-items-center">
 					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">

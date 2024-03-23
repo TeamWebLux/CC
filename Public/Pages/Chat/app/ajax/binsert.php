@@ -103,11 +103,6 @@ if (isset($_SESSION['username'])) {
         $stmtBulkMessageLog = $conn->prepare($sqlBulkMessageLog);
         $resultBulkMessageLog = $stmtBulkMessageLog->execute([$from_id, $platform, $message, $attachmentPath ?? null]);
 
-        if ($resultBulkMessageLog) {
-            echo "Bulk message operation logged successfully.";
-        } else {
-            echo "Failed to log bulk message operation.";
-        }
         echo '<p class="rtext align-self-end border rounded p-2 mb-1">';
         echo linkify($message);;
         if ($attachmentPath) {
