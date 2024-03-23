@@ -103,41 +103,47 @@
                         <div class="list-group" id="dynamicPageList" role="tablist">
                             <?php
                             include "./App/db/db_connect.php";
-                            $role = $_SESSION['role'];
-                            if ($role != 'Admin') {
-                                // Assuming $_SESSION['branch'] holds the branch name
-                                $branchName = $conn->real_escape_string($_SESSION['branch']); // Protect against SQL injection
 
-                                // Fetch the branch ID by the branch name
-                                $branchIdQuery = "SELECT bid FROM branch WHERE name = '$branchName'"; // Adjust table and column names as necessary
-                                $branchIdResult = $conn->query($branchIdQuery);
+                            // Ensure session has started
+                            if (session_status() === PHP_SESSION_NONE) {
+                                session_start();
                             }
-                            if ($branchIdResult->num_rows > 0) {
-                                $branchRow = $branchIdResult->fetch_assoc();
-                                $branchId = $branchRow['bid']; // Now you have the branch ID
 
-                                // Use the branch ID to fetch pages
-                                if ($_SESSION['role'] = 'Admin') {
-                                    $pageQuery = "SELECT * FROM page "; // Adjust the table name if necessary
+                            // Check if session variables are set
+                            $branchName = isset($_SESSION['branch']) ? $conn->real_escape_string($_SESSION['branch']) : '';
+                            $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 
+                            // Initialize pageQuery
+                            $pageQuery = "";
 
+                            // Fetch the branch ID by the branch name if not admin
+                            if ($userRole !== 'Admin' && !empty($branchName)) {
+                                $branchIdQuery = "SELECT bid FROM branch WHERE name = '$branchName'";
+                                $branchIdResult = $conn->query($branchIdQuery);
+
+                                if ($branchIdResult->num_rows > 0) {
+                                    $branchRow = $branchIdResult->fetch_assoc();
+                                    $branchId = $branchRow['bid'];
+                                    $pageQuery = "SELECT * FROM page WHERE bid = $branchId";
                                 } else {
-
-                                    $pageQuery = "SELECT * FROM page WHERE bid = $branchId"; // Adjust the table name if necessary
+                                    echo "Branch not found";
                                 }
+                            } elseif ($userRole === 'Admin') {
+                                // If user is Admin, fetch all pages
+                                $pageQuery = "SELECT * FROM page";
+                            }
 
+                            // Execute pageQuery if it's set
+                            if (!empty($pageQuery)) {
                                 $pageResult = $conn->query($pageQuery);
 
-                                if ($pageResult->num_rows > 0) {
-                                    // Output data of each row
+                                if ($pageResult && $pageResult->num_rows > 0) {
                                     while ($row = $pageResult->fetch_assoc()) {
                                         echo '<a class="list-group-item list-group-item-action" role="tab" onclick="location.href=\'Bulk_Chat?user=' . $row["name"] . '\'">' . $row["name"] . '</a>';
                                     }
                                 } else {
                                     echo "No pages found";
                                 }
-                            } else {
-                                echo "Branch not found";
                             }
                             ?>
                         </div>
