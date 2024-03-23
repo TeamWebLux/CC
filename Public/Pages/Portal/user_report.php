@@ -192,7 +192,6 @@
                                         <th>Transaction Type</th>
                                         <th>Recharge</th>
                                         <th>Redeem</th>
-                                        <th>Excess Amount</th>
                                         <th>Bonus Amount</th>
                                         <th>Free Play</th>
                                         <th>Platform Name</th>
@@ -214,7 +213,6 @@
                                             </td>
                                             <td><?= $row['recharge'] ?></td>
                                             <td><?= $row['redeem'] ?></td>
-                                            <td><?= $row['excess'] ?></td>
                                             <td><?= $row['bonus'] ?></td>
                                             <td><?= $row['freepik'] ?></td>
                                             <td><?= $row['platform'] ?></td>
@@ -239,7 +237,7 @@
             $(document).ready(function() {
                 $('#example').DataTable({
                     "order": [
-                        [8, "desc"]
+                        [7, "desc"]
                     ],
                     dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 

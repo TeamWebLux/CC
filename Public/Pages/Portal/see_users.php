@@ -110,6 +110,8 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Full Name</th>
                                             <th scope="col">Password</th>
+                                            <th scope="col">Fb-Link</th>
+
                                             <th scope="col">Role</th>
                                             <th scope="col">Created At</th>
                                             <th scope="col">Last Login</th>
@@ -125,6 +127,8 @@
                                                     <td>{$row['username']}</td>
                                                     <td>{$row['name']}</td>
                                                     <td>{$row['password']}</td>
+                                                    <td>{$row['Fb-link']}</td>
+
                                                     <td>{$row['role']}</td>
                                                     <td>{$row['created_at']}</td> <!-- Consider if you really want to display passwords -->
                                                     <td>{$row['last_login']}</td>
