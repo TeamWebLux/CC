@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
             $stmt2 = $conn->prepare($sql2);
             $stmt2->execute([$from_id, $platform, $from_id, $platform]);
 
-            date_default_timezone_set($user['timezone']);
+			date_default_timezone_set(str_replace(' ', '', $_SESSION['timezone']));
 
             $time = date("h:i:s a");
 
