@@ -43,7 +43,7 @@ if (isset($_SESSION['username'])) {
         }
 
         # Fetch all user_ids associated with the platform
-        $sqlUsers = "SELECT * FROM user WHERE pagename = ?";
+        $sqlUsers = "SELECT * FROM user WHERE pagename = ? AND role='User'";
         $stmtUsers = $conn->prepare($sqlUsers);
         $stmtUsers->execute([$platform]);
 
@@ -62,7 +62,7 @@ if (isset($_SESSION['username'])) {
                 $stmt2 = $conn->prepare($sql2);
                 $stmt2->execute([$from_id, $to_id, $from_id, $to_id]);
     
-                date_default_timezone_set($user['timezone']);
+                date_default_timezone_set($_SESSION['timezone']);
     
                 $time = date("h:i:s a");
     

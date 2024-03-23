@@ -27,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['page'] = $row['pagename'];
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['fullname'] = $row['name'];
+                    $_SESSION['timezone'] = $row['timezone'];
+
                     // Clear retained form values upon successful login
                     unset($_SESSION['login_form_values']);
                     $_SESSION['toast'] = ['type' => 'success', 'message' => 'Successfully logged in'];
