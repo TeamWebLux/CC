@@ -116,7 +116,7 @@
                                 $branchId = $branchRow['bid']; // Now you have the branch ID
 
                                 // Use the branch ID to fetch pages
-                                if($_SESSION['role']==='Admin'){
+                                if($_SESSION['role']='Admin'){
                                     $pageQuery = "SELECT * FROM page "; // Adjust the table name if necessary
 
 
