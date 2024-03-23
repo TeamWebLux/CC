@@ -60,16 +60,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- List group -->
-                        <div class="list-group" id="myList" role="tablist">
-                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Profile</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
+                        <!-- Dynamic List Group -->
+                        <div class="list-group" id="dynamicPageList" role="tablist">
+                            <?php
+                            // Assuming $conn is your database connection
+                            $query = "SELECT * FROM page"; // Adjust the table name if necessary
+                            $result = $conn->query($query);
+
+                            if ($result->num_rows > 0) {
+                                // Output data of each row
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<a class="list-group-item list-group-item-action" data-toggle="list" href="#' . $row["id"] . '" role="tab">' . $row["title"] . '</a>';
+                                }
+                            } else {
+                                echo "No pages found";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Bootstrap JS and dependencies -->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
