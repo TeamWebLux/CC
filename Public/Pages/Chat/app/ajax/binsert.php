@@ -55,6 +55,27 @@ if (isset($_SESSION['username'])) {
             $sql = "INSERT INTO chats (from_id, to_id, message, attachment) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $res = $stmt->execute([$from_id, $to_id, $message, $attachmentPath ?? null]);
+            if ($res) {
+                $sql2 = "SELECT * FROM conversations
+                   WHERE (user_1=? AND user_2=?)
+                   OR    (user_2=? AND user_1=?)";
+                $stmt2 = $conn->prepare($sql2);
+                $stmt2->execute([$from_id, $to_id, $from_id, $to_id]);
+    
+                date_default_timezone_set('');
+    
+                $time = date("h:i:s a");
+    
+                if ($stmt2->rowCount() == 0) {
+                    # insert them into conversations table 
+                    $sql3 = "INSERT INTO 
+                         conversations(user_1, user_2)
+                         VALUES (?,?)";
+                    $stmt3 = $conn->prepare($sql3);
+                    $stmt3->execute([$from_id, $to_id]);
+                }
+            }
+    
         }
         if ($res) {
             $sql2 = "SELECT * FROM bconversation
@@ -74,26 +95,6 @@ if (isset($_SESSION['username'])) {
                      VALUES (?,?)";
                 $stmt3 = $conn->prepare($sql3);
                 $stmt3->execute([$from_id, $platform]);
-            }
-        }
-        if ($res) {
-            $sql2 = "SELECT * FROM conversations
-               WHERE (user_1=? AND user_2=?)
-               OR    (user_2=? AND user_1=?)";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->execute([$from_id, $to_id, $from_id, $to_id]);
-
-            date_default_timezone_set('');
-
-            $time = date("h:i:s a");
-
-            if ($stmt2->rowCount() == 0) {
-                # insert them into conversations table 
-                $sql3 = "INSERT INTO 
-			         conversations(user_1, user_2)
-			         VALUES (?,?)";
-                $stmt3 = $conn->prepare($sql3);
-                $stmt3->execute([$from_id, $to_id]);
             }
         }
 
