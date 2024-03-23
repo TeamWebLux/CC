@@ -63,6 +63,7 @@
                         <!-- Dynamic List Group -->
                         <div class="list-group" id="dynamicPageList" role="tablist">
                             <?php
+                            include "./App/db/db_connect.php";
                             // Assuming $conn is your database connection
                             $query = "SELECT * FROM page"; // Adjust the table name if necessary
                             $result = $conn->query($query);
