@@ -28,8 +28,47 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-    print($uri);
+    // print($uri);
     ?>
+    <style>
+        /* custom.css */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            border-radius: 0;
+            border-left: 3px solid #007bff;
+        }
+
+        .list-group-item-action:hover,
+        .list-group-item-action:focus {
+            background-color: #f8f9fa;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Additional styling can go here */
+    </style>
 
 </head>
 
@@ -57,7 +96,7 @@
             <br>
             <br>
             <br>
-            <div class="container">
+            <div class="container my-4">
                 <div class="row">
                     <div class="col-md-4">
                         <!-- Dynamic List Group -->
@@ -71,7 +110,7 @@
                             if ($result->num_rows > 0) {
                                 // Output data of each row
                                 while ($row = $result->fetch_assoc()) {
-                                    echo '<a class="list-group-item list-group-item-action" data-toggle="list" href="#' . $row["id"] . '" role="tab">' . $row["title"] . '</a>';
+                                    echo '<a class="list-group-item list-group-item-action" data-toggle="list" href="#' . $row["bid"] . '" role="tab">' . $row["name"] . '</a>';
                                 }
                             } else {
                                 echo "No pages found";
