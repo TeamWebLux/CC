@@ -56,7 +56,9 @@ if ($uri == $firstparam || $uri == $secondparam) {
         $prefix . $root . '/User_Report'                         => './Public/Pages/Portal/user_report.php',
         $prefix . $root . '/Chat_l'                         => './Public/Pages/Chat/index.php',
         $prefix . $root . '/Chat_Screen'                         => './Public/Pages/Chat/home.php',
+        //Chat
         $prefix . $root . '/Bulk_Chat'                         => './Public/Pages/Chat/bchats.php',
+        $prefix . $root . '/Page_Message'                         => './Public/Pages/Chat/pagelist.php',
 
         $prefix . $root . '/uploads'                         => './Public/Pages/Chat/uploads',
 
