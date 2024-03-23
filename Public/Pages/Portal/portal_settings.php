@@ -28,8 +28,26 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-    print($uri);
+    // print($uri);
     include './App/db/db_connect.php';
+    // Check if the form has been submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['time_zone'])) {
+        $userId = $_SESSION['user_id'];
+        $newTimeZone = $_POST['time_zone'];
+
+        // Prepare SQL to update user's time zone
+        $sql = "UPDATE user SET timezone = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$newTimeZone, $userId]);
+
+        // Optionally, set a session variable or cookie to indicate success
+        $_SESSION['timezone_updated'] = true;
+
+        // Redirect back to the same page to show the updated time zone in the form
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
     ?>
     <style>
 
@@ -63,13 +81,21 @@
 
                 <div class="col-sm-12">
                     <h3 class="mt-4 mb-3">Your Settings</h3>
-                    <form action="update_timezone.php" method="post">
+                    <?php
+                    if (isset($_SESSION['timezone_updated'])) {
+                        echo '<p>Time zone updated successfully.</p>';
+                        unset($_SESSION['timezone_updated']);
+                    }
+                    ?>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <label for="time_zone">Select your time zone:</label>
                         <select name="time_zone" id="time_zone">
                             <?php
                             $timezones = DateTimeZone::listIdentifiers();
                             foreach ($timezones as $timezone) {
-                                echo "<option value=\"$timezone\">$timezone</option>";
+                                // Optionally, make the current timezone selected
+                                $selected = ($_SESSION['time_zone'] ?? 'UTC') === $timezone ? ' selected' : '';
+                                echo "<option value=\"$timezone\"$selected>$timezone</option>";
                             }
                             ?>
                         </select>
