@@ -77,7 +77,6 @@ if (isset($_SESSION['username'])) {
             }
     
         }
-        if ($res) {
             $sql2 = "SELECT * FROM bconversation
                WHERE (user_1=? AND user_2=?)
                OR    (user_2=? AND user_1=?)";
@@ -96,7 +95,7 @@ if (isset($_SESSION['username'])) {
                 $stmt3 = $conn->prepare($sql3);
                 $stmt3->execute([$from_id, $platform]);
             }
-        }
+        
 
 
         # Log the bulk message operation
