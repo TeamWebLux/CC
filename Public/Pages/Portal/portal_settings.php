@@ -195,13 +195,11 @@
     <?php if (isset($_SESSION['toast'])) : ?>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                toastr['<?php echo $_SESSION['toast']['type']; ?>']('<?php echo $_SESSION['toast']['message']; ?>');
+                console.log('<?php echo $_SESSION['toast']['message']; ?>'); // Debug message content
+                toastr['<?php echo $_SESSION['toast']['type']; ?>']('<?php echo addslashes($_SESSION['toast']['message']); ?>');
             });
         </script>
-        <?php
-        // Don't forget to clear the toast message after displaying it
-        unset($_SESSION['toast']);
-        ?>
+        <?php unset($_SESSION['toast']); ?>
     <?php endif; ?>
 
 </body>
