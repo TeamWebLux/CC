@@ -55,14 +55,33 @@ if (isset($_SESSION['username'])) {
             $sql = "INSERT INTO chats (from_id, to_id, message, attachment) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $res = $stmt->execute([$from_id, $to_id, $message, $attachmentPath ?? null]);
-            
-            // Optional: Add logic for individual message acknowledgment here
         }
+        if ($res) {
+            $sql2 = "SELECT * FROM bconversation
+               WHERE (user_1=? AND user_2=?)
+               OR    (user_2=? AND user_1=?)";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->execute([$from_id, $platform, $from_id, $platform]);
+
+            date_default_timezone_set('');
+
+            $time = date("h:i:s a");
+
+            if ($stmt2->rowCount() == 0) {
+                # insert them into conversations table 
+                $sql3 = "INSERT INTO 
+                     bconversation(user_1, user_2)
+                     VALUES (?,?)";
+                $stmt3 = $conn->prepare($sql3);
+                $stmt3->execute([$from_id, $platform]);
+            }
+        }
+
 
         # Log the bulk message operation
         $sqlBulkMessageLog = "INSERT INTO bmessages (from_id, pagename, message,attachment) VALUES (?, ?, ?,?)";
         $stmtBulkMessageLog = $conn->prepare($sqlBulkMessageLog);
-        $resultBulkMessageLog = $stmtBulkMessageLog->execute([$from_id, $platform, $message,$attachmentPath ?? null]);
+        $resultBulkMessageLog = $stmtBulkMessageLog->execute([$from_id, $platform, $message, $attachmentPath ?? null]);
 
         if ($resultBulkMessageLog) {
             echo "Bulk message operation logged successfully.";
@@ -74,4 +93,3 @@ if (isset($_SESSION['username'])) {
     header("Location: ../../index.php");
     exit;
 }
-?>
