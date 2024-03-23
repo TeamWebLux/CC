@@ -103,17 +103,32 @@
                         <div class="list-group" id="dynamicPageList" role="tablist">
                             <?php
                             include "./App/db/db_connect.php";
-                            // Assuming $conn is your database connection
-                            $query = "SELECT * FROM page"; // Adjust the table name if necessary
-                            $result = $conn->query($query);
 
-                            if ($result->num_rows > 0) {
-                                // Output data of each row
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<a class="list-group-item list-group-item-action" role="tab" onclick="location.href=\'Bulk_Chat?user=' . $row["name"] . '\'">' . $row["name"] . '</a>';
+                            // Assuming $_SESSION['branch'] holds the branch name
+                            $branchName = $conn->real_escape_string($_SESSION['branch']); // Protect against SQL injection
+
+                            // Fetch the branch ID by the branch name
+                            $branchIdQuery = "SELECT bid FROM branch WHERE name = '$branchName'"; // Adjust table and column names as necessary
+                            $branchIdResult = $conn->query($branchIdQuery);
+
+                            if ($branchIdResult->num_rows > 0) {
+                                $branchRow = $branchIdResult->fetch_assoc();
+                                $branchId = $branchRow['bid']; // Now you have the branch ID
+
+                                // Use the branch ID to fetch pages
+                                $pageQuery = "SELECT * FROM page WHERE bid = $branchId"; // Adjust the table name if necessary
+                                $pageResult = $conn->query($pageQuery);
+
+                                if ($pageResult->num_rows > 0) {
+                                    // Output data of each row
+                                    while ($row = $pageResult->fetch_assoc()) {
+                                        echo '<a class="list-group-item list-group-item-action" role="tab" onclick="location.href=\'Bulk_Chat?user=' . $row["name"] . '\'">' . $row["name"] . '</a>';
+                                    }
+                                } else {
+                                    echo "No pages found";
                                 }
                             } else {
-                                echo "No pages found";
+                                echo "Branch not found";
                             }
                             ?>
                         </div>
