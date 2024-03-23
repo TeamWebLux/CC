@@ -96,12 +96,15 @@
         exit;
     }
     ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <style>
         .custom-toast {
             color: black !important;
             /* Ensure text is visible */
         }
     </style>
+
 </head>
 
 <body class="  ">
@@ -228,6 +231,17 @@
         };
 
         toastr['success']('This is a success message!'); // Example for a success message
+        toastr.options = {
+            // Other Toastr options
+            onShown: function() {
+                let toasts = document.querySelectorAll('#toast-container .toast'); // Get all toasts
+                toasts.forEach(function(toast) {
+                    toast.style.color = 'black'; // Force text color
+                    toast.style.backgroundColor = 'white'; // Optional: Force background color if needed
+                });
+            }
+        };
+        toastr.success('This is a success message!');
     </script>
 
 </body>
