@@ -63,6 +63,18 @@
 
                 <div class="col-sm-12">
                     <h3 class="mt-4 mb-3">Your Settings</h3>
+                    <form action="update_timezone.php" method="post">
+                        <label for="time_zone">Select your time zone:</label>
+                        <select name="time_zone" id="time_zone">
+                            <?php
+                            $timezones = DateTimeZone::listIdentifiers();
+                            foreach ($timezones as $timezone) {
+                                echo "<option value=\"$timezone\">$timezone</option>";
+                            }
+                            ?>
+                        </select>
+                        <button type="submit">Update Time Zone</button>
+                    </form>
 
                 </div>
             </div>
