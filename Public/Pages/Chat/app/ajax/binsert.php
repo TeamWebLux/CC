@@ -1,0 +1,77 @@
+<?php
+
+session_start();
+
+function linkify($text)
+{
+    $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+    $text = preg_replace($urlPattern, '<a class="rtext" href="$0" target="_blank">$0</a>', $text);
+    return $text;
+}
+
+# Check if the user is logged in
+if (isset($_SESSION['username'])) {
+    if (
+        isset($_POST['message']) &&
+        isset($_POST['platform'])
+    ) {
+        # Database connection file
+        include '../db.conn.php';
+
+        # Get data from XHR request and store them in variables
+        $message = $_POST['message'];
+        $platform = $_POST['platform'];
+
+        # Get the logged in user's user_id from the SESSION
+        $from_id = $_SESSION['user_id'];
+
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $attachmentPath = null;
+        if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
+            $fileName = time() . '-' . basename($_FILES['attachment']['name']);
+            $targetFilePath = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['attachment']['tmp_name'], $targetFilePath)) {
+                $attachmentPath = $fileName;
+            } else {
+                echo "Error uploading file.";
+                exit;
+            }
+        }
+
+        # Fetch all user_ids associated with the platform
+        $sqlUsers = "SELECT id FROM user WHERE pagename = ?";
+        $stmtUsers = $conn->prepare($sqlUsers);
+        $stmtUsers->execute([$platform]);
+
+        $users = $stmtUsers->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user) {
+            $to_id = $user['id'];
+
+            $sql = "INSERT INTO chats (from_id, to_id, message, attachment) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $res = $stmt->execute([$from_id, $to_id, $message, $attachmentPath ?? null]);
+            
+            // Optional: Add logic for individual message acknowledgment here
+        }
+
+        # Log the bulk message operation
+        $sqlBulkMessageLog = "INSERT INTO bmessages (from_id, pagename, message,attachment) VALUES (?, ?, ?,?)";
+        $stmtBulkMessageLog = $conn->prepare($sqlBulkMessageLog);
+        $resultBulkMessageLog = $stmtBulkMessageLog->execute([$from_id, $platform, $message,$attachmentPath ?? null]);
+
+        if ($resultBulkMessageLog) {
+            echo "Bulk message operation logged successfully.";
+        } else {
+            echo "Failed to log bulk message operation.";
+        }
+    }
+} else {
+    header("Location: ../../index.php");
+    exit;
+}
+?>
