@@ -35,19 +35,66 @@
         $userId = $_SESSION['user_id'];
         $newTimeZone = $_POST['time_zone'];
 
-        // Prepare SQL to update user's time zone
         $sql = "UPDATE user SET timezone = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$newTimeZone, $userId]);
 
-        // Optionally, set a session variable or cookie to indicate success
-        $_SESSION['timezone_updated'] = true;
-
-        // Redirect back to the same page to show the updated time zone in the form
+        $_SESSION['toast'] = ['type' => 'success', 'message' => 'Time zone updated successfully'];
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 
+    // Handle password change
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'], $_POST['confirm_password'])) {
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+
+        if ($newPassword === $confirmPassword) {
+            $userId = $_SESSION['user_id'];
+
+            $sql = "UPDATE user SET password = ? WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$newPassword, $userId]);
+
+            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Password changed successfully'];
+        } else {
+            $_SESSION['toast'] = ['type' => 'error', 'message' => 'Passwords do not match'];
+        }
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    // Handle profile picture upload
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
+        $userId = $_SESSION['user_id'];
+        // $profilePicture = $_FILES['profile_picture'];
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $profilePicture = null;
+        if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+            $fileName = time() . '-' . basename($_FILES['profile_picture']['name']);
+            $targetFilePath = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFilePath)) {
+                $profilePicture = $fileName;
+            } else {
+                echo "Error uploading file.";
+                exit;
+            }
+        }
+
+
+        $sql = "UPDATE user SET p_p = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$profilePicture, $userId]);
+
+        $_SESSION['toast'] = ['type' => 'success', 'message' => 'Profile picture updated successfully'];
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
     ?>
     <style>
 
@@ -87,19 +134,32 @@
                         unset($_SESSION['timezone_updated']);
                     }
                     ?>
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                        <h3>Update Time Zone</h3>
                         <label for="time_zone">Select your time zone:</label>
                         <select name="time_zone" id="time_zone">
                             <?php
                             $timezones = DateTimeZone::listIdentifiers();
                             foreach ($timezones as $timezone) {
-                                // Optionally, make the current timezone selected
-                                $selected = ($_SESSION['time_zone'] ?? 'UTC') === $timezone ? ' selected' : '';
+                                $selected = ($_SESSION['timezone'] ?? 'UTC') === $timezone ? ' selected' : '';
                                 echo "<option value=\"$timezone\"$selected>$timezone</option>";
                             }
                             ?>
                         </select>
                         <button type="submit">Update Time Zone</button>
+                    </form>
+
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <h3>Change Password</h3>
+                        <input type="password" name="new_password" placeholder="New Password" required>
+                        <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
+                        <button type="submit">Change Password</button>
+                    </form>
+
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                        <h3>Update Profile Picture</h3>
+                        <input type="file" name="profile_picture" required>
+                        <button type="submit">Upload Picture</button>
                     </form>
 
                 </div>
