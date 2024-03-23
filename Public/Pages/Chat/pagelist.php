@@ -110,7 +110,7 @@
                             if ($result->num_rows > 0) {
                                 // Output data of each row
                                 while ($row = $result->fetch_assoc()) {
-                                    echo '<a class="list-group-item list-group-item-action" data-toggle="list" href="#' . $row["bid"] . '" role="tab">' . $row["name"] . '</a>';
+                                    echo '<a class="list-group-item list-group-item-action" data-toggle="list" href="Bulk_Chat?user=' . $row["name"] . '" role="tab">' . $row["name"] . '</a>';
                                 }
                             } else {
                                 echo "No pages found";
