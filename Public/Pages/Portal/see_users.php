@@ -101,7 +101,7 @@
                         ?>
                             <div class="card-body">
                                 <div class="custom-table-effect table-responsive  border rounded">
-                                    <table class="table mb-0" id="example" >
+                                    <table class="table mb-0" id="example">
                                         <thead>
                                             <tr class="bg-white">
                                                 <?php
@@ -121,22 +121,21 @@
                                                 <tbody>
                                                     <?php
                                                     while ($row = $result->fetch_assoc()) {
-                                                        echo "<tr>
-                                                    
-                                                    <td>{$row['id']}</td>
-                                                    <td>{$row['username']}</td>
-                                                    <td>{$row['name']}</td>
-                                                    <td>{$row['password']}</td>
-                                                    <td>{$row['Fb-link']}</td>
+                                                        // Check if the link already includes http:// or https://
+                                                        $fbLink = (strpos($row['Fb-link'], 'http://') === 0 || strpos($row['Fb-link'], 'https://') === 0) ? $row['Fb-link'] : 'http://' . $row['Fb-link'];
 
-                                                    <td>{$row['role']}</td>
-                                                    <td>{$row['created_at']}</td> <!-- Consider if you really want to display passwords -->
-                                                    <td>{$row['last_login']}</td>
-                                                   
-                                                  </tr>";
+                                                        echo "<tr>
+                <td>{$row['id']}</td>
+                <td>{$row['username']}</td>
+                <td>{$row['name']}</td>
+                <td>{$row['password']}</td> <!-- Consider hashing passwords and not displaying them directly -->
+                <td><a href='{$fbLink}' target='_blank'>Link</a></td>
+                <td>{$row['role']}</td>
+                <td>{$row['created_at']}</td>
+                <td>{$row['last_login']}</td>
+              </tr>";
                                                     }
                                                     ?>
-
                                                 </tbody>
                                             <?php
 
