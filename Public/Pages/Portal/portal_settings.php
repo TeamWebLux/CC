@@ -201,6 +201,11 @@
         </script>
         <?php unset($_SESSION['toast']); ?>
     <?php endif; ?>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    toastr.success('This is a test message');
+});
+</script>
 
 </body>
 
