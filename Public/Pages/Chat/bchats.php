@@ -45,16 +45,16 @@
 		}
 
 		# Getting User data data
-		$chatWith = getUser($_GET['user'], $conn);
+		$chatWith = getPage($_GET['user'], $conn);
 
 		if (empty($chatWith)) {
-			header("Location: ./Chat_l");
-			exit;
+			// header("Location: ./Chat_l");
+			 exit;
 		}
 
-		$chats = getChats($_SESSION['user_id'], $chatWith['id'], $conn);
+		$chats = getChatPage($_SESSION['user_id'], $chatWith['name'], $conn);
 
-		opened($chatWith['id'], $conn, $chats);
+		// opened($chatWith['name'], $conn, $chats);
 	}
 
 
@@ -321,7 +321,7 @@
 						<?= $chatWith['name'] ?> <br>
 						<div class="d-flex
                	              align-items-center" title="online">
-							<?php
+							<!-- <?php
 							if (last_seen($chatWith['last_seen']) == "Active") {
 							?>
 								<div class="online"></div>
@@ -331,7 +331,7 @@
 									Last seen:
 									<?= last_seen($chatWith['last_seen']) ?>
 								</small>
-							<?php } ?>
+							<?php } ?> -->
 						</div>
 					</h3>
 				</div>
@@ -534,11 +534,11 @@
 						formData.append('attachment', fileInput.files[0]);
 					}
 
-					formData.append('to_id', <?= json_encode($chatWith['id']) ?>); // Adjust to ensure correct variable handling
+					formData.append('to_id', <?= json_encode($chatWith['name']) ?>); // Adjust to ensure correct variable handling
 
 					// Make the AJAX call using formData
 					$.ajax({
-						url: "../Public/Pages/Chat/app/ajax/insert.php",
+						url: "../Public/Pages/Chat/app/ajax/binsert.php",
 						type: "POST",
 						data: formData,
 						processData: false, // Prevent jQuery from automatically transforming the data into a query string
@@ -562,9 +562,9 @@
 						console.log(message);
 						if (message !== '') {
 							// Perform AJAX call to insert.php
-							$.post("../Public/Pages/Chat/app/ajax/insert.php", {
+							$.post("../Public/Pages/Chat/app/ajax/binsert.php", {
 									message: message,
-									to_id: <?= json_encode($chatWith['id']) ?> // Ensure PHP variable is correctly encoded for JavaScript
+									to_id: <?= json_encode($chatWith['name']) ?> // Ensure PHP variable is correctly encoded for JavaScript
 								},
 								function(data, status) {
 									$("#message").val(""); // Clear the textarea after sending
@@ -603,7 +603,7 @@
 
 					// 		$.post("../Public/Pages/Chat/app/ajax/insert.php", {
 					// 				message: message,
-					// 				to_id: <?= $chatWith['id'] ?>
+					// 				to_id: <?= $chatWith['name'] ?>
 					// 			},
 					// 			function(data, status) {
 					// 				$("#message").val("");
@@ -630,8 +630,8 @@
 
 					// auto refresh / reload
 					let fechData = function() {
-						$.post("../Public/Pages/Chat/app/ajax/getMessage.php", {
-								id_2: <?= $chatWith['id'] ?>
+						$.post("../Public/Pages/Chat/app/ajax/bgetMessage.php", {
+								id_2: <?= $chatWith['name'] ?>
 							},
 							function(data, status) {
 								$("#chatBox").append(data);

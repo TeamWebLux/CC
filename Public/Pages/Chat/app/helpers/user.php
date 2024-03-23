@@ -1,16 +1,32 @@
-<?php  
+<?php
 
-function getUser($username, $conn){
-   $sql = "SELECT * FROM user
+function getUser($username, $conn)
+{
+        $sql = "SELECT * FROM user
            WHERE username=?";
-   $stmt = $conn->prepare($sql);
-   $stmt->execute([$username]);
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$username]);
 
-   if ($stmt->rowCount() === 1) {
-   	 $user = $stmt->fetch();
-   	 return $user;
-   }else {
-   	$user = [];
-   	return $user;
-   }
+        if ($stmt->rowCount() === 1) {
+                $user = $stmt->fetch();
+                return $user;
+        } else {
+                $user = [];
+                return $user;
+        }
+}
+function getPage($username, $conn)
+{
+        $sql = "SELECT * FROM page
+                WHERE name=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$username]);
+
+        if ($stmt->rowCount() === 1) {
+                $user = $stmt->fetch();
+                return $user;
+        } else {
+                $user = [];
+                return $user;
+        }
 }
