@@ -11,6 +11,7 @@
 
 <!-- Library / Plugin Css Build -->
 <link rel="stylesheet" href="../assets/css/core/libs.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 
 <!-- qompac-ui Design System Css -->
