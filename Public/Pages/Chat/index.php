@@ -42,10 +42,12 @@
 			$stmt = $conn->prepare($sql);
 			$stmt->execute([$pagename]);
 			$agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			// $conversations = getConversation($agents['id'], $conn);
-		} else {
 
-			# Getting User data data
+			$user = getUser($_SESSION['username'], $conn);
+
+			# Getting User conversations
+			$conversations = getConversation($user['id'], $conn);
+		} else {
 			$user = getUser($_SESSION['username'], $conn);
 
 			# Getting User conversations
@@ -267,6 +269,49 @@
 								<?php } ?>
 						</ul>
 					</div>
+					<div>
+					<ul id="chatList" class="list-group mvh-50 overflow-auto" id="chat-box">
+							<?php if (!empty($conversations)) { ?>
+								<?php
+
+								foreach ($conversations as $conversation) { ?>
+									<li class="list-group-item">
+										<a href="./Chat_Screen?user=<?= $conversation['username'] ?>" class="d-flex
+	    				          justify-content-between
+	    				          align-items-center p-2">
+											<div class="d-flex
+	    					            align-items-center">
+												<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+												<h3 class="fs-xs m-2">
+													<?= $conversation['name'] ?><br>
+													<small>
+														<?php
+														echo lastChat($_SESSION['user_id'], $conversation['id'], $conn);
+														?>
+													</small>
+												</h3>
+											</div>
+											<?php if (last_seen($conversation['last_seen']) == "Active") { ?>
+												<div title="online">
+													<div class="online"></div>
+												</div>
+											<?php } ?>
+										</a>
+									</li>
+								<?php } ?>
+							<?php } else { ?>
+								<div class="alert alert-info 
+    				            text-center">
+									<i class="fa fa-comments d-block fs-big"></i>
+									No messages yet, Start the conversation
+								</div>
+						<?php }
+						 ?>
+						</ul>
+
+					</div>
+
+
 				<?php } else { ?>
 
 					<div>
