@@ -83,15 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
     // Replace with actual value
 
     // Proceed with database insertion since validation passed
-    $sql = "INSERT INTO user (name, username, `Fb-link`, pagename, branchname, ip_address, password,refer_code, status, role, `by`, last_login, created_at, updated_at) 
-            VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, NOW(), NOW(), NOW())";
+    $sql = "INSERT INTO user (name, username, `Fb-link`,refer_by pagename, branchname, ip_address, password,refer_code, status, role, `by`, last_login, created_at, updated_at) 
+            VALUES (?, ?, ?, ?, ?,?, ?,?, ?, ?, ?, ?, NOW(), NOW(), NOW())";
 
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssssssss", $fullname, $username, $fbLink, $pageId, $branchId, $ipAddress, $password, $refercode, $status, $role, $by_u);
+        $stmt->bind_param("ssssssssssss", $fullname, $username, $fbLink,$referby, $pageId, $branchId, $ipAddress, $password, $refercode, $status, $role, $by_u);
 
         if ($stmt->execute()) {
             setToast('success', 'New record created successfully.');
-            processReferralCode($conn,$referby,$rfc);
+            processReferralCode($conn,$username,$rfc);
 
             $redirectTo = '../../index.php/Portal'; // Success: Redirect to the home page or dashboard
         } else {
