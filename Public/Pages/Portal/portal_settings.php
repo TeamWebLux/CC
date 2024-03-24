@@ -60,9 +60,6 @@
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
-
-        // header("Location: " . $_SERVER['PHP_SELF']);
-        // exit;
     }
 
     // Handle profile picture upload
@@ -98,12 +95,6 @@
     ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <style>
-        .custom-toast {
-            color: black !important;
-            /* Ensure text is visible */
-        }
-    </style>
 
 </head>
 
