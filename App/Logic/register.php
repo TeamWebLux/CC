@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
     // Replace with actual value
 
     // Proceed with database insertion since validation passed
-    $sql = "INSERT INTO user (name, username, `Fb-link`,refer_by pagename, branchname, ip_address, password,refer_code, status, role, `by`, last_login, created_at, updated_at) 
+    $sql = "INSERT INTO user (name, username, `Fb-link`,refer_by, pagename, branchname, ip_address, password,refer_code, status, role, `by`, last_login, created_at, updated_at) 
             VALUES (?, ?, ?, ?, ?,?, ?,?, ?, ?, ?, ?, NOW(), NOW(), NOW())";
 
     if ($stmt = $conn->prepare($sql)) {
