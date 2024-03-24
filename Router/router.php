@@ -62,6 +62,7 @@ if ($uri == $firstparam || $uri == $secondparam) {
 
         $prefix . $root . '/uploads'                         => './Public/Pages/Chat/uploads',
         //Scripts Route
+        $prefix . $root . '/Refer_And_Earn'                         => './Public/Pages/Portal/referandearn.php',
 
         $prefix . $root . '/Scripts'                         => './Public/Pages/Portal/scripts.php',
 
