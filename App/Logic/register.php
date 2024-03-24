@@ -10,7 +10,7 @@ function setToast($type, $message)
 include '../db/db_connect.php';
 
 // Default redirect location set to the registration page for reattempt
-$redirectTo = '../../index.php/add_user';
+$redirectTo = '../../index.php/Register_to_CustCount';
 $action = $_GET['action'];
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
