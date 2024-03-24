@@ -254,7 +254,7 @@
 	    				          align-items-center p-2">
 									<div class="d-flex
 	    					            align-items-center">
-										<img src="../assets/images/avatars/<?= !empty($agent['p_p']) ? $agent['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+										<img src="../uploads/profile/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 										<h3 class="fs-xs m-2">
 											<?= $agent['name'] ?><br>
 											<small>
@@ -283,7 +283,7 @@
 	    				          align-items-center p-2">
 											<div class="d-flex
 	    					            align-items-center">
-												<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+										<img src="../uploads/profile/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 												<h3 class="fs-xs m-2">
 													<?= $conversation['name'] ?><br>
 													<small>
@@ -323,7 +323,7 @@
 			            align-items-center">
 							<div class="d-flex
     			            align-items-center">
-								<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+							<img src="../uploads/profile/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 								<h3 class="fs-xs m-2"><?= $user['name'] ?></h3>
 							</div>
 						</div>

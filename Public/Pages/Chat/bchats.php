@@ -315,7 +315,7 @@
 				<a href="./Page_Message" class="btn btn-dark">Back</a>
 
 				<div class="d-flex align-items-center">
-					<img src="../assets/images/avatars/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
+				<img src="../uploads/profile/<?= !empty($chatWith['p_p']) ? $chatWith['p_p'] : '07.png' ?>" class="w-15 rounded-circle">
 
 					<h3 class="display-4">
 						<?= $chatWith['name'] ?> <br>
