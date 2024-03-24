@@ -61,10 +61,12 @@
             exit();
         } else {
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'Passwords do not match'];
+            header("Location: #");
+            exit();
         }
 
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
+        // header("Location: " . $_SERVER['PHP_SELF']);
+        // exit;
     }
 
     // Handle profile picture upload
