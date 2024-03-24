@@ -56,7 +56,9 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute([$newPassword, $userId]);
 
-            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Password changed successfully'];
+            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Password Chnaged.'];
+            header("Location: #");
+            exit();
         } else {
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'Passwords do not match'];
         }
@@ -69,7 +71,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
         $userId = $_SESSION['user_id'];
         // $profilePicture = $_FILES['profile_picture'];
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/profile/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -198,51 +200,6 @@
     include("./Public/Pages/Common/scripts.php");
 
     ?>
-    <?php if (isset($_SESSION['toast'])) : ?>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                console.log('<?php echo $_SESSION['toast']['message']; ?>'); // Debug message content
-                toastr['<?php echo $_SESSION['toast']['type']; ?>']('<?php echo addslashes($_SESSION['toast']['message']); ?>');
-            });
-        </script>
-        <?php unset($_SESSION['toast']); ?>
-    <?php endif; ?>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.success('This is a test message');
-        });
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut",
-            "tapToDismiss": false
-        };
-
-        toastr['success']('This is a success message!'); // Example for a success message
-        toastr.options = {
-            // Other Toastr options
-            onShown: function() {
-                let toasts = document.querySelectorAll('#toast-container .toast'); // Get all toasts
-                toasts.forEach(function(toast) {
-                    toast.style.color = 'black'; // Force text color
-                    toast.style.backgroundColor = 'white'; // Optional: Force background color if needed
-                });
-            }
-        };
-        toastr.success('This is a success message!');
-    </script>
 
 </body>
 

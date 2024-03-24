@@ -1,4 +1,4 @@
-?>
+
 <!doctype html>
 <html lang="en" dir="ltr">
 
@@ -264,17 +264,8 @@ if (in_array($role, ['Agent', 'Supervisor', 'Manager', 'Admin'])) {
 
     <!-- Select2 Script -->
     <script src="../assets/js/plugins/select2.js" defer></script>
-
-
-
-
     <!-- Slider-tab Script -->
     <script src="../assets/js/plugins/slider-tabs.js"></script>
-
-
-
-
-
     <!-- Lodash Utility -->
     <script src="../assets/vendor/lodash/lodash.min.js"></script>
     <!-- Utilities Functions -->
