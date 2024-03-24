@@ -94,6 +94,11 @@
     }
     ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+        .settings-form {
+            margin-bottom: 20px;
+        }
+    </style>
 
 
 </head>
@@ -121,51 +126,53 @@
         <div class="content-inner container-fluid pb-0" id="page_layout">
 
             <div class="row">
-
-
-                <div class="col-sm-12">
+                <div class="col-md-8 col-lg-6 mx-auto">
                     <h3 class="mt-4 mb-3">Your Settings</h3>
-                    <?php
-                    if (isset($_SESSION['timezone_updated'])) {
-                        echo '<p>Time zone updated successfully.</p>';
-                        unset($_SESSION['timezone_updated']);
-                    }
-                    ?>
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-                        <h3>Update Time Zone</h3>
-                        <label for="time_zone">Select your time zone:</label>
-                        <select name="time_zone" id="time_zone">
-                            <?php
-                            $timezones = DateTimeZone::listIdentifiers();
-                            foreach ($timezones as $timezone) {
-                                $selected = ($_SESSION['timezone'] ?? 'UTC') === $timezone ? ' selected' : '';
-                                echo "<option value=\"$timezone\"$selected>$timezone</option>";
-                            }
-                            ?>
-                        </select>
-                        <button type="submit">Update Time Zone</button>
+
+                    <!-- Time Zone Update Form -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="settings-form">
+                        <div class="form-group">
+                            <label for="time_zone">Select your time zone:</label>
+                            <select name="time_zone" id="time_zone" class="form-control">
+                                <?php
+                                $timezones = DateTimeZone::listIdentifiers();
+                                foreach ($timezones as $timezone) {
+                                    $selected = ($_SESSION['timezone'] ?? 'UTC') === $timezone ? ' selected' : '';
+                                    echo "<option value=\"$timezone\"$selected>$timezone</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Time Zone</button>
                     </form>
 
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                        <h3>Change Password</h3>
-                        <input type="password" name="new_password" placeholder="New Password" required>
-                        <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
-                        <button type="submit">Change Password</button>
+                    <!-- Password Change Form -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="settings-form">
+                        <div class="form-group">
+                            <input type="password" name="new_password" placeholder="New Password" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="confirm_password" placeholder="Confirm New Password" required class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
 
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-                        <h3>Update Profile Picture</h3>
-                        <input type="file" name="profile_picture" required>
-                        <button type="submit">Upload Picture</button>
+                    <!-- Profile Picture Update Form -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" class="settings-form">
+                        <div class="form-group">
+                            <input type="file" name="profile_picture" required class="form-control-file">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload Picture</button>
                     </form>
-
                 </div>
             </div>
+        </div>
 
-            <?
-            include("./Public/Pages/Common/footer.php");
-            // //print_r($_SESSION);
-            ?>
+
+        <?
+        include("./Public/Pages/Common/footer.php");
+        // //print_r($_SESSION);
+        ?>
 
     </main>
     <!-- Wrapper End-->
