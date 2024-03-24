@@ -74,7 +74,7 @@
             $stmt->close();
 
             // Generate the referral link
-            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?referral=" . $referralCode."&page=".$page;
+            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?referral=" . $refercode."&page=".$page;
 
 
             // Generate the referral link
