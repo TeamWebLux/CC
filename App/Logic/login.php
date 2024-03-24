@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['fullname'] = $row['name'];
                     $_SESSION['timezone'] = $row['timezone'];
                     $_SESSION['branch'] = $row['branchname'];
+                    $_SESSION['pp'] = $row['p_p'];
 
 
                     // Clear retained form values upon successful login

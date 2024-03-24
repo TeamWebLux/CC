@@ -5,7 +5,7 @@
             <!-- Topbar Brand Logo -->
             <div class="logo-topbar">
                 <!-- Logo light -->
-                <a href="index.html" class="logo-light">
+                <a href="./Portal" class="logo-light">
                     <span class="logo-lg">
                         <img src="../assets/images/logo.png" alt="logo">
                     </span>
@@ -285,7 +285,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                        <img src="../uploads/profile/<?php $_SESSION['pp']?>" alt="user-image" width="32" class="rounded-circle">
                     </span>
                     <span class="d-lg-block d-none">
                         <h5 class="my-0 fw-normal"><?php echo $_SESSION['username'] ?> <i class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
