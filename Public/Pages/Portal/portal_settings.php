@@ -7,10 +7,6 @@
     include "./Public/Pages/Common/auth_user.php";
 
     // Function to echo the script for toastr
-    function echoToastScript($type, $message)
-    {
-        echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
-    }
 
     // Check if there's a toast message set in session, display it, then unset
     //print_r($_SESSION);
@@ -193,6 +189,10 @@
 
     <?php
     include("./Public/Pages/Common/settings_link.php");
+    function echoToastScript($type, $message)
+    {
+        echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
+    }
 
     ?>
     <!-- Live Customizer end -->
