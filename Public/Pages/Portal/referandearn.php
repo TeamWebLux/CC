@@ -67,18 +67,14 @@
 
             // Execute the query
             $stmt->execute();
-
-            // Bind the result variable
-            $stmt->bind_result($referralCode);
-
-            // Fetch the value
-            $stmt->fetch();
-
-            // Close the statement
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $refercode=$row['refer_code'];
+            $page=$row['pagename'];
             $stmt->close();
 
             // Generate the referral link
-            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?referral=" . $referralCode;
+            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?referral=" . $referralCode."&page=".$page;
 
 
             // Generate the referral link
