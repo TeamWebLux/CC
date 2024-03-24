@@ -86,7 +86,7 @@
                                                     <input class="form-control" type="text" id="fb_link" name="fb_link" placeholder="Enter your Facebook link" required="" value="<?php echo isset($_SESSION['form_values']['fb_link']) ? htmlspecialchars($_SESSION['form_values']['fb_link']) : ''; ?>">
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="page_id" name="page_id" value="<?php echo isset($_GET['p']) ? htmlspecialchars($_GET['p']) : ''; ?>">
+                                            <input type="hidden" id="page_id" name="page" value="<?php echo isset($_GET['p']) ? htmlspecialchars($_GET['p']) : ''; ?>">
                                             <input class="form-control" type="hiddden" id="role" name="role" placeholder="Enter your Page ID" required hidden value="User">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
