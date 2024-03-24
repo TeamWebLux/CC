@@ -57,11 +57,11 @@
             $stmt->execute([$newPassword, $userId]);
 
             $_SESSION['toast'] = ['type' => 'success', 'message' => 'Password Chnaged.'];
-            header("Location: #");
+            header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         } else {
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'Passwords do not match'];
-            header("Location: #");
+            header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
 
