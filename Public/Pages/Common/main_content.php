@@ -271,7 +271,7 @@
                </li>
                <li class="nav-item dropdown">
                   <a class="py-0 nav-link d-flex align-items-center ps-3" href="#" id="profile-setting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="../assets/images/avatars/01.png" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
+                     <img src="../uploads/profile/<?php $_SESSION['pp']?>" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
                      <img src="../assets/images/avatars/avtar_1.png" alt="User-Profile" class="theme-color-purple-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
                      <img src="../assets/images/avatars/avtar_2.png" alt="User-Profile" class="theme-color-blue-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
                      <img src="../assets/images/avatars/avtar_3.png" alt="User-Profile" class="theme-color-green-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
