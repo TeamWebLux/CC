@@ -55,10 +55,11 @@
 
         <div class="content-inner container-fluid pb-0" id="page_layout">
             <?php
+            include "./App/db/db_connect.php";
             $userId = $_SESSION['user_id'];
 
             // Prepare the SQL query using mysqli
-            $query = "SELECT referral_code FROM user WHERE id = ?";
+            $query = "SELECT * FROM user WHERE id = ?";
             $stmt = $conn->prepare($query);
 
             // Bind the user ID as a parameter to the query
