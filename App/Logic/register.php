@@ -16,7 +16,7 @@ $action = $_GET['action'];
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
     print_r($_POST);
     // Retrieve and sanitize form data
-    $fullname = trim($_POST['name']);
+    $fullname = trim($_POST['fullname']);
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
     $ref = isset($_POST['rfc']) ? $_POST['rfc'] : null;
