@@ -189,7 +189,7 @@
     <!-- Live Customizer end -->
 
     <?php
-    include("../index.php/Page_Message");
+    include("../index.php/Scripts");
 
     ?>
 
