@@ -189,7 +189,7 @@
     <!-- Live Customizer end -->
 
     <?php
-    include("../index.php/Scripts");
+    include("./Public/Pages/Portal/scripts.php");
 
     ?>
 

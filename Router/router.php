@@ -61,9 +61,9 @@ if ($uri == $firstparam || $uri == $secondparam) {
         $prefix . $root . '/Page_Message'                         => './Public/Pages/Chat/pagelist.php',
 
         $prefix . $root . '/uploads'                         => './Public/Pages/Chat/uploads',
-//Scripts Route
+        //Scripts Route
 
-$prefix . $root . '/Scripts'                         => './Public/Pages/Portal/scripts.php',
+        $prefix . $root . '/Scripts'                         => './Public/Pages/Portal/scripts.php',
 
 
 
