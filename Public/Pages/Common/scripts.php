@@ -23,8 +23,8 @@
 <script src="../../assets/js/sidebarf700.js?v=1.0.1" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="../../assets/js/pages/data-table.js"></script>
-<script src="../../assets/js/vendors.min.js"></script>
+<script src="../../../assets/js/pages/data-table.js"></script>
+<script src="../../../assets/js/vendors.min.js"></script>
 <script src="../../../assets/js/pages/chat-popup.js"></script>
 <script src="../../../assets/icons/feather-icons/feather.min.js"></script>
 <!-- CRMi App -->
