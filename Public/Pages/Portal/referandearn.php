@@ -80,6 +80,9 @@
             // Generate the referral link
 
             ?>
+            <br>            <br>
+            <br>
+
             <div id="referralLinkContainer">
                 <input type="text" value="<?php echo htmlspecialchars($referralLink); ?>" id="referralLinkInput" readonly>
                 <button onclick="copyReferralLink()">Copy</button>
