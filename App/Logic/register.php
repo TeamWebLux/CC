@@ -226,7 +226,7 @@ function processReferralCode($conn, $name, $referralCode) {
         $affiliateUserName = null; // Default to null if no affiliate exists
         
         if ($affiliateRow = mysqli_fetch_assoc($affiliateResult)) {
-            $affiliateUserName = $affiliateRow['referred_by'];
+            $affiliateUserName = $affiliateRow['refered_by'];
         }
 
         // Insert new entry into referral table including the affiliate (if exists)
