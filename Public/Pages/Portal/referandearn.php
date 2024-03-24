@@ -69,18 +69,18 @@
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            $refercode=$row['refer_code'];
-            $page=$row['pagename'];
+            $refercode = $row['refer_code'];
+            $page = $row['pagename'];
             $stmt->close();
 
             // Generate the referral link
-            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?referral=" . $refercode."&page=".$page;
+            $referralLink = "https://test.custcount.com/index.php/Register_to_CustCount?r=" . $refercode . "&p=" . $page;
 
 
             // Generate the referral link
 
             ?>
-            <br>            <br>
+            <br> <br>
             <br>
 
             <div id="referralLinkContainer">
