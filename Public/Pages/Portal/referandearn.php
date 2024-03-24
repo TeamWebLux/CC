@@ -30,6 +30,12 @@
 
     print($uri);
     ?>
+    <style>
+        #referralLinkInput {
+            border-color: #007bff;
+            /* Bootstrap primary color */
+        }
+    </style>
 
 </head>
 
@@ -83,10 +89,16 @@
             <br> <br>
             <br>
 
-            <div id="referralLinkContainer">
-                <input type="text" value="<?php echo htmlspecialchars($referralLink); ?>" id="referralLinkInput" readonly>
-                <button onclick="copyReferralLink()">Copy</button>
-                <button onclick="shareReferralLink()">Share</button>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="<?php echo htmlspecialchars($referralLink); ?>" id="referralLinkInput" readonly>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLink()">Copy</button>
+                            <button class="btn btn-outline-primary" type="button" onclick="shareReferralLink()">Share</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
