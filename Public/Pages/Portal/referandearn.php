@@ -89,17 +89,91 @@
             <br> <br>
             <br>
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-8">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="<?php echo htmlspecialchars($referralLink); ?>" id="referralLinkInput" readonly>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLink()">Copy</button>
-                            <button class="btn btn-outline-primary" type="button" onclick="shareReferralLink()">Share</button>
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Your Referral Details</h5>
+                                <p class="card-text">Share your referral link to invite friends and earn rewards!</p>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" value="<?php echo htmlspecialchars($referralLink); ?>" id="referralLinkInput" readonly>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLink()">Copy</button>
+                                        <button class="btn btn-outline-primary" type="button" onclick="shareReferralLink()">Share</button>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h6>Your Referral Code: <strong><?php echo htmlspecialchars($refercode); ?></strong></h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php
+            // Ensure database connection is established
+            // $conn = new mysqli('host', 'username', 'password', 'database_name');
+            include "./App/db/db_connect.php";
+
+            // Assuming $userId contains the ID of the current user
+            $userId = $_SESSION['user_id'];
+
+            // Fetch users directly referred by the current user and their affiliates
+            $referredUsersQuery = "SELECT u.id, u.username, r.referral_code 
+                       FROM users u
+                       JOIN referrals r ON u.referral_code = r.referred_by
+                       WHERE r.referred_by = (SELECT referral_code FROM users WHERE id = ?)";
+
+            $stmt = $conn->prepare($referredUsersQuery);
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $referredUsersResult = $stmt->get_result();
+
+            $referredUsers = [];
+            while ($row = $referredUsersResult->fetch_assoc()) {
+                $userId = $row['id'];
+                $referredUsers[$userId] = [
+                    'username' => $row['username'],
+                    'referral_code' => $row['referral_code'],
+                    'affiliates' => []
+                ];
+
+                // Fetch affiliates for each referred user
+                $affiliatesQuery = "SELECT name FROM referrals WHERE affiliate_by = ?";
+                $affiliateStmt = $conn->prepare($affiliatesQuery);
+                $affiliateStmt->bind_param("s", $row['referral_code']);
+                $affiliateStmt->execute();
+                $affiliatesResult = $affiliateStmt->get_result();
+
+                while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
+                    $referredUsers[$userId]['affiliates'][] = $affiliateRow['name'];
+                }
+            }
+            ?>
+
+            <div class="container mt-4">
+                <h4>Your Referrals and Affiliates</h4>
+                <?php foreach ($referredUsers as $user) : ?>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Referred User: <?php echo htmlspecialchars($user['username']); ?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Referral Code: <?php echo htmlspecialchars($user['referral_code']); ?></h6>
+                            <p class="card-text">Affiliates:</p>
+                            <?php if (!empty($user['affiliates'])) : ?>
+                                <ul>
+                                    <?php foreach ($user['affiliates'] as $affiliateName) : ?>
+                                        <li><?php echo htmlspecialchars($affiliateName); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else : ?>
+                                <p>No affiliates for this user.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
 
 
         </div>
