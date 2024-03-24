@@ -213,7 +213,7 @@
     <script src="../assets/js/sidebarf700.js?v=1.0.1" defer></script>
 
     <?php
-    include("./Public/Pages/Common/scripts.php");
+    // include("./Public/Pages/Common/scripts.php");
 
     ?>
 
