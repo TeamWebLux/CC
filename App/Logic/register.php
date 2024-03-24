@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $action == "register") {
 
         if ($stmt->execute()) {
             setToast('success', 'New record created successfully.');
-            processReferralCode($conn,$username,$rfc);
+            processReferralCode($conn,$username,$ref);
 
             $redirectTo = '../../index.php/Portal'; // Success: Redirect to the home page or dashboard
         } else {
