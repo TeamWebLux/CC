@@ -35,6 +35,70 @@
             border-color: #007bff;
             /* Bootstrap primary color */
         }
+
+        .referral-section {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .referral-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .referral-link-card,
+        .referral-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .input-group-btn {
+            display: flex;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .copy-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .share-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .affiliate-list {
+            padding-left: 20px;
+        }
+
+        .card-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-body h5 {
+            margin-bottom: 10px;
+        }
     </style>
 
 </head>
@@ -140,22 +204,22 @@
                 $affiliatesResult = $affiliateStmt->get_result();
 
                 while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
-                    print_r($affiliateRow);
                     $referrals[$referralUsername]['affiliates'][] = $affiliateRow['name'];
                 }
-                print_r($referrals);
             }
             ?>
 
-            <div class="container mt-4">
-                <h4>Your Referrals and Affiliates</h4>
+            <div class="referrals-list">
+                <h3>Your Referrals and Affiliates</h3>
                 <?php foreach ($referrals as $userDetails) : ?>
-                    <div class="card mb-3">
+                    <div class="referral-card">
+                        <div class="card-header">
+                            Referred User: <?= htmlspecialchars($userDetails['username']); ?>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Referred User: <?= htmlspecialchars($userDetails['username']); ?></h5>
-                            <p class="card-text">Affiliates:</p>
+                            <h5>Affiliates:</h5>
                             <?php if (!empty($userDetails['affiliates'])) : ?>
-                                <ul>
+                                <ul class="affiliate-list">
                                     <?php foreach ($userDetails['affiliates'] as $affiliateUsername) : ?>
                                         <li><?= htmlspecialchars($affiliateUsername); ?></li>
                                     <?php endforeach; ?>
@@ -167,6 +231,7 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+        </div>
 
 
         </div>
