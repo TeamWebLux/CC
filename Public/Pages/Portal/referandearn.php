@@ -113,48 +113,59 @@
             </div>
             <?php
             // Ensure database connection is established
-            // $conn = new mysqli('host', 'username', 'password', 'database_name');
             include "./App/db/db_connect.php";
 
-            $userId = $_SESSION['user_id'];
-            $directReferralsQuery = "Select * from refferal where refered_by=?";
+            $username = $_SESSION['username']; // Assuming username is stored in session
+
+            // Fetch direct referrals
+            $directReferralsQuery = "SELECT * FROM referral WHERE referred_by = ?";
             $stmt = $conn->prepare($directReferralsQuery);
-            $stmt->bind_param("i", $userId);
+            $stmt->bind_param("s", $username);
             $stmt->execute();
             $directReferralsResult = $stmt->get_result();
-            print_r($directReferralsResult);
 
-            $affilates="Select * from refferal where afilated_by=?";
-            $af = $conn->prepare($affilates);
-            $af->bind_param("i", $userId);
-            $af->execute();
-            $affilatesresult = $af->get_result();
-            print_r($affilatesresult);
+            $referrals = [];
+            while ($row = $directReferralsResult->fetch_assoc()) {
+                $referralUsername = $row['username']; // Assuming 'username' is the field for the referred user's username
+                $referrals[$referralUsername] = [
+                    'username' => $referralUsername,
+                    'affiliates' => []
+                ];
 
+                // Fetch affiliates for each referred user
+                $affiliatesQuery = "SELECT username FROM referral WHERE affiliated_by = ?";
+                $affiliateStmt = $conn->prepare($affiliatesQuery);
+                $affiliateStmt->bind_param("s", $referralUsername);
+                $affiliateStmt->execute();
+                $affiliatesResult = $affiliateStmt->get_result();
 
+                while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
+                    $referrals[$referralUsername]['affiliates'][] = $affiliateRow['username'];
+                }
+            }
             ?>
-            
+
             <div class="container mt-4">
                 <h4>Your Referrals and Affiliates</h4>
-                <?php foreach ($referrals as $userId => $userDetails): ?>
+                <?php foreach ($referrals as $userDetails) : ?>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Referred User: <?= htmlspecialchars($userDetails['username']); ?></h5>
                             <p class="card-text">Affiliates:</p>
-                            <?php if (!empty($userDetails['affiliates'])): ?>
+                            <?php if (!empty($userDetails['affiliates'])) : ?>
                                 <ul>
-                                    <?php foreach ($userDetails['affiliates'] as $affiliateUsername): ?>
+                                    <?php foreach ($userDetails['affiliates'] as $affiliateUsername) : ?>
                                         <li><?= htmlspecialchars($affiliateUsername); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <p>No affiliates for this user.</p>
                             <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
 
         </div>
 
