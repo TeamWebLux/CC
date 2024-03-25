@@ -66,9 +66,12 @@
 
         if ($stmt->execute()) {
             // If you want to show a success message, you can use session or direct echo
-            echo "<p>Bonus percentages updated successfully.</p>";
+            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Bonus Updated Sucessfully.'];
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
         } else {
-            echo "<p>Error updating record: " . $conn->error . "</p>";
+            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Bonus Not Set.'];
+            header("Location: " . $_SERVER['PHP_SELF']);
         }
 
         $stmt->close();
