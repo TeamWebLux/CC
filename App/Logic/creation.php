@@ -413,9 +413,10 @@ class Creation
 
     function recordBonus($conn, $username, $amount, $type,$name)
     {
+        $trans='Credit';
         $insertQuery = "INSERT INTO referrecord (username, amount, type,byname,trans) VALUES (?, ?, ?,?,?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("sdsss", $username, $amount, $type,$name,'Credit');
+        $stmt->bind_param("sdsss", $username, $amount, $type,$name,$trans);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
