@@ -238,6 +238,8 @@
 
             <div class="referrals-list">
                 <h3>Your Referrals and Affiliates</h3>
+                <a href="./See_Refer" class="btn btn-primary">View Earnings</a>
+
                 <?php foreach ($referrals as $userDetails) : ?>
                     <div class="referral-card">
                         <div class="card-header">
