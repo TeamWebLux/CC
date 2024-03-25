@@ -59,6 +59,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mb-0">Referal List</h4>
+                            <h6 class="box-subtitle"></h6>
+
                         </div>
                         <?php
                         include './App/db/db_connect.php';
@@ -72,7 +74,7 @@
                         ?>
                             <div class="card-body">
                                 <div class="custom-table-effect table-responsive  border rounded">
-                                <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                <table class="table mb-0" id="example">
                                         <thead>
                                             <tr class="bg-white">
                                             <?php
@@ -84,9 +86,11 @@
                                             <th scope="col">Afilate By Username</th>
                                             <th scope="col">Time</th>
                                             </tr>';
+                                          echo  '<thead>
+                                            <tbody>';
 
                                             while ($row = $result->fetch_assoc()) {
-                                                echo "<thead><tr><tbody>
+                                                echo "
                                                     
                                                     <td>{$row['id']}</td>
                                                     <td>{$row['name']}</td>
@@ -114,25 +118,21 @@
         </div>
 
 
-        </div>
 
         <script>
-        //     $(document).ready(function() {
-        //         $('#example').DataTable({
-        //             "order": [
-        //                 [4, "desc"]
-        //             ],
-        //             dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+            //     $(document).ready(function() {
+            //         $('#example').DataTable({
+            //             "order": [
+            //                 [4, "desc"]
+            //             ],
+            //             dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
-        //             buttons: [
-        //     'copy', 'excel', 'pdf'
-        // ]
-        //         });
-        //     });
-
-
-
-    </script>
+            //             buttons: [
+            //     'copy', 'excel', 'pdf'
+            // ]
+            //         });
+            //     });
+        </script>
 
 
 
