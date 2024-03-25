@@ -358,7 +358,8 @@ class Creation
 
                 if ($stmt->execute()) {
                     $_SESSION['toast'] = ['type' => 'success', 'message' => 'Recharge Added Sucessfully '];
-
+                    $this->recordReferralAndAffiliateBonus($conn, $username, $recharge);
+                    exit();
                     echo "Transaction added successfully. Redirecting...<br>";
                     header("Location: ../../index.php/Portal_User_Management");
                     exit();
@@ -373,6 +374,58 @@ class Creation
             }
         }
     }
+    function recordReferralAndAffiliateBonus($conn, $username, $amount)
+    {
+        // Fetch the referred_by and affiliated_by usernames
+        $query = "SELECT refered_by, afilated_by FROM refferal WHERE name = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $referralResult = $stmt->get_result();
+        $referralData = $referralResult->fetch_assoc();
+
+        if ($referralData) {
+            // Fetch the bonus percentages
+            $bonusQuery = "SELECT referal, affiliate FROM refferal_bonus LIMIT 1";
+            $bonusResult = $conn->query($bonusQuery);
+            $bonusData = $bonusResult->fetch_assoc();
+
+            if ($bonusData) {
+                // Calculate the bonuses
+                $referralBonus = $amount * ($bonusData['referal'] / 100.0);
+                $affiliateBonus = $amount * ($bonusData['affiliate'] / 100.0);
+
+                // Record the referral bonus
+                if ($referralData['refered_by']) {
+                    $this->recordBonus($conn, $referralData['refered_by'], $referralBonus, 'Referred Bonus');
+                }
+
+                // Record the affiliate bonus
+                if ($referralData['afilated_by']) {
+                    $this->recordBonus($conn, $referralData['afilated_by'], $affiliateBonus, 'Affiliate Bonus');
+                }
+            } else {
+                echo "No bonus data found.";
+            }
+        } else {
+            echo "No referral data found for this user.";
+        }
+    }
+
+    function recordBonus($conn, $username, $amount, $type)
+    {
+        $insertQuery = "INSERT INTO referrecord (username, amount, type) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($insertQuery);
+        $stmt->bind_param("sds", $username, $amount, $type);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            echo "{$type} of {$amount} recorded for {$username}.\n";
+        } else {
+            echo "Error recording {$type}: " . $conn->error . "\n";
+        }
+    }
+
 
     function getBranchNameByPageName($pageName, $conn)
     {
