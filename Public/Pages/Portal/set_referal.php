@@ -58,11 +58,11 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="mb-0">Deposits List</h4>
+                            <h4 class="mb-0">Referal List</h4>
                         </div>
                         <?php
                         include './App/db/db_connect.php';
-                        $sql = "SELECT * FROM referal ";
+                        $sql = "SELECT * FROM refferal ";
 
                         $result = $conn->query($sql);
 
