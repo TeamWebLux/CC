@@ -126,21 +126,21 @@
 
             $referrals = [];
             while ($row = $directReferralsResult->fetch_assoc()) {
-                $referralUsername = $row['username']; // Assuming 'username' is the field for the referred user's username
+                $referralUsername = $row['name']; // Assuming 'username' is the field for the referred user's username
                 $referrals[$referralUsername] = [
                     'username' => $referralUsername,
                     'affiliates' => []
                 ];
 
                 // Fetch affiliates for each referred user
-                $affiliatesQuery = "SELECT username FROM referral WHERE affiliated_by = ?";
+                $affiliatesQuery = "SELECT name FROM referral WHERE affiliated_by = ?";
                 $affiliateStmt = $conn->prepare($affiliatesQuery);
                 $affiliateStmt->bind_param("s", $referralUsername);
                 $affiliateStmt->execute();
                 $affiliatesResult = $affiliateStmt->get_result();
 
                 while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
-                    $referrals[$referralUsername]['affiliates'][] = $affiliateRow['username'];
+                    $referrals[$referralUsername]['affiliates'][] = $affiliateRow['name'];
                 }
             }
             ?>
