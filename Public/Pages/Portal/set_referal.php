@@ -86,7 +86,7 @@
                                             <th scope="col">Afilate By Username</th>
                                             <th scope="col">Time</th>
                                             </tr>';
-                                          echo  '<thead>
+                                          echo  '</thead>
                                             <tbody>';
 
                                             while ($row = $result->fetch_assoc()) {

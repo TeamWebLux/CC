@@ -117,14 +117,14 @@
                                             <th scope="col">Last Login</th>
                                             </tr>';
                                                 ?>
-                                                <thead>
-                                                <tbody>
-                                                    <?php
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // Check if the link already includes http:// or https://
-                                                        $fbLink = (strpos($row['Fb-link'], 'http://') === 0 || strpos($row['Fb-link'], 'https://') === 0) ? $row['Fb-link'] : 'http://' . $row['Fb-link'];
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($row = $result->fetch_assoc()) {
+                                                // Check if the link already includes http:// or https://
+                                                $fbLink = (strpos($row['Fb-link'], 'http://') === 0 || strpos($row['Fb-link'], 'https://') === 0) ? $row['Fb-link'] : 'http://' . $row['Fb-link'];
 
-                                                        echo "<tr>
+                                                echo "<tr>
                 <td>{$row['id']}</td>
                 <td>{$row['username']}</td>
                 <td>{$row['name']}</td>
@@ -134,20 +134,20 @@
                 <td>{$row['created_at']}</td>
                 <td>{$row['last_login']}</td>
               </tr>";
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            <?php
-
-                                            // End table
-                                            echo '</table>';
-                                        } else {
-                                            echo "0 results";
-                                        }
-
-                                        // Close connection
-                                        $conn->close();
+                                            }
                                             ?>
+                                        </tbody>
+                                    <?php
+
+                                    // End table
+                                    echo '</table>';
+                                } else {
+                                    echo "0 results";
+                                }
+
+                                // Close connection
+                                $conn->close();
+                                    ?>
 
 
 
