@@ -121,9 +121,6 @@
                         ],
                         dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
-                        buttons: [
-                'copy', 'excel', 'pdf'
-            ]
                     });
                 });
         </script>
