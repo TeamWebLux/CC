@@ -197,9 +197,9 @@
                 ];
 
                 // Fetch affiliates for each referred user
-                $affiliatesQuery = "SELECT name FROM refferal WHERE afilated_by = ?";
+                $affiliatesQuery = "SELECT name FROM refferal WHERE refered_by = ?";
                 $affiliateStmt = $conn->prepare($affiliatesQuery);
-                $affiliateStmt->bind_param("s", $username);
+                $affiliateStmt->bind_param("s", $referralUsername);
                 $affiliateStmt->execute();
                 $affiliatesResult = $affiliateStmt->get_result();
 
