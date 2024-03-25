@@ -127,63 +127,63 @@
                     </div>
                 </div>
             </div>
-        
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="mb-0">Referal List</h4>
-                        <h6 class="box-subtitle"></h6>
 
-                    </div>
-                    <?php
-                    include './App/db/db_connect.php';
-                    $sql = "SELECT * FROM refferal ";
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Referal List</h4>
+                            <h6 class="box-subtitle"></h6>
 
-                    $result = $conn->query($sql);
-
-                    // Check if there are results
-
-                    if ($result->num_rows > 0) {
-                    ?>
-                        <div class="card-body">
-                            <div class="custom-table-effect table-responsive border rounded">
-                                <table class="table mb-0" id="example">
-                                    <thead>
-                                        <tr class="bg-white">
-                                            <th scope="col">ID</th>
-                                            <th scope="col">UserName</th>
-                                            <th scope="col">Referred By Username</th>
-                                            <th scope="col">Affiliated By Username</th>
-                                            <th scope="col">Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php while ($row = $result->fetch_assoc()) : ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($row['id']); ?></td>
-                                                <td><?= htmlspecialchars($row['name']); ?></td>
-                                                <td><?= htmlspecialchars($row['refered_by']); ?></td>
-                                                <td><?= htmlspecialchars($row['afilated_by']); ?></td>
-                                                <td><?= htmlspecialchars($row['created_at']); ?></td>
-                                            </tr>
-                                        <?php endwhile; ?>
-                                    </tbody>
-                                </table>
-                            <?php
-                        } else {
-                            echo "<p>No referral records found.</p>";
-                        }
-                        // Close connection
-                        $conn->close();
-                            ?>
-                            </div>
                         </div>
-                </div>
-            </div>
+                        <?php
+                        include './App/db/db_connect.php';
+                        $sql = "SELECT * FROM refferal ";
 
-        </div>
+                        $result = $conn->query($sql);
+
+                        // Check if there are results
+
+                        if ($result->num_rows > 0) {
+                        ?>
+                            <div class="card-body">
+                                <div class="custom-table-effect table-responsive border rounded">
+                                    <table class="table mb-0" id="example">
+                                        <thead>
+                                            <tr class="bg-white">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">UserName</th>
+                                                <th scope="col">Referred By Username</th>
+                                                <th scope="col">Affiliated By Username</th>
+                                                <th scope="col">Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($row = $result->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td><?= htmlspecialchars($row['id']); ?></td>
+                                                    <td><?= htmlspecialchars($row['name']); ?></td>
+                                                    <td><?= htmlspecialchars($row['refered_by']); ?></td>
+                                                    <td><?= htmlspecialchars($row['afilated_by']); ?></td>
+                                                    <td><?= htmlspecialchars($row['created_at']); ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+                                <?php
+                            } else {
+                                echo "<p>No referral records found.</p>";
+                            }
+                            // Close connection
+                            $conn->close();
+                                ?>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
 
