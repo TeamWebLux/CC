@@ -396,12 +396,12 @@ class Creation
 
                 // Record the referral bonus
                 if ($referralData['refered_by']) {
-                    $this->recordBonus($conn, $referralData['refered_by'], $referralBonus, 'Referred Bonus','Credit');
+                    $this->recordBonus($conn, $referralData['refered_by'], $referralBonus, 'Referred Bonus',$username);
                 }
 
                 // Record the affiliate bonus
                 if ($referralData['afilated_by']) {
-                    $this->recordBonus($conn, $referralData['afilated_by'], $affiliateBonus, 'Affiliate Bonus','Debit');
+                    $this->recordBonus($conn, $referralData['afilated_by'], $affiliateBonus, 'Affiliate Bonus',$username);
                 }
             } else {
                 echo "No bonus data found.";
@@ -415,7 +415,7 @@ class Creation
     {
         $insertQuery = "INSERT INTO referrecord (username, amount, type,byname,trans) VALUES (?, ?, ?,?,?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("sds", $username, $amount, $type,$name);
+        $stmt->bind_param("sds", $username, $amount, $type,$name,'Credit');
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
