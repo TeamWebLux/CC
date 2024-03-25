@@ -27,7 +27,7 @@
         echo '<p class="error">' . $_SESSION['login_error'] . '</p>';
         unset($_SESSION['login_error']); // Clear the error message
     }
-    include 'db_connect.php'; // Make sure to use the correct path to your database connection file
+    include './App/db/db_connect.php';
 
     // Initialize variables
     $referralPercentage = '';
