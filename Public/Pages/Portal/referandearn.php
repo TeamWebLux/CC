@@ -118,7 +118,7 @@
             $username = $_SESSION['username']; // Assuming username is stored in session
 
             // Fetch direct referrals
-            $directReferralsQuery = "SELECT * FROM referral WHERE referred_by = ?";
+            $directReferralsQuery = "SELECT * FROM refferal WHERE refered_by = ?";
             $stmt = $conn->prepare($directReferralsQuery);
             $stmt->bind_param("s", $username);
             $stmt->execute();
@@ -133,7 +133,7 @@
                 ];
 
                 // Fetch affiliates for each referred user
-                $affiliatesQuery = "SELECT name FROM referral WHERE affiliated_by = ?";
+                $affiliatesQuery = "SELECT name FROM refferal WHERE afilated_by = ?";
                 $affiliateStmt = $conn->prepare($affiliatesQuery);
                 $affiliateStmt->bind_param("s", $referralUsername);
                 $affiliateStmt->execute();
