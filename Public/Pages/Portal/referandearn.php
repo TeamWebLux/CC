@@ -116,39 +116,22 @@
             // $conn = new mysqli('host', 'username', 'password', 'database_name');
             include "./App/db/db_connect.php";
 
-            // Assuming $userId contains the ID of the current user
-            // Assuming connection to database is established ($conn)
-            
-            // Assuming $userId contains the ID of the current user
             $userId = $_SESSION['user_id'];
-            
-            // Fetch users directly referred by the current user
-            $directReferralsQuery = "SELECT u.id, u.username FROM users u JOIN referrals r ON u.id = r.user_id WHERE r.referred_by = ?";
-            
+            $directReferralsQuery = "Select * from refferal where refered_by=?";
             $stmt = $conn->prepare($directReferralsQuery);
             $stmt->bind_param("i", $userId);
             $stmt->execute();
             $directReferralsResult = $stmt->get_result();
-            
-            $referrals = [];
-            while ($row = $directReferralsResult->fetch_assoc()) {
-                $referralUserId = $row['id'];
-                $referrals[$referralUserId] = [
-                    'username' => $row['username'],
-                    'affiliates' => []
-                ];
-            
-                // Fetch affiliates for each referred user
-                $affiliatesQuery = "SELECT u.username FROM users u JOIN referrals r ON u.id = r.user_id WHERE r.referred_by = ?";
-                $affiliateStmt = $conn->prepare($affiliatesQuery);
-                $affiliateStmt->bind_param("i", $referralUserId);
-                $affiliateStmt->execute();
-                $affiliatesResult = $affiliateStmt->get_result();
-            
-                while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
-                    $referrals[$referralUserId]['affiliates'][] = $affiliateRow['username'];
-                }
-            }
+            print_r($directReferralsResult);
+
+            $affilates="Select * from refferal where afilated_by=?";
+            $af = $conn->prepare($affilates);
+            $af->bind_param("i", $userId);
+            $af->execute();
+            $affilatesresult = $af->get_result();
+            print_r($affilatesresult);
+
+
             ?>
             
             <div class="container mt-4">
