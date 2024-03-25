@@ -117,64 +117,61 @@
             include "./App/db/db_connect.php";
 
             // Assuming $userId contains the ID of the current user
+            // Assuming connection to database is established ($conn)
+            
+            // Assuming $userId contains the ID of the current user
             $userId = $_SESSION['user_id'];
-
-            // Fetch users directly referred by the current user and their affiliates
-            $referredUsersQuery = "SELECT u.id, u.username, r.referral_code 
-                       FROM users u
-                       JOIN referrals r ON u.referral_code = r.referred_by
-                       WHERE r.referred_by = (SELECT referral_code FROM users WHERE id = ?)";
-
-            $stmt = $conn->prepare($referredUsersQuery);
+            
+            // Fetch users directly referred by the current user
+            $directReferralsQuery = "SELECT u.id, u.username FROM users u JOIN referrals r ON u.id = r.user_id WHERE r.referred_by = ?";
+            
+            $stmt = $conn->prepare($directReferralsQuery);
             $stmt->bind_param("i", $userId);
             $stmt->execute();
-            $referredUsersResult = $stmt->get_result();
-
-            $referredUsers = [];
-            while ($row = $referredUsersResult->fetch_assoc()) {
-                $userId = $row['id'];
-                $referredUsers[$userId] = [
+            $directReferralsResult = $stmt->get_result();
+            
+            $referrals = [];
+            while ($row = $directReferralsResult->fetch_assoc()) {
+                $referralUserId = $row['id'];
+                $referrals[$referralUserId] = [
                     'username' => $row['username'],
-                    'referral_code' => $row['referral_code'],
                     'affiliates' => []
                 ];
-
+            
                 // Fetch affiliates for each referred user
-                $affiliatesQuery = "SELECT name FROM referrals WHERE affiliate_by = ?";
+                $affiliatesQuery = "SELECT u.username FROM users u JOIN referrals r ON u.id = r.user_id WHERE r.referred_by = ?";
                 $affiliateStmt = $conn->prepare($affiliatesQuery);
-                $affiliateStmt->bind_param("s", $row['referral_code']);
+                $affiliateStmt->bind_param("i", $referralUserId);
                 $affiliateStmt->execute();
                 $affiliatesResult = $affiliateStmt->get_result();
-
+            
                 while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
-                    $referredUsers[$userId]['affiliates'][] = $affiliateRow['name'];
+                    $referrals[$referralUserId]['affiliates'][] = $affiliateRow['username'];
                 }
             }
             ?>
-
+            
             <div class="container mt-4">
                 <h4>Your Referrals and Affiliates</h4>
-                <?php foreach ($referredUsers as $user) : ?>
+                <?php foreach ($referrals as $userId => $userDetails): ?>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Referred User: <?php echo htmlspecialchars($user['username']); ?></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Referral Code: <?php echo htmlspecialchars($user['referral_code']); ?></h6>
+                            <h5 class="card-title">Referred User: <?= htmlspecialchars($userDetails['username']); ?></h5>
                             <p class="card-text">Affiliates:</p>
-                            <?php if (!empty($user['affiliates'])) : ?>
+                            <?php if (!empty($userDetails['affiliates'])): ?>
                                 <ul>
-                                    <?php foreach ($user['affiliates'] as $affiliateName) : ?>
-                                        <li><?php echo htmlspecialchars($affiliateName); ?></li>
+                                    <?php foreach ($userDetails['affiliates'] as $affiliateUsername): ?>
+                                        <li><?= htmlspecialchars($affiliateUsername); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <p>No affiliates for this user.</p>
                             <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-
-
+            
 
         </div>
 
