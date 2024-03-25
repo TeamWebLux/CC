@@ -117,18 +117,18 @@
         </div>
 
         <script>
-            $(document).ready(function() {
-                $('#example').DataTable({
-                    "order": [
-                        [4, "desc"]
-                    ],
-                    dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+        //     $(document).ready(function() {
+        //         $('#example').DataTable({
+        //             "order": [
+        //                 [4, "desc"]
+        //             ],
+        //             dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
-                    buttons: [
-            'copy', 'excel', 'pdf'
-        ]
-                });
-            });
+        //             buttons: [
+        //     'copy', 'excel', 'pdf'
+        // ]
+        //         });
+        //     });
 
 
 
