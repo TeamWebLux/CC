@@ -140,6 +140,7 @@
                 $affiliatesResult = $affiliateStmt->get_result();
 
                 while ($affiliateRow = $affiliatesResult->fetch_assoc()) {
+                    print_r($affiliateRow);
                     $referrals[$referralUsername]['affiliates'][] = $affiliateRow['name'];
                 }
                 print_r($referrals);
