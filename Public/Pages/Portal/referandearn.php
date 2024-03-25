@@ -211,26 +211,27 @@
 
             <div class="referrals-list">
                 <h3>Your Referrals and Affiliates</h3>
-                
-                <?php print_r($referrals); foreach ($referrals as $userDetails) : ?>
-                    <?php // Only display the card if there are affiliates for this user
-                    if (!empty($userDetails['affiliates'])) : ?>
-                        <div class="referral-card">
-                            <div class="card-header">
-                                Referred User: <?= htmlspecialchars($userDetails['username']); ?>
-                            </div>
-                            <div class="card-body">
-                                <h5>Affiliates:</h5>
-                                <ul>
+                <?php foreach ($referrals as $userDetails) : ?>
+                    <div class="referral-card">
+                        <div class="card-header">
+                            Referred User: <?= htmlspecialchars($userDetails['username']); ?>
+                        </div>
+                        <div class="card-body">
+                            <h5>Affiliates:</h5>
+                            <?php if (!empty($userDetails['affiliates'])) : ?>
+                                <ul class="affiliate-list">
                                     <?php foreach ($userDetails['affiliates'] as $affiliateUsername) : ?>
                                         <li><?= htmlspecialchars($affiliateUsername); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
-                            </div>
+                            <?php else : ?>
+                                <p>No affiliates for this user.</p>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
+        </div>
 
 
         </div>
