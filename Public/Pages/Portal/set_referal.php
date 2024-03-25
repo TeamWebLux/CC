@@ -120,7 +120,7 @@
             $(document).ready(function() {
                 $('#example').DataTable({
                     "order": [
-                        [5, "desc"]
+                        [4, "desc"]
                     ],
                     dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
