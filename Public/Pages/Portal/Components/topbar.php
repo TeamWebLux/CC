@@ -285,7 +285,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="../uploads/profile/<?php $_SESSION['pp']?>" alt="user-image" width="32" class="rounded-circle">
+                        <img src="../uploads/profile/<?= !empty($_SESSION['p_p']) ? $_SESSION['p_p'] : '07.png' ?>" alt="user-image" width="32" class="rounded-circle">
                     </span>
                     <span class="d-lg-block d-none">
                         <h5 class="my-0 fw-normal"><?php echo $_SESSION['username'] ?> <i class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
