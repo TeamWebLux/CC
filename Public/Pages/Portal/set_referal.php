@@ -44,7 +44,7 @@
     }
 
     // Check if form is submitted
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
         // Get new bonus percentages from the form
         $referralPercentage = $_POST['referralPercentage'];
         $affiliatePercentage = $_POST['affiliatePercentage'];
