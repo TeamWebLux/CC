@@ -99,6 +99,33 @@
         .card-body h5 {
             margin-bottom: 10px;
         }
+
+        .chat-btn {
+            background-color: green;
+            /* Normal state background color */
+            color: white;
+            /* Text color */
+            padding: 10px 20px;
+            /* Padding around the text */
+            border: none;
+            /* No border */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor changes to a pointer to indicate it's clickable */
+            transition: background-color 0.3s;
+            /* Smooth transition for background color change */
+            text-decoration: none;
+            /* No underline on text */
+            font-weight: bold;
+            /* Bold text */
+        }
+
+        /* Chat button hover state */
+        .chat-btn:hover {
+            background-color: red;
+            /* Background color on hover */
+        }
     </style>
 
 </head>
@@ -224,7 +251,7 @@
                                         <li>
                                             <?= htmlspecialchars($affiliateUsername); ?>
                                             <!-- Chat button for each affiliate -->
-                                            <button onclick="window.location.href='./Chat_Screen?user=<?= urlencode($affiliateUsername); ?>'">Chat</button>
+                                            <button class="chat-btn" onclick="window.location.href='./Chat_Screen?user=<?= urlencode($affiliateUsername); ?>'">Chat</button>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
@@ -232,7 +259,7 @@
                                 <p>No affiliates for this user.</p>
                             <?php endif; ?>
                             <!-- Chat button for the referred user -->
-                            <button onclick="window.location.href='./Chat_Screen?user=<?= urlencode($userDetails['username']); ?>'">Chat with Referred User</button>
+                            <button class="chat-btn" onclick="window.location.href='./Chat_Screen?user=<?= urlencode($userDetails['username']); ?>'">Chat with Referred User</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
