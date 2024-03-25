@@ -34,6 +34,8 @@
         $sql = "UPDATE user SET timezone = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$newTimeZone, $userId]);
+        unset($_SESSION['timezone']); 
+        $_SESSION['timezone']=$newTimeZone;
 
         $_SESSION['toast'] = ['type' => 'success', 'message' => 'Time zone updated successfully'];
         header("Location: " . $_SERVER['PHP_SELF']);
@@ -87,6 +89,8 @@
         $sql = "UPDATE user SET p_p = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$profilePicture, $userId]);
+        unset($_SESSION['p_p']); 
+        $_SESSION['p_p']=$profilePicture;
 
         $_SESSION['toast'] = ['type' => 'success', 'message' => 'Profile picture updated successfully'];
         header("Location: " . $_SERVER['PHP_SELF']);
