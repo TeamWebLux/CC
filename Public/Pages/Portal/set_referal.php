@@ -72,7 +72,7 @@
                         ?>
                             <div class="card-body">
                                 <div class="custom-table-effect table-responsive  border rounded">
-                                    <table class="table mb-0" id="example">
+                                <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                                         <thead>
                                             <tr class="bg-white">
                                             <?php
