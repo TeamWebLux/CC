@@ -73,42 +73,36 @@
                         if ($result->num_rows > 0) {
                         ?>
                             <div class="card-body">
-                                <div class="custom-table-effect table-responsive  border rounded">
-                                <table class="table mb-0" id="example">
+                                <div class="custom-table-effect table-responsive border rounded">
+                                    <table class="table mb-0" id="example">
                                         <thead>
                                             <tr class="bg-white">
-                                            <?php
-                                            echo '<tr>
-                                            
-                                            <th scope="col">ID</th>
-                                            <th scope="col">UserName</th>
-                                            <th scope="col"> Refered By Username</th>
-                                            <th scope="col">Afilate By Username</th>
-                                            <th scope="col">Time</th>
-                                            </tr>';
-                                          echo  '</thead>
-                                            <tbody>';
-
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "
-                                                    
-                                                    <td>{$row['id']}</td>
-                                                    <td>{$row['name']}</td>
-                                                    <td>{$row['refered_by']}</td>
-                                                    <td>{$row['afilated_by']}</td>
-                                                    <td>{$row['created_at']}</td>
-                                                  </tr></tbody>";
-                                            }
-
-                                            // End table
-                                            echo '</table>';
-                                        } else {
-                                            echo "0 results";
-                                        }
-
-                                        // Close connection
-                                        $conn->close();
-                                            ?>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">UserName</th>
+                                                <th scope="col">Referred By Username</th>
+                                                <th scope="col">Affiliated By Username</th>
+                                                <th scope="col">Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($row = $result->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td><?= htmlspecialchars($row['id']); ?></td>
+                                                    <td><?= htmlspecialchars($row['name']); ?></td>
+                                                    <td><?= htmlspecialchars($row['refered_by']); ?></td>
+                                                    <td><?= htmlspecialchars($row['afilated_by']); ?></td>
+                                                    <td><?= htmlspecialchars($row['created_at']); ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+                                <?php
+                            } else {
+                                echo "<p>No referral records found.</p>";
+                            }
+                            // Close connection
+                            $conn->close();
+                                ?>
                                 </div>
                             </div>
                     </div>
