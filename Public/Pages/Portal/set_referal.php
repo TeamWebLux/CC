@@ -59,7 +59,7 @@
             $stmt = $conn->prepare($updateQuery);
             $stmt->bind_param("ddi", $referralPercentage, $affiliatePercentage, $existingData['id']);
         } else {
-            $insertQuery = "INSERT INTO referral_bonus (referal, affiliate) VALUES (?, ?)";
+            $insertQuery = "INSERT INTO refferal_bonus (referal, affiliate) VALUES (?, ?)";
             $stmt = $conn->prepare($insertQuery);
             $stmt->bind_param("dd", $referralPercentage, $affiliatePercentage);
         }
