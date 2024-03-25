@@ -211,7 +211,8 @@
 
             <div class="referrals-list">
                 <h3>Your Referrals and Affiliates</h3>
-                <?php foreach ($referrals as $userDetails) : ?>
+                
+                <?php print_r($referrals); foreach ($referrals as $userDetails) : ?>
                     <?php // Only display the card if there are affiliates for this user
                     if (!empty($userDetails['affiliates'])) : ?>
                         <div class="referral-card">
