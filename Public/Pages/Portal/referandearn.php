@@ -151,7 +151,7 @@
                 <?php foreach ($referrals as $userDetails) : ?>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Referred User: <?= htmlspecialchars($userDetails['name']); ?></h5>
+                            <h5 class="card-title">Referred User: <?= htmlspecialchars($userDetails['username']); ?></h5>
                             <p class="card-text">Affiliates:</p>
                             <?php if (!empty($userDetails['affiliates'])) : ?>
                                 <ul>
