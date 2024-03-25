@@ -359,7 +359,6 @@ class Creation
                 if ($stmt->execute()) {
                     $_SESSION['toast'] = ['type' => 'success', 'message' => 'Recharge Added Sucessfully '];
                     $this->recordReferralAndAffiliateBonus($conn, $username, $recharge);
-                    exit();
                     echo "Transaction added successfully. Redirecting...<br>";
                     header("Location: ../../index.php/Portal_User_Management");
                     exit();
