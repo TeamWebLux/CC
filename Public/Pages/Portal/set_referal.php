@@ -116,6 +116,23 @@
 
         </div>
 
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    "order": [
+                        [5, "desc"]
+                    ],
+                    dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+
+                    buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+                });
+            });
+
+
+
+    </script>
 
 
 
