@@ -105,7 +105,7 @@
             /* Normal state background color */
             color: white;
             /* Text color */
-            padding: 10px 20px;
+            padding: 5px 10px; /* Reduced padding to make the button smaller */
             /* Padding around the text */
             border: none;
             /* No border */
