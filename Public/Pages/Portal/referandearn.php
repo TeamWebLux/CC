@@ -221,12 +221,18 @@
                             <?php if (!empty($userDetails['affiliates'])) : ?>
                                 <ul class="affiliate-list">
                                     <?php foreach ($userDetails['affiliates'] as $affiliateUsername) : ?>
-                                        <li><?= htmlspecialchars($affiliateUsername); ?></li>
+                                        <li>
+                                            <?= htmlspecialchars($affiliateUsername); ?>
+                                            <!-- Chat button for each affiliate -->
+                                            <button onclick="window.location.href='./Chat_Screen?user=<?= urlencode($affiliateUsername); ?>'">Chat</button>
+                                        </li>
                                     <?php endforeach; ?>
                                 </ul>
                             <?php else : ?>
                                 <p>No affiliates for this user.</p>
                             <?php endif; ?>
+                            <!-- Chat button for the referred user -->
+                            <button onclick="window.location.href='./Chat_Screen?user=<?= urlencode($userDetails['username']); ?>'">Chat with Referred User</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
