@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <?php
 // sjd
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -76,14 +69,14 @@ if ($uri == $firstparam || $uri == $secondparam) {
 
         //Edit Fields
         $prefix . $root . '/Edit_User'                         => './Public/Pages/Portal/temp.php',
+        $prefix . $root . '/Edit_Cashapp'                         => './Public/Pages/Portal/temp.php',
+        $prefix . $root . '/Edit_Branch'                         => './Public/Pages/Portal/temp.php',
 
 
-        $prefix . $root . '/Portal_See_Deposits'                          => './Public/Pages/Portal/see_deposits.php',
         $prefix . $root . '/See_Reports'                          => './Public/Pages/Portal/temp.php',
         $prefix . $root . '/Reports'                          => './Public/Pages/Portal/see_reports.php',
         $prefix . $root . '/PlatformRec'                          => './Public/Pages/Portal/pcrecord.php',
 
-        $prefix . $root . '/Portal_User_Management'               => './Public/Pages/Portal/manage_user.php',
         $prefix . $root . '/update_user'                          => './Public/Pages/Portal/update_user.php',
         $prefix . $root . '/update_agent'                         => './Public/Pages/Portal/update_agent.php',
         $prefix . $root . '/update_manager'                       => './Public/Pages/Portal/update_manager.php',

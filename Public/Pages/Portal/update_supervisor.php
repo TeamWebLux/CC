@@ -125,7 +125,10 @@
 
                                 <!-- <button type="button" class="btn btn-outline-info rounded-pill mt-2">Recharge</button>
                             <button type="button" class="btn btn-outline-info rounded-pill mt-2">Redeem</button> -->
-                                <a href="javascript:void(0);" class="" onclick="passreset(<?php echo $id; ?>, 'user', 'password','id')">
+                            <a href="./Edit_User?u=<?php echo $username; ?>" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Details</button>
+                                </a>
+                            <a href="javascript:void(0);" class="" onclick="passreset(<?php echo $id; ?>, 'user', 'password','id')">
                                     <button type="button" class="btn btn-warning rounded-pill mt-2">Password Reset</button>
                                 </a>
                                 <a href="./record?u=<?php echo $username; ?>" style="text-decoration: none;">

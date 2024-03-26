@@ -127,6 +127,9 @@
                                 </div>
                                 <br>
                                 <br>
+                                <a href="./Edit_Cashapp?u=<?php echo $username; ?>" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Details</button>
+                                </a>
                                 <a href="./Recharge_cashapp?name=<?php echo $username; ?>" style="text-decoration: none;">
                                     <button type="button" class="btn btn-danger rounded-pill mt-2">Recharge CashApp</button>
                                 </a>
