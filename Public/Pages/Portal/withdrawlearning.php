@@ -117,9 +117,9 @@
                                                 var maxValue = parseFloat("<?php echo htmlspecialchars($withdrawAmount); ?>");
                                                 var enteredValue = parseFloat(this.value);
                                                 if (enteredValue > maxValue) {
-                                                    this.value = maxValue.toFixed(2); // Ensures the value is rounded to 2 decimal places
+                                                    this.value = maxValue.toString(); // Set the value to the maximum value without rounding
                                                 }
-                                                this.setAttribute('max', maxValue.toFixed(2)); // Update max attribute with 2 decimal places
+                                                this.setAttribute('max', maxValue.toString()); // Update max attribute
                                             });
                                         </script>
                                     </div>
