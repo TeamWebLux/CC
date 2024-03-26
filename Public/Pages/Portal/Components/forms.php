@@ -470,7 +470,7 @@ echo '<br>';
                 $branchOptions[$branchRow['name']] = $branchRow['name'];
                 // $branchOptions .= "<option value='{$branchRow['name']}'>{$branchRow['name']}</option>";
             }
-            echo select("Sub Section", "condtion", "condtion", $branchOptions, isset($_POST['condtion']) ? $_POST['condtion'] : '');
+            echo select("Sub Section", "condtion", "condtion", $branchOptions, isset($_SESSION['condtion']) ? $_SESSION['condtion'] : '');
 
             // echo '<label for="branchname">Branch Name</label>';
             // echo '<select class="form-select" id="platformname" name="condtion" onchange="showOtherField(this, \'branchname-other\')">' . $branchOptions . '</select>';
