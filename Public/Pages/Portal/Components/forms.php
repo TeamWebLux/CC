@@ -485,8 +485,9 @@ if (isset($action)) {
         }
     
         // Output submit and cancel buttons
-        echo $Submit . $Cancel . $formend;
+        echo '<input type="submit" name="submit" value="Submit" onclick="this.disabled=true;this.form.submit();">' . $Cancel . $formend;
     }
+    
     
      elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action == "REDEEM_CASHAPP" || $action == "REDEEM_PLATFORM") {
         // Set dynamic title based on the action
