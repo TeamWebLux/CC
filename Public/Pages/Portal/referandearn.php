@@ -216,10 +216,10 @@
             $row = $result->fetch_assoc();
 
             $totalEarnings = $row['total_earnings'] ?? 0; // If there's no earnings, default to 0
-            $queryWithdrawAmount = "SELECT withdrawamount FROM referSetting"; // Adjust this if your table or column name is different.
+            $queryWithdrawAmount = "SELECT * FROM refferal_bonus"; // Adjust this if your table or column name is different.
             $resultWithdrawAmount = $conn->query($queryWithdrawAmount);
             $rowWithdrawAmount = $resultWithdrawAmount->fetch_assoc();
-            $withdrawAmount = $rowWithdrawAmount['withdrawamount'] ?? 0;
+            $withdrawAmount = $rowWithdrawAmount['minimum'] ?? 0;
 
             // Fetch direct referrals
             $directReferralsQuery = "SELECT * FROM refferal WHERE refered_by = ?";
