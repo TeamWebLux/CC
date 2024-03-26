@@ -105,7 +105,8 @@
             /* Normal state background color */
             color: white;
             /* Text color */
-            padding: 5px 10px; /* Reduced padding to make the button smaller */
+            padding: 5px 10px;
+            /* Reduced padding to make the button smaller */
             /* Padding around the text */
             border: none;
             /* No border */
@@ -252,7 +253,6 @@
                                     <?php foreach ($userDetails['affiliates'] as $affiliateUsername) : ?>
                                         <li>
                                             <?= htmlspecialchars($affiliateUsername); ?>
-                                            <!-- Chat button for each affiliate -->
                                             <button class="chat-btn" onclick="window.location.href='./Chat_Screen?user=<?= urlencode($affiliateUsername); ?>'">Chat</button>
                                         </li>
                                     <?php endforeach; ?>
@@ -313,7 +313,6 @@
             alert("Copied the link: " + copyText.value); // Alert the copied text
         }
 
-        // Function to share the referral link
         function shareReferralLink() {
             var shareUrl = document.getElementById("referralLinkInput").value;
             if (navigator.share) {
@@ -325,8 +324,7 @@
                     })
                     .catch(console.error);
             } else {
-                // Fallback for browsers that don't support the Web Share API
-                copyReferralLink(); // Automatically copy link if share is not supported
+                copyReferralLink();
                 alert("Link copied to clipboard. Please paste it to share.");
             }
         }
