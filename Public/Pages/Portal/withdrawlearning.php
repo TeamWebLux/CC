@@ -34,12 +34,12 @@
     $withdrawAmount = $_SESSION['withdrawAmount'] ?? 0;
     $errorMessage = '';
     $successMessage = '';
-    
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Retrieve and sanitize form data
         $amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $cashtag = filter_input(INPUT_POST, 'cashtag', FILTER_SANITIZE_STRING);
-        
+
         // Validation
         if ($amount <= 0 || $amount > $withdrawAmount) {
             $errorMessage = 'Invalid withdrawal amount.';
@@ -47,13 +47,13 @@
             // Prepare the insert statement
             $query = "INSERT INTO referralrecord (username, amount, type, cashtag,) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            
+
             // This assumes 'type' is a column in your table. Adjust if your table structure is different.
             $type = 'Withdrawal';
-            
+
             if ($stmt) {
                 $stmt->bind_param("sdss", $username, $amount, $type, $cashtag);
-                
+
                 if ($stmt->execute()) {
                     $successMessage = 'Withdrawal successful.';
                     // Reset amount in the session if needed or perform additional actions
@@ -67,7 +67,7 @@
         }
         $conn->close();
     }
-    
+
 
     ?>
 
@@ -110,7 +110,17 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
-                                        <input type="number" class="form-control" id="amount" name="amount" value="<?php echo htmlspecialchars($withdrawAmount); ?>" max="<?php echo htmlspecialchars($withdrawAmount); ?>" required>
+                                        <input type="number" class="form-control" id="amount" name="amount" value="<?php echo htmlspecialchars($withdrawAmount); ?>" min="0" required>
+
+                                        <script>
+                                            document.getElementById('amount').addEventListener('input', function() {
+                                                var maxValue = parseFloat("<?php echo htmlspecialchars($withdrawAmount); ?>");
+                                                if (this.value > maxValue) {
+                                                    this.value = maxValue;
+                                                }
+                                                this.setAttribute('max', maxValue);
+                                            });
+                                        </script>
                                     </div>
                                     <div class="mb-3">
                                         <label for="cashtag" class="form-label">Cash Tag (Optional)</label>
