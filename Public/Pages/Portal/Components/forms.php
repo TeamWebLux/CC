@@ -463,12 +463,12 @@ if (isset($action)) {
         // Set session variables
         $_SESSION['field'] = $field;
         $_SESSION['condition'] = $condition;
-        $postUrl = "#";
         // Generate HTML output
         echo fhead($title, $heading, $postUrl);
-
+        
         // Generate select dropdown for 'field'
         echo select("Field", "field", "field", $fieldOptions, $_SESSION['field'] ?? '');
+        $postUrl = "#";
 
         // Check if 'field' is set and fetch condition options accordingly
         if (!empty($field)) {
