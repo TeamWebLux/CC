@@ -32,6 +32,7 @@
     // Initialize variables
     $referralPercentage = '';
     $affiliatePercentage = '';
+    $minimum ='';
 
     // Fetch the existing bonus rates
     $fetchQuery = "SELECT * FROM refferal_bonus LIMIT 1";
@@ -41,6 +42,9 @@
         $existingData = $fetchResult->fetch_assoc();
         $referralPercentage = $existingData['referal'];
         $affiliatePercentage = $existingData['affiliate'];
+        $minimum = $existingData['minimum'];
+
+
     }
 
     // Check if form is submitted
@@ -123,6 +127,11 @@
                                         <label for="affiliatePercentage" class="form-label">Affiliate Bonus Percentage</label>
                                         <input type="text" class="form-control" id="affiliatePercentage" name="affiliatePercentage" required value="<?php echo htmlspecialchars($affiliatePercentage); ?>">
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="minimum" class="form-label">Minimum Withdraw</label>
+                                        <input type="text" class="form-control" id="minimum" name="minimum" required value="<?php echo htmlspecialchars($minimum); ?>">
+                                    </div>
+
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>
