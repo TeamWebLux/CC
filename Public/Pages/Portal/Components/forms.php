@@ -461,6 +461,7 @@ if (isset($action)) {
 
         // Set session variables
         $_SESSION['field'] = $field;
+        $_SESSION['condition'] = $condition;
 
         // Generate HTML output
         echo fhead($title, $heading, isset($_SESSION['condition']) && $_SESSION['condition'] != '' ? "./Reports" : "#") . '<br>';
