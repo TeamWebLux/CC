@@ -450,26 +450,26 @@ if (isset($action)) {
         unset($_SESSION['fields'], $_SESSION['condition']);
         $title = "See All Reports";
         $heading = "Select the details carefully";
-    
+
         // Store POST data directly into variables for better performance
         $condition = $_POST['condition'] ?? '';
         $field = $_POST['field'] ?? '';
-    
+
         // Set session variables
         $_SESSION['field'] = $field;
         $_SESSION['condition'] = $condition;
-    
+
         // Generate HTML output
         echo fhead($title, $heading, isset($_SESSION['field'], $_SESSION['condition']) && $_SESSION['field'] !== '' && $_SESSION['condition'] !== '' ? "./Reports" : "#");
-    
+
         // Generate select dropdown for 'field'
         echo select("Field", "field", "field", ["branch", "page", "platform", "cashapp"], $_SESSION['field'] ?? '');
-    
+
         // Check if 'field' is set and fetch condition options accordingly
         if (!empty($field)) {
             // Initialize an empty array for condition options
             $conditionOptions = [];
-    
+
             // Prepare and execute a single query to fetch condition options
             $conditionQuery = "SELECT name FROM $field WHERE status = 1";
             $conditionResult = $conn->query($conditionQuery);
@@ -479,17 +479,17 @@ if (isset($action)) {
                 }
                 $conditionResult->free(); // Free the result set
             }
-    
+
             // Generate select dropdown for 'condition'
             echo select("Sub Section", "condition", "condition", array_combine($conditionOptions, $conditionOptions), $condition);
         }
-    
-        // Output submit and cancel buttons
-        echo '<input type="submit" name="submit" value="Submit" onclick="this.disabled=true;this.form.submit();">' . $Cancel . $formend;
-    }
-    
-    
-     elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action == "REDEEM_CASHAPP" || $action == "REDEEM_PLATFORM") {
+        if ($_SESSION['field'] == '') {
+            echo $Submit;
+        } else {
+            echo '<input type="submit" name="submit" value="Submit" onclick="this.disabled=true;this.form.submit();">';
+        }
+        echo $Cancel . $formend;
+    } elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action == "REDEEM_CASHAPP" || $action == "REDEEM_PLATFORM") {
         // Set dynamic title based on the action
         $title = ($action == "RECHARGE_PLATFORM" || $action == "REDEEM_PLATFORM") ? " Platform" : " CashApp";
         $heading = "Select the details carefully";
