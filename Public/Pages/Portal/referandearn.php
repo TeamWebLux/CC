@@ -208,6 +208,14 @@
             include "./App/db/db_connect.php";
 
             $username = $_SESSION['username']; // Assuming username is stored in session
+            $query = "SELECT SUM(amount) as total_earnings FROM referrecord WHERE username = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            $totalEarnings = $row['total_earnings'] ?? 0; // If there's no earnings, default to 0
 
             // Fetch direct referrals
             $directReferralsQuery = "SELECT * FROM refferal WHERE refered_by = ?";
@@ -239,6 +247,7 @@
 
             <div class="referrals-list">
                 <h3>Your Referrals and Affiliates</h3>
+                <p>Total Referral Earnings: $<?php echo htmlspecialchars(number_format((float)$totalEarnings, 2, '.', '')); ?></p>
                 <a href="./See_Refer" class="btn btn-primary">View Earnings</a>
 
                 <?php foreach ($referrals as $userDetails) : ?>
