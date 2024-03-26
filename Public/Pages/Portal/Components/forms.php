@@ -454,6 +454,7 @@ echo '<br>';
         print_r($_POST);
         $title =  "See All Reports ";
         $heading = "Select the details carefully";
+        $_SESSION['condtion']=$_POST['condtion'];
         $postUrl = isset($_SESSION['condtion']) ? "./Reports" : "#";
         echo fhead($title, $heading, $postUrl);
         echo '<br>';
