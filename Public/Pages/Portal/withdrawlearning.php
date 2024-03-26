@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
-                                        <input type="number" class="form-control" id="amount" name="amount" value="<?php echo htmlspecialchars($withdrawAmount); ?>" min="0" required>
+                                        <input type="number" class="form-control" id="amount" name="amount" value="<?php echo htmlspecialchars($withdrawAmount); ?>" min="0" step="0.01" required>
 
                                         <script>
                                             document.getElementById('amount').addEventListener('input', function() {
