@@ -247,6 +247,8 @@
                     $referrals[$referralUsername]['affiliates'][] = $affiliateRow['name'];
                 }
             }
+            $_SESSION['totalEarnings'] = $totalEarnings; // Store total earnings in session
+
             ?>
 
             <div class="referrals-list">
@@ -254,7 +256,7 @@
                 <p>Total Referral Earnings: $<?php echo htmlspecialchars(number_format((float)$totalEarnings, 2, '.', '')); ?></p>
                 <a href="./See_Refer" class="btn btn-primary">View Earnings</a>
                 <?php if ($totalEarnings >= $withdrawAmount) : ?>
-                    <a href="./withdraw.php" class="btn btn-primary">Withdraw Earnings</a>
+                    <a href="./withdraw.php" class="btn btn-primary" onclick="<?php $_SESSION['withdrawAmount'] = $totalEarnings; ?>">Withdraw Earnings</a>
                 <?php else : ?>
                     <p>You need at least $<?php echo htmlspecialchars(number_format((float)$withdrawAmount, 2, '.', '')); ?> to withdraw.</p>
                 <?php endif; ?>
