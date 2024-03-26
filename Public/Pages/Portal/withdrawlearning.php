@@ -115,10 +115,11 @@
                                         <script>
                                             document.getElementById('amount').addEventListener('input', function() {
                                                 var maxValue = parseFloat("<?php echo htmlspecialchars($withdrawAmount); ?>");
-                                                if (this.value > maxValue) {
-                                                    this.value = maxValue;
+                                                var enteredValue = parseFloat(this.value);
+                                                if (enteredValue > maxValue) {
+                                                    this.value = maxValue.toFixed(2); // Ensures the value is rounded to 2 decimal places
                                                 }
-                                                this.setAttribute('max', maxValue);
+                                                this.setAttribute('max', maxValue.toFixed(2)); // Update max attribute with 2 decimal places
                                             });
                                         </script>
                                     </div>
