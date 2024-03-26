@@ -255,7 +255,7 @@
                 <p>Total Referral Earnings: $<?php echo htmlspecialchars(number_format((float)$totalEarnings, 2, '.', '')); ?></p>
                 <a href="./See_Refer" class="btn btn-primary">View Earnings</a>
                 <?php if ($totalEarnings >= $withdrawAmount) : ?>
-                    <a href="./withdraw.php" class="btn btn-primary" onclick="<?php $_SESSION['withdrawAmount'] = $totalEarnings; ?>">Withdraw Earnings</a>
+                    <a href="./Withdraw_Earning" class="btn btn-primary" onclick="<?php $_SESSION['withdrawAmount'] = $totalEarnings; ?>">Withdraw Earnings</a>
                 <?php else : ?>
                     <p>You need at least $<?php echo htmlspecialchars(number_format((float)$withdrawAmount, 2, '.', '')); ?> to withdraw.</p>
                 <?php endif; ?>

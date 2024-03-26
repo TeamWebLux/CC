@@ -27,9 +27,47 @@
         echo '<p class="error">' . $_SESSION['login_error'] . '</p>';
         unset($_SESSION['login_error']); // Clear the error message
     }
-    $username = $_SESSION['username']; // The username from the session
-    $withdrawAmount = $_SESSION['withdrawAmount']; // The maximum withdrawable amount from the session
+    require_once './App/db/db_connect.php';
 
+    // Initialize variables
+    $username = $_SESSION['username'] ?? null;
+    $withdrawAmount = $_SESSION['withdrawAmount'] ?? 0;
+    $errorMessage = '';
+    $successMessage = '';
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Retrieve and sanitize form data
+        $amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $cashtag = filter_input(INPUT_POST, 'cashtag', FILTER_SANITIZE_STRING);
+        
+        // Validation
+        if ($amount <= 0 || $amount > $withdrawAmount) {
+            $errorMessage = 'Invalid withdrawal amount.';
+        } else {
+            // Prepare the insert statement
+            $query = "INSERT INTO referralrecord (username, amount, type, cashtag,) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            
+            // This assumes 'type' is a column in your table. Adjust if your table structure is different.
+            $type = 'Withdrawal';
+            
+            if ($stmt) {
+                $stmt->bind_param("sdss", $username, $amount, $type, $cashtag);
+                
+                if ($stmt->execute()) {
+                    $successMessage = 'Withdrawal successful.';
+                    // Reset amount in the session if needed or perform additional actions
+                } else {
+                    $errorMessage = 'Error processing your request.';
+                }
+                $stmt->close();
+            } else {
+                $errorMessage = 'Error preparing the database statement.';
+            }
+        }
+        $conn->close();
+    }
+    
 
     ?>
 
