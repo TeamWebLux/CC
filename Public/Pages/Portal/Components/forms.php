@@ -448,8 +448,6 @@ if (isset($action)) {
         echo $formend;
     } elseif ($action == 'SEE_REPORTS') {
         unset($_SESSION['fields'], $_SESSION['condition']);
-        print_r($_SESSION);
-        print_r($_POST);
         $title = "See All Reports";
         $heading = "Select the details carefully";
 
@@ -468,7 +466,6 @@ if (isset($action)) {
         
         // Generate select dropdown for 'field'
         echo select("Field", "field", "field", $fieldOptions, $_SESSION['field'] ?? '');
-        $postUrl = "#";
 
         // Check if 'field' is set and fetch condition options accordingly
         if (!empty($field)) {
