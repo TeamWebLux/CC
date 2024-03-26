@@ -110,11 +110,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
-                                        <input type="number" class="form-control" id="amount" name="amount" max="<?php echo htmlspecialchars($withdrawAmount); ?>" required>
+                                        <input type="number" class="form-control" id="amount" name="amount" value="<?php echo htmlspecialchars($withdrawAmount); ?>" max="<?php echo htmlspecialchars($withdrawAmount); ?>" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="cashtag" class="form-label">Cash Tag (Optional)</label>
-                                        <input type="text" class="form-control" id="cashtag" name="cashtag" placeholder="Enter your cash tag">
+                                        <input type="text" class="form-control" id="cashtag" name="cashtag" placeholder="Enter your cash tag" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit Withdrawal</button>
                                 </form>
