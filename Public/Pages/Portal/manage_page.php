@@ -12,8 +12,7 @@ function echoToastScript($type, $message)
     echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
 }
 
-// Check if there's a toast message set in session, display it, then unset
-//print_r($_SESSION);
+
 if (isset($_SESSION['toast'])) {
     $toast = $_SESSION['toast'];
     echoToastScript($toast['type'], $toast['message']);
@@ -132,7 +131,7 @@ if (in_array($role, ['Agent', 'Supervisor', 'Manager', 'Admin'])) {
                             ?>
                                 <div class="card-body">
                                     <div class="custom-table-effect table-responsive  border rounded">
-                                    <table class="table mb-0" id="example" >
+                                        <table class="table mb-0" id="example">
                                             <thead>
                                                 <tr class="bg-white">
                                                     <?php
@@ -188,7 +187,6 @@ if (in_array($role, ['Agent', 'Supervisor', 'Manager', 'Admin'])) {
 
             <?
             include("./Public/Pages/Common/footer.php");
-            // //print_r($_SESSION);
             ?>
 
     </main>

@@ -13,8 +13,7 @@
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
 
-    // Check if there's a toast message set in session, display it, then unset
-    // //print_r($_SESSION);
+    
     if (isset($_SESSION['toast'])) {
         $toast = $_SESSION['toast'];
         echoToastScript($toast['type'], $toast['message']);
@@ -41,8 +40,7 @@
     if ($result->num_rows > 0) {
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
-            // echo "User: " . $row["sender_id"] . " - Reciever: " . $row["receiver_id"] . "<br>";
-            // print_r($row);
+           
             $dataArray[] = $row;
         }
     } else {
@@ -212,9 +210,9 @@
                                     <?php
 
                                     $query2 =  mysqli_query($conn, "SELECT * FROM user");
-                                    // print_r($query2);
+                                  
                                     while ($row = mysqli_fetch_array($query2)) {
-                                        // print_r($row);
+                                        
 
                                         $an_id = $row['id'];
                                         echo ' 
@@ -298,10 +296,7 @@
                                 // foreach ($chatRecords as $row) : 
                                     $query = mysqli_query($conn,"SELECT * FROM chat_records WHERE chat_id = $chatId");
                                     while($row = mysqli_fetch_assoc($query)) {
-                                        // $chatRecords[] = $row;
-                                   
-                                
-                                    // print_r($row);
+                                       
                                 ?>
 
 
@@ -360,9 +355,9 @@
 
 
                         $query2 =  mysqli_query($conn, "SELECT * FROM user");
-                        // print_r($query2);
+                        
                         while ($row = mysqli_fetch_array($query2)) {
-                            // print_r($row);
+                           
 
                             $an_id = $row['id'];
 
@@ -442,7 +437,7 @@
 
         <?
         include("../Common/footer.php");
-        // //print_r($_SESSION);
+       
         ?>
 
     </main>
