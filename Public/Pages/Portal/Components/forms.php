@@ -537,10 +537,10 @@ if (isset($action)) {
 
         echo fhead($title, $heading, $postUrl);
         $name = $_GET['u'];
-        echo field("Username", "text", "username", "", $name);
+        echo field("Username", "text", "username", "", $name,"required","readonly");
         echo field("Amount", "number", "amount", "Enter Amount for the free play", '');
         echo select("Sub Section", "condition", "condition", array_combine($conditionOptions, $conditionOptions), $condition);
-        echo field("Remark", "text", "remark", "Enter Remark", "");
+        echo field("Remark", "text", "remark", "Enter Remark", "","");
         echo $Submit;
         echo $Cancel;
         echo $formend;
