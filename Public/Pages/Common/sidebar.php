@@ -274,7 +274,6 @@
                             <?php endif; ?>
                             <?php if (in_array($role, ['Supervisor', 'Manager', 'Admin', 'Agent', 'Users'])) : ?>
 
-
                                 <li class="nav-item">
                                     <a class="nav-link  <?php if ($_SERVER['REQUEST_URI'] == '/CustCount/index.php/Portal_See_Deposits') echo 'active';  ?>" href="../index.php/Portal_See_Deposits">
                                         <i class="icon">

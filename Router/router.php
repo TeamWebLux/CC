@@ -26,7 +26,7 @@ if ($uri == $firstparam || $uri == $secondparam) {
         $prefix . $root . '/add_user'                             => './Public/Pages/Portal/add_users.php',
         $prefix . $root . '/Portal_Add_Withdrawal'                         => './Public/Pages/Portal/add_withdrawal.php',
         $prefix . $root . '/Portal_See_Users'                             => './Public/Pages/Portal/see_users.php',
-        $prefix . $root . '/Portal_See_Deposits'                          => './Public/Pages/Portal/see_users.php',
+        $prefix . $root . '/Portal_See_Deposits'                          => './Public/Pages/Portal/see_deposits.php',
 
         $prefix . $root . '/Portal_User_Management'                          => './Public/Pages/Portal/manage_user.php',
         $prefix . $root . '/Portal_Branch_Management'                          => './Public/Pages/Portal/manage_branch.php',
