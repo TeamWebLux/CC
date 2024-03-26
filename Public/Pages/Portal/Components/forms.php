@@ -455,18 +455,15 @@ if (isset($action)) {
         $condition = $_POST['condition'] ?? '';
         $field = $_POST['field'] ?? '';
     
-        // Initialize an empty array for field options
-        $fieldOptions = ["branch", "page", "platform", "cashapp"];
-    
         // Set session variables
         $_SESSION['field'] = $field;
         $_SESSION['condition'] = $condition;
     
         // Generate HTML output
-        echo fhead($title, $heading, isset($_SESSION['field']) && isset($_SESSION['condition']) ? "./Reports" : "#");
+        echo fhead($title, $heading, isset($_SESSION['field'], $_SESSION['condition']) && $_SESSION['field'] !== '' && $_SESSION['condition'] !== '' ? "./Reports" : "#");
     
         // Generate select dropdown for 'field'
-        echo select("Field", "field", "field", $fieldOptions, $_SESSION['field'] ?? '');
+        echo select("Field", "field", "field", ["branch", "page", "platform", "cashapp"], $_SESSION['field'] ?? '');
     
         // Check if 'field' is set and fetch condition options accordingly
         if (!empty($field)) {
@@ -490,6 +487,7 @@ if (isset($action)) {
         // Output submit and cancel buttons
         echo $Submit . $Cancel . $formend;
     }
+    
      elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action == "REDEEM_CASHAPP" || $action == "REDEEM_PLATFORM") {
         // Set dynamic title based on the action
         $title = ($action == "RECHARGE_PLATFORM" || $action == "REDEEM_PLATFORM") ? " Platform" : " CashApp";
