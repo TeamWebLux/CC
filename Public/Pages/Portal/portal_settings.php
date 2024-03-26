@@ -20,7 +20,7 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-    // print($uri);
+ 
     include './App/db/db_connect.php';
     // Check if the form has been submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['time_zone'])) {

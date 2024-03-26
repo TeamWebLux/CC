@@ -28,7 +28,7 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-    // print($uri);
+   
     ?>
 
 </head>

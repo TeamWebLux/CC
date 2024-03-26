@@ -48,7 +48,6 @@
 
 
 
-    // print($uri);
     ?>
     <!-- css -->
     <style>
