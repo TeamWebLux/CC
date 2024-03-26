@@ -52,20 +52,22 @@
         // Get new bonus percentages from the form
         $referralPercentage = $_POST['referralPercentage'];
         $affiliatePercentage = $_POST['affiliatePercentage'];
+        $minimum=$_POST['minimum'];
 
         // Sanitize input
         $referralPercentage = filter_var($referralPercentage, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $affiliatePercentage = filter_var($affiliatePercentage, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $minimum = filter_var($minimum, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         // Update the referral_bonus table
         if ($existingData) {
-            $updateQuery = "UPDATE refferal_bonus SET referal = ?, affiliate = ? WHERE id = ?";
+            $updateQuery = "UPDATE refferal_bonus SET referal = ?, affiliate = ?,minimum=? WHERE id = ?";
             $stmt = $conn->prepare($updateQuery);
-            $stmt->bind_param("ddi", $referralPercentage, $affiliatePercentage, $existingData['id']);
+            $stmt->bind_param("dddi", $referralPercentage, $affiliatePercentage,$minimum, $existingData['id']);
         } else {
-            $insertQuery = "INSERT INTO refferal_bonus (referal, affiliate) VALUES (?, ?)";
+            $insertQuery = "INSERT INTO refferal_bonus (referal, affiliate,minimum) VALUES (?, ?,?)";
             $stmt = $conn->prepare($insertQuery);
-            $stmt->bind_param("dd", $referralPercentage, $affiliatePercentage);
+            $stmt->bind_param("ddd", $referralPercentage, $affiliatePercentage,$minimum);
         }
 
         if ($stmt->execute()) {
