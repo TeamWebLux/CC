@@ -452,33 +452,46 @@ echo '<br>';
     } elseif ($action == 'SEE_REPORTS') {
         print_r($_SESSION);
         print_r($_POST);
-        $title =  "See All Reports ";
+        $title = "See All Reports";
         $heading = "Select the details carefully";
-        $_SESSION['condtion']=$_POST['condtion'];
-        $postUrl = isset($_SESSION['condtion']) ? "./Reports" : "#";
-        echo fhead($title, $heading, $postUrl);
-        echo '<br>';
-        $option = [ "branch", "page", "platform", "cashapp"];
-        echo select("Field", "field", "field", $option, isset($_SESSION['field']) ? $_SESSION['field'] : '');
-        $_SESSION['field']=$_POST['field'];
-        if (isset($_SESSION['field'])) {
-            $field = $_POST['field'];
-            $branchOptions = []; // Initialize an empty string for options
-            $branchQuery = "SELECT name FROM $field where status=1";
+    
+        // Store POST data directly into variables for better performance
+        $condition = $_POST['condition'] ?? '';
+        $field = $_POST['field'] ?? '';
+    
+        // Initialize an empty array for branch options
+        $branchOptions = [];
+    
+        // Check if 'field' is set and fetch branch options accordingly
+        if (!empty($field)) {
+            // Prepare and execute a single query to fetch branch options
+            $branchQuery = "SELECT name FROM $field WHERE status = 1";
             $branchResult = $conn->query($branchQuery);
-            while ($branchRow = $branchResult->fetch_assoc()) {
-                $branchOptions[$branchRow['name']] = $branchRow['name'];
-                // $branchOptions .= "<option value='{$branchRow['name']}'>{$branchRow['name']}</option>";
+            if ($branchResult) {
+                while ($branchRow = $branchResult->fetch_assoc()) {
+                    $branchOptions[] = $branchRow['name'];
+                }
+                $branchResult->free(); // Free the result set
             }
-            echo select("Sub Section", "condtion", "condtion", $branchOptions, isset($_SESSION['condtion']) ? $_SESSION['condtion'] : '');
-
-            // echo '<label for="branchname">Branch Name</label>';
-            // echo '<select class="form-select" id="platformname" name="condtion" onchange="showOtherField(this, \'branchname-other\')">' . $branchOptions . '</select>';
         }
-        echo $Submit;
-        echo $Cancel;
-        echo $formend;
-    } elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action=="REDEEM_CASHAPP" || $action=="REDEEM_PLATFORM") {
+    
+        // Set session variables
+        $_SESSION['condition'] = $condition;
+        $_SESSION['field'] = $field;
+    
+        // Generate HTML output
+        echo fhead($title, $heading, isset($_SESSION['condition']) ? "./Reports" : "#") . '<br>';
+    
+        // Generate select dropdown for 'field' if 'field' is set
+        echo isset($_SESSION['field']) ? select("Field", "field", "field", ["branch", "page", "platform", "cashapp"], $_SESSION['field']) : '';
+    
+        // Generate select dropdown for 'condition' based on fetched branch options
+        echo select("Sub Section", "condition", "condition", array_combine($branchOptions, $branchOptions), $_SESSION['condition'] ?? '');
+    
+        // Output submit and cancel buttons
+        echo $Submit . $Cancel . $formend;
+    }
+     elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action=="REDEEM_CASHAPP" || $action=="REDEEM_PLATFORM") {
         // Set dynamic title based on the action
         $title = ($action == "RECHARGE_PLATFORM" || $action=="REDEEM_PLATFORM") ? " Platform" : " CashApp";
         $heading = "Select the details carefully";
