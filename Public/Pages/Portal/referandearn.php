@@ -270,12 +270,6 @@
 
 
         </div>
-
-
-
-
-
-
         <?
         include("./Public/Pages/Common/footer.php");
         // //print_r($_SESSION);
