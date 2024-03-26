@@ -13,8 +13,7 @@
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
 
-    // Check if there's a toast message set in session, display it, then unset
-    //print_r($_SESSION);
+ 
     if (isset($_SESSION['toast'])) {
         $toast = $_SESSION['toast'];
         echoToastScript($toast['type'], $toast['message']);
@@ -77,7 +76,7 @@
                         include './App/db/db_connect.php';
 
                         if (isset($_POST)) {
-                            // print_r($_POST);
+                         
                             $condition = $_POST['field'];
                             $query = $_POST['condtion'];
                             $sql = "select * from transaction where $condition='$query'";
@@ -145,7 +144,7 @@
             </div>
             <?
             include("./Public/Pages/Common/footer.php");
-            // //print_r($_SESSION);
+           
             ?>
 
     </main>

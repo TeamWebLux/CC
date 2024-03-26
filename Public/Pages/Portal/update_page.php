@@ -12,8 +12,7 @@
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
 
-    // Check if there's a toast message set in session, display it, then unset
-    // //print_r($_SESSION);
+
     if (isset($_SESSION['toast'])) {
         $toast = $_SESSION['toast'];
         echoToastScript($toast['type'], $toast['message']);
@@ -59,7 +58,7 @@
             <?php
             include './App/db/db_connect.php';
 
-            print_r($_POST);
+           
             $user = $_POST['state'];
             echo $user;
             $username = $conn->real_escape_string($_POST['state']);
@@ -201,7 +200,7 @@
 
         <?
         include("./Public/Pages/Common/footer.php");
-        // //print_r($_SESSION);
+      
         ?>
 
     </main>

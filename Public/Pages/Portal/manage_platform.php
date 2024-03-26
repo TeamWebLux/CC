@@ -11,8 +11,7 @@ function echoToastScript($type, $message)
 {
     echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
 }
-// Check if there's a toast message set in session, display it, then unset
-//print_r($_SESSION);
+
 if (isset($_SESSION['toast'])) {
     $toast = $_SESSION['toast'];
     echoToastScript($toast['type'], $toast['message']);
@@ -186,7 +185,7 @@ if (in_array($role, ['Agent', 'Supervisor', 'Manager', 'Admin'])) {
             </div>
             <?
             include("./Public/Pages/Common/footer.php");
-            // //print_r($_SESSION);
+            
             ?>
     </main>
     <!-- Wrapper End-->

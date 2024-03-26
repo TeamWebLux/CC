@@ -9,7 +9,7 @@ $lastSegment = end($segments);
 $action = strtoupper($lastSegment);
 
 if (isset($action)) {
-    // print_r($_POST);
+   
     global $title;
     $heading = "Fill the details";
     $role = $_SESSION['role'];
@@ -48,7 +48,7 @@ if (isset($action)) {
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $r=isset($row['role']);
-            // print_r($row);
+            
             $branchOptions = []; // Initialize an empty string for options
             $branchQuery = "SELECT name FROM page where status=1";
             $branchResult = $conn->query($branchQuery);
@@ -131,7 +131,7 @@ echo '<br>';
             $sql = "Select * from cashapp where name='$username'";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
-            print_r($row);
+           
             $title = "CashApp Edit Details ";
             $heading = "Enter the Details Correctly";
             $action = "../App/Logic/creation.php?action=cashAppEdit";
@@ -310,8 +310,7 @@ echo '<br>';
               $username = $_GET['u'];
               $sql = "Select * from cashapp where name='$username'";
               $result = $conn->query($sql);
-              $row = $result->fetch_assoc();
-              //  print_r($row);
+           
               $title = "CashApp Details";
               $heading = "Enter CashApp Information";
               $actionUrl = "../App/Logic/creation.php?action=EditCashApp";
@@ -405,7 +404,7 @@ echo '<br>';
             $sql = "Select * from branch where name='$name'";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
-            //  print_r($row);
+          
             $title = "Branch Details";
             $heading = "Enter Branch Information";
             $actionUrl = "../App/Logic/creation.php?action=EditBranch";
