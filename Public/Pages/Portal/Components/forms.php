@@ -447,6 +447,7 @@ if (isset($action)) {
         echo $Cancel;
         echo $formend;
     } elseif ($action == 'SEE_REPORTS') {
+        unset($_SESSION['fields'],$_SESSION['condition']);
         print_r($_SESSION);
         print_r($_POST);
         $title = "See All Reports";
