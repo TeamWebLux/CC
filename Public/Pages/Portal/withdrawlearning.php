@@ -124,7 +124,7 @@
                                         </script>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="cashtag" class="form-label">Cash Tag (Optional)</label>
+                                        <label for="cashtag" class="form-label">Cash Tag</label>
                                         <input type="text" class="form-control" id="cashtag" name="cashtag" placeholder="Enter your cash tag" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit Withdrawal</button>
