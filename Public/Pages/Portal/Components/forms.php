@@ -447,7 +447,7 @@ if (isset($action)) {
         echo $Cancel;
         echo $formend;
     } elseif ($action == 'SEE_REPORTS') {
-        unset($_SESSION['fields'],$_SESSION['condition']);
+        unset($_SESSION['fields'], $_SESSION['condition']);
         print_r($_SESSION);
         print_r($_POST);
         $title = "See All Reports";
@@ -463,9 +463,9 @@ if (isset($action)) {
         // Set session variables
         $_SESSION['field'] = $field;
         $_SESSION['condition'] = $condition;
-
+        $postUrl = "#";
         // Generate HTML output
-        echo fhead($title, $heading, isset($_SESSION['condition']) && $_SESSION['condition'] != '' ? "./Reports" : "#") . '<br>';
+        echo fhead($title, $heading, $postUrl);
 
         // Generate select dropdown for 'field'
         echo select("Field", "field", "field", $fieldOptions, $_SESSION['field'] ?? '');
@@ -487,6 +487,8 @@ if (isset($action)) {
 
             // Generate select dropdown for 'condition'
             echo select("Sub Section", "condition", "condition", array_combine($conditionOptions, $conditionOptions), $condition);
+            $postUrl = "./Reports";
+
         }
 
         // Output submit and cancel buttons
