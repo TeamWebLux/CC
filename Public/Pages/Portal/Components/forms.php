@@ -483,7 +483,7 @@ if (isset($action)) {
             // Generate select dropdown for 'condition'
             echo select("Sub Section", "condition", "condition", array_combine($conditionOptions, $conditionOptions), $condition);
         }
-            echo $Submit;
+        echo $Submit;
         echo $Cancel . $formend;
     } elseif ($action == "RECHARGE_PLATFORM" || $action == "RECHARGE_CASHAPP" || $action == "REDEEM_CASHAPP" || $action == "REDEEM_PLATFORM") {
         // Set dynamic title based on the action
@@ -522,6 +522,25 @@ if (isset($action)) {
         echo $Submit;
         echo $Cancel;
         echo $formend;
+    } elseif ($action == "FREE_PLAY") {
+        $title = "Free Play";
+        $heading = "Fill in the details for Free Play";
+        $postUrl = "../App/Logic/creation.php?action=Recharge_platform";
+        $conditionQuery = "SELECT name FROM platform WHERE status = 1";
+        $conditionResult = $conn->query($conditionQuery);
+        if ($conditionResult) {
+            while ($conditionRow = $conditionResult->fetch_assoc()) {
+                $conditionOptions[] = $conditionRow['name'];
+            }
+            $conditionResult->free(); // Free the result set
+        }
+
+        echo fhead($title, $heading, $postUrl);
+        $name = $_GET['u'];
+        echo field("Username", "text", "username", "", $name);
+        echo field("Amount", "number", "amount", "Enter Amount for the free play", '');
+        echo select("Sub Section", "condition", "condition", array_combine($conditionOptions, $conditionOptions), $condition);
+        echo field("Remark", "text", "remark", "Enter Remark", "");
     }
 }
 

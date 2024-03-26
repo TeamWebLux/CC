@@ -137,6 +137,9 @@
                                 <a href="./Edit_User?u=<?php echo $username; ?>" style="text-decoration: none;">
                                     <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Button</button>
                                 </a>
+                                <a href="./Free_Play?u=<?php echo $username; ?>" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-danger rounded-pill mt-2">Free Play</button>
+                                </a>
 
                                 <button type="button" class="btn btn-success rounded-pill mt-2">Activate</button>
                                 <button type="button" class="btn btn-secondary rounded-pill mt-2">Chat History</button>
