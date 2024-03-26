@@ -216,6 +216,10 @@
             $row = $result->fetch_assoc();
 
             $totalEarnings = $row['total_earnings'] ?? 0; // If there's no earnings, default to 0
+            $queryWithdrawAmount = "SELECT withdrawamount FROM referSetting"; // Adjust this if your table or column name is different.
+            $resultWithdrawAmount = $conn->query($queryWithdrawAmount);
+            $rowWithdrawAmount = $resultWithdrawAmount->fetch_assoc();
+            $withdrawAmount = $rowWithdrawAmount['withdrawamount'] ?? 0;
 
             // Fetch direct referrals
             $directReferralsQuery = "SELECT * FROM refferal WHERE refered_by = ?";
@@ -249,6 +253,12 @@
                 <h3>Your Referrals and Affiliates</h3>
                 <p>Total Referral Earnings: $<?php echo htmlspecialchars(number_format((float)$totalEarnings, 2, '.', '')); ?></p>
                 <a href="./See_Refer" class="btn btn-primary">View Earnings</a>
+                <?php if ($totalEarnings >= $withdrawAmount) : ?>
+                    <a href="./withdraw.php" class="btn btn-primary">Withdraw Earnings</a>
+                <?php else : ?>
+                    <p>You need at least $<?php echo htmlspecialchars(number_format((float)$withdrawAmount, 2, '.', '')); ?> to withdraw.</p>
+                <?php endif; ?>
+
 
                 <?php foreach ($referrals as $userDetails) : ?>
                     <div class="referral-card">
