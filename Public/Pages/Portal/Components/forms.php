@@ -463,7 +463,7 @@ if (isset($action)) {
         $_SESSION['field'] = $field;
 
         // Generate HTML output
-        echo fhead($title, $heading, isset($_SESSION['condition' !='']) ? "./Reports" : "#") . '<br>';
+        echo fhead($title, $heading, isset($_SESSION['condition']) && $_SESSION['condition'] != '' ? "./Reports" : "#") . '<br>';
 
         // Generate select dropdown for 'field'
         echo select("Field", "field", "field", $fieldOptions, $_SESSION['field'] ?? '');
