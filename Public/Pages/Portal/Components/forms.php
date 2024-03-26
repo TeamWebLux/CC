@@ -450,14 +450,17 @@ echo '<br>';
         echo $Cancel;
         echo $formend;
     } elseif ($action == 'SEE_REPORTS') {
+        print_r($_SESSION);
+        print_r($_POST);
         $title =  "See All Reports ";
         $heading = "Select the details carefully";
-        $postUrl = isset($_POST['condtion']) ? "./Reports" : "#";
+        $postUrl = isset($_SESSION['condtion']) ? "./Reports" : "#";
         echo fhead($title, $heading, $postUrl);
         echo '<br>';
-        $option = ["Select the Fields", "branch", "page", "platform", "cashapp"];
-        echo select("Field", "field", "field", $option, isset($_POST['field']) ? $_POST['field'] : '');
-        if (isset($_POST['field'])) {
+        $option = [ "branch", "page", "platform", "cashapp"];
+        echo select("Field", "field", "field", $option, isset($_SESSION['field']) ? $_SESSION['field'] : '');
+        $_SESSION['field']=$_POST['field'];
+        if (isset($_SESSION['field'])) {
             $field = $_POST['field'];
             $branchOptions = []; // Initialize an empty string for options
             $branchQuery = "SELECT name FROM $field where status=1";
