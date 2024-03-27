@@ -20,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Not a POST request, handle accordingly
     http_response_code(405);
-    echo "Method Not Allowed";
+    // echo "Method Not Allowed";
 }
 ?>
