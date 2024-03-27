@@ -153,6 +153,8 @@
                         $u = $_SESSION['branch'];
                         $sql = "SELECT * FROM transaction WHERE branch='$u'";
                     } else {
+                        unset($_SESSION['start_date'],$_SESSION['end_date'],$_SESSION['u'],$_SESSION['r'],$_SESSION['page'],$_SESSION['branch']);
+
 
                         $sql = "SELECT * FROM transaction WHERE 1=1"; // Always true condition to start the WHERE clause
                     }
