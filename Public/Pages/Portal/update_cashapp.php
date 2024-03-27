@@ -11,7 +11,7 @@
     {
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
-    unset($_SESSION['start_date'],$_SESSION['end_date'],$_SESSION['u'],$_SESSION['r']);
+    unset($_SESSION['start_date'],$_SESSION['end_date'],$_SESSION['u'],$_SESSION['r'],$_SESSION['page'],$_SESSION['branch']);
 
     
     if (isset($_SESSION['toast'])) {
