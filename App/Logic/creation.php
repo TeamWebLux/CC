@@ -684,8 +684,8 @@ class Creation
         $userData=$this->fetchUserData($this->conn,$username);
         $type="Free Play";
         $uid=$userData['id'];
-        $page=$userData['page'];
-        $branch=$userData['branch'];
+        $page=$userData['pagename'];
+        $branch=$userData['branchname'];
         $sql = "INSERT INTO transaction (username, freepik,remark, platform, by_u,type,user_id,page,branch,created_at, updated_at) VALUES (?, ?, ?, ?,?,?,?,?,?,  NOW(), NOW())";
 
         if ($stmt = $this->conn->prepare($sql)) {
