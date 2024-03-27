@@ -336,7 +336,7 @@ class Creation
             $username = $this->conn->real_escape_string($_POST['username']);
             $recharge = $this->conn->real_escape_string($_POST['depositamount']);
             $pageId = 1;
-            $pagename = $_POST['pagename'] === 'other' ? $_POST['pagename_other'] : $_POST['pagename'];
+            // $pagename = $_POST['pagename'] === 'other' ? $_POST['pagename_other'] : $_POST['pagename'];
             $platform = $_POST['platformname'] === 'other' ? $_POST['platformname_other'] : $_POST['platformname'];
             $cashName = $_POST['cashAppname'] === 'other' ? $_POST['cashAppname_other'] : $_POST['cashAppname'];
             $bonus = $this->conn->real_escape_string($_POST['bonusamount']);
@@ -344,8 +344,10 @@ class Creation
             $byId = 1; // Assuming a default value for byId
             $byUsername = $this->susername;
             $conn = $this->conn;
+            $userData=$this->getUserDataByUsername($username);
+            $branchId=$userData['branchname'];
+            $pagename=$userData['pagename'];
 
-            $branchId = $this->getBranchNameByPageName($pagename, $conn);
 
 
             $type = "Debit"; // Adjust the type as needed

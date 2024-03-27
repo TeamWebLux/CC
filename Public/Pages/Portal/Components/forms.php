@@ -220,8 +220,6 @@ if (isset($action)) {
                 $pageop .= "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
             }
         }
-        echo '<label for="pagename">Page Name</label>';
-        echo '<select class="form-select" id="pagename" name="pagename" onchange="showOtherField(this, \'platformname-other\')">' . $pageop . '</select>';
         // echo '<input type="text" id="platformname-other" name="platformname_other" style="display:none;" placeholder="Enter Platform Name">';
 
         // echo field("page ID", "text", "fbid", "Enter the Facebook ID");
