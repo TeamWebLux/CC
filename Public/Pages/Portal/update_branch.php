@@ -115,7 +115,8 @@
                                     <a href="./Edit_Branch?u=<?php echo $username; ?>" style="text-decoration: none;">
                                         <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Branch Details</button>
                                     </a>
-                                    <a href="./PlatformRec<?php $_SESSION['page'] = $username ?>" class="btn btn-outline-info rounded-pill mt-2">
+                                    <a href="./See_All_Reports<?php unset($_SESSION['start_date'], $_SESSION['end_date'], $_SESSION['u'], $_SESSION['r'], $_SESSION['page'], $_SESSION['branch']);
+                                                                $_SESSION['branch'] = $username; ?>" class="btn btn-outline-info rounded-pill mt-2">
                                         <i class="fas fa-xmark"><?php echo "Transcation Record"  ?></i>
                                     </a>
                                     <a href="javascript:void(0);" class="btn btn-outline-info rounded-pill mt-2" onclick="status(<?php echo $id; ?>, 'branch', 'status','bid')">

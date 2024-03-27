@@ -143,7 +143,7 @@
                     if (isset($_SESSION['page']) && $_SESSION['page'] !== "") {
                         $u = $_SESSION['page'];
                         $sql = "SELECT * FROM transaction WHERE page='$u'";
-                    } elseif (isset($_SESSION['page']) && $_SESSION['page'] !== "") {
+                    } elseif (isset($_SESSION['branch']) && $_SESSION['branch'] !== "") {
                         $u = $_SESSION['branch'];
                         $sql = "SELECT * FROM transaction WHERE branch='$u'";
                     } else {
