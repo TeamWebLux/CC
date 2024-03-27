@@ -162,8 +162,6 @@ if (isset($action)) {
                 $pageop .= "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
             }
         }
-        echo '<label for="pagename">Page Name</label>';
-        echo '<select class="form-select" id="pagename" name="pagename" onchange="showOtherField(this, \'platformname-other\')">' . $pageop . '</select>';
 
         echo field("Excess Amount", "number", "excessamount", "Enter the Excess Amount");
         $platformOptions = "<option value=''>Select Platform</option>";

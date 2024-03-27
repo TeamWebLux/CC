@@ -297,10 +297,14 @@ class Creation
             $type = "Credit";
             $by_role = $this->srole;
             $by_username = $this->susername;
+            $userData=$this->getUserDataByUsername($username);
+            $branchId=$userData['branchname'];
+            $pagename=$userData['pagename'];
 
-            $sql = "Insert into transaction (username,redeem,page,excess,cashapp,platform,tip,type,remark,by_u) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+            $sql = "Insert into transaction (username,redeem,page,branch,excess,cashapp,platform,tip,type,remark,by_u) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             if ($stmt = mysqli_prepare($this->conn, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sisissssss", $username, $cashoutamount, $fbid, $accessamount, $cashupName, $platformName, $tip, $type, $remark, $by_username);
+                mysqli_stmt_bind_param($stmt, "sississssss", $username, $cashoutamount, $pagename,$branchId, $accessamount, $cashupName, $platformName, $tip, $type, $remark, $by_username);
                 if ($stmt->execute()) {
                     $_SESSION['toast'] = ['type' => 'success', 'message' => 'Recharge Added Sucessfully '];
 
