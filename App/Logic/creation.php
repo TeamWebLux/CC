@@ -699,7 +699,7 @@ class Creation
 
                 // Prepare and execute the SQL statement
                 if ($stmt = $this->conn->prepare($sql)) {
-                    $stmt->bind_param("sissssss", $username, $amount, $remark, $platform, $addby, $type, $uid, $page, $branch);
+                    $stmt->bind_param("sisssssss", $username, $amount, $remark, $platform, $addby, $type, $uid, $page, $branch);
 
                     if ($stmt->execute()) {
                         // Success: Redirect or display a success message
