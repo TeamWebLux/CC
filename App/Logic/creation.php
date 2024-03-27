@@ -697,10 +697,12 @@ class Creation
                 header("location: ../../index.php/Portal_User_Management");
                 exit();
             } else {
+                echo "error";
                 $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error adding page: ' . $stmt->error];
             }
             $stmt->close();
         } else {
+            echo "reee";
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
         }
 
