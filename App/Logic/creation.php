@@ -681,7 +681,7 @@ class Creation
         $remark = $this->conn->real_escape_string($_POST['remark']);
         $platform = $this->conn->real_escape_string($_POST['platform']);
         $addby = $username;
-
+        $type = "Free Play";
         // Fetch user data
         $userData = $this->fetchUserData($this->conn, $username);
 
@@ -699,7 +699,7 @@ class Creation
 
                 // Prepare and execute the SQL statement
                 if ($stmt = $this->conn->prepare($sql)) {
-                    $stmt->bind_param("sissssss", $username, $amount, $remark, $platform, $addby, $type = "Free Play", $uid, $page, $branch);
+                    $stmt->bind_param("sissssss", $username, $amount, $remark, $platform, $addby, $type, $uid, $page, $branch);
 
                     if ($stmt->execute()) {
                         // Success: Redirect or display a success message
@@ -715,14 +715,12 @@ class Creation
                 } else {
                     $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
                     print_r($_SESSION);
-
                 }
             }
         } else {
             // No user data found
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'No user data found for the specified username.'];
             print_r($_SESSION);
-
         }
     }
     function fetchUserData($conn, $username)
