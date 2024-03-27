@@ -59,10 +59,10 @@
         echo "0 results";
     }
     $conn->close();
+
     ?>
 
 
-    ?>
 
 </head>
 
@@ -105,6 +105,34 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
+            <?php
+            // Assuming $conn is your database connection from include './App/db/db_connect.php';
+
+            $sql = "SELECT * FROM PlatformUser where username='$username'"; // Replace 'other_user_info' with other columns you might want to display
+            $result = $conn->query($sql);
+                    ?>
+
+            <div class="container mt-5">
+                <div class="row">
+                    <?php if ($result->num_rows > 0) : ?>
+                        <?php while ($user = $result->fetch_assoc()) : ?>
+                            <div class="col-md-4">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= htmlspecialchars($user['username']) ?></h5>
+                                        <p class="card-text">Some info about the user here.</p>
+                                        <!-- Use additional user info if needed -->
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else : ?>
+                        <p>No users found.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
 
 
 
