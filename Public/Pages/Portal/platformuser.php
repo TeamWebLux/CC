@@ -54,7 +54,7 @@
     } else {
         echo "0 results";
     }
-    $mysqli->close();
+    $conn->close();
     ?>
 
 
