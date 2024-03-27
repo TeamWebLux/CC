@@ -680,7 +680,7 @@ class Creation
         $amount = $this->conn->real_escape_string($_POST['amount']);
         $remark = $this->conn->real_escape_string($_POST['remark']);
         $platform = $this->conn->real_escape_string($_POST['platform']);
-        $addby = $username;
+        $addby = $this->susername;
         $type = "Free Play";
         // Fetch user data
         $userData = $this->fetchUserData($this->conn, $username);
