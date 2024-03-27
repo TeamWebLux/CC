@@ -525,7 +525,7 @@ if (isset($action)) {
     } elseif ($action == "FREE_PLAY") {
         $title = "Free Play";
         $heading = "Fill in the details for Free Play";
-        $postUrl = "../App/Logic/creation.php?action=Recharge_platform";
+        $postUrl = "../App/Logic/creation.php?action=Free_Play";
         $conditionQuery = "SELECT name FROM platform WHERE status = 1";
         $conditionResult = $conn->query($conditionQuery);
         if ($conditionResult) {

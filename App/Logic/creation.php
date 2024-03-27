@@ -396,12 +396,12 @@ class Creation
 
                 // Record the referral bonus
                 if ($referralData['refered_by']) {
-                    $this->recordBonus($conn, $referralData['refered_by'], $referralBonus, 'Referred Bonus',$username);
+                    $this->recordBonus($conn, $referralData['refered_by'], $referralBonus, 'Referred Bonus', $username);
                 }
 
                 // Record the affiliate bonus
                 if ($referralData['afilated_by']) {
-                    $this->recordBonus($conn, $referralData['afilated_by'], $affiliateBonus, 'Affiliate Bonus',$username);
+                    $this->recordBonus($conn, $referralData['afilated_by'], $affiliateBonus, 'Affiliate Bonus', $username);
                 }
             } else {
                 echo "No bonus data found.";
@@ -411,12 +411,12 @@ class Creation
         }
     }
 
-    function recordBonus($conn, $username, $amount, $type,$name)
+    function recordBonus($conn, $username, $amount, $type, $name)
     {
-        $trans='Credit';
+        $trans = 'Credit';
         $insertQuery = "INSERT INTO referrecord (username, amount, type,byname,trans) VALUES (?, ?, ?,?,?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("sdsss", $username, $amount, $type,$name,$trans);
+        $stmt->bind_param("sdsss", $username, $amount, $type, $name, $trans);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -591,14 +591,14 @@ class Creation
     {
         $name = $this->conn->real_escape_string($_POST['name']);
         $status = isset($_POST['status']) ? 1 : 0; // Assuming 'status' is a checkbox
-        $bid = $_POST['bid']; 
+        $bid = $_POST['bid'];
         echo $bid;
-       
+
         $sql = "UPDATE branch SET name=?, status=?, updated_at=NOW() WHERE bid=?";
-    
+
         if ($stmt = $this->conn->prepare($sql)) {
             $stmt->bind_param("sii", $name, $status, $bid);
-    
+
             if ($stmt->execute()) {
                 // Success: Redirect or display a success message
                 $_SESSION['toast'] = ['type' => 'success', 'message' => 'Branch Updated Successfully.'];
@@ -612,11 +612,11 @@ class Creation
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
         }
     }
-    
+
     public function EditCashApp()
     {
         $name = $this->conn->real_escape_string($_POST['name']);
-      
+
         $cashtag = $this->conn->real_escape_string($_POST['cashtag']);
         $email = $this->conn->real_escape_string($_POST['email']);
         $status = isset($_POST['status']) ? 1 : 0;
@@ -627,24 +627,24 @@ class Creation
         $update_stmt = $this->conn->prepare($sql);
         $update_stmt->bind_param("ssidss", $cashtag, $email, $status, $current_balance, $remark, $name);
 
-      
+
         // Execute the statement
         $update_stmt->execute();
 
-          
-            if ($update_stmt->execute()) {
-                // Success: Redirect or display a success message
 
-             $_SESSION['toast'] = ['type' => 'success', 'message' => 'Details Updated Successfully.'];
-                header("location: ../../index.php/Portal_Cashup_Management");
-                exit();
-            } else {
-                $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error updating Details: ' . $update_stmt->error];
-            }
-            
-            $update_stmt->close();
+        if ($update_stmt->execute()) {
+            // Success: Redirect or display a success message
+
+            $_SESSION['toast'] = ['type' => 'success', 'message' => 'Details Updated Successfully.'];
+            header("location: ../../index.php/Portal_Cashup_Management");
+            exit();
+        } else {
+            $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error updating Details: ' . $update_stmt->error];
+        }
+
+        $update_stmt->close();
     }
-    
+
     public function AddPage()
     {
 
@@ -673,6 +673,38 @@ class Creation
                 $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
             }
         }
+    }
+    public function Free_Play()
+    {
+        $username = $this->conn->real_escape_string($_POST['username']);
+        $amount = $this->conn->real_escape_string($_POST['amount']);
+        $remark = $this->conn->real_escape_string($_POST['remark']);
+        $platform = $this->conn->real_escape_string($_POST['platform']);
+        $addby = $username;
+        $userData=$this->fetchUserData($this->conn,$username);
+        print_r($userData);
+    }
+
+    function fetchUserData($conn, $username)
+    {
+        // Initialize an empty array to store user data
+        $userData = [];
+
+        // Prepare and execute a query to fetch data for the given username
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Fetch data row by row and store it in the array
+        while ($row = $result->fetch_assoc()) {
+            $userData[] = $row;
+        }
+
+        // Free the result set and close the statement
+        $stmt->close();
+
+        return $userData;
     }
 
 
@@ -762,10 +794,12 @@ if (isset($_GET['action']) && $_GET['action'] == "UserAdd") {
     $creation->RechargeCashApp();
 } else if (isset($_GET['action']) && $_GET['action'] == "Recharge_platform") {
     $creation->RechargePlatform();
-}else if (isset($_GET['action']) && $_GET['action'] == "EditCashApp") {
+} else if (isset($_GET['action']) && $_GET['action'] == "EditCashApp") {
     $creation->EditCashApp();
-}else if (isset($_GET['action']) && $_GET['action'] == "EditBranch") {
+} else if (isset($_GET['action']) && $_GET['action'] == "EditBranch") {
     $creation->EditBranch();
+} else if (isset($_GET['action']) && $_GET['action'] == "Free_Play") {
+    $creation->Free_Play();
 }
 
 
