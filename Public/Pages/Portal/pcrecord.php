@@ -142,10 +142,10 @@
                             } elseif ($action === "PLATFORMREC" && isset($_SESSION['u']) && $_SESSION['u'] !== "") {
                                 $u = $_SESSION['u'];
                                 $sql = "SELECT * FROM cashappRecord WHERE name='$u'";
-                            }elseif ($action === "PLATFORMREC" && $_SESSION['page'] !== "") {
+                            } elseif ($action === "PLATFORMREC" && $_SESSION['page'] !== "") {
                                 $u = $_SESSION['page'];
                                 $sql = "SELECT * FROM transaction WHERE page='$u'";
-                            }elseif ($action === "PLATFORMREC" && $_SESSION['branch'] !== "") {
+                            } elseif ($action === "PLATFORMREC" && $_SESSION['branch'] !== "") {
                                 $u = $_SESSION['branch'];
                                 $sql = "SELECT * FROM transaction WHERE branch='$u'";
                             }
@@ -170,7 +170,7 @@
                             }
                             // }
                             $sql .= " ORDER BY created_at DESC";
-                             echo $sql;
+                            echo $sql;
                             $result = $conn->query($sql);
 
                             // if (isset($_POST)) {
