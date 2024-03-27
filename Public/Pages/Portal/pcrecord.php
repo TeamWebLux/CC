@@ -139,13 +139,13 @@
                             if (isset($action) && isset($_SESSION['r']) && $action === "PLATFORMREC" && $_SESSION['r'] !== "") {
                                 $u = $_SESSION['r'];
                                 $sql = "SELECT * FROM platformRecord WHERE platform='$u'";
-                            } elseif ($action === "PLATFORMREC" || $_SESSION['u'] !== "") {
+                            } elseif ($action === "PLATFORMREC" && $_SESSION['u'] !== "") {
                                 $u = $_SESSION['u'];
                                 $sql = "SELECT * FROM cashappRecord WHERE name='$u'";
-                            }elseif ($action === "PLATFORMREC" || $_SESSION['page'] !== "") {
+                            }elseif ($action === "PLATFORMREC" && $_SESSION['page'] !== "") {
                                 $u = $_SESSION['page'];
                                 $sql = "SELECT * FROM transaction WHERE pagename='$u'";
-                            }elseif ($action === "PLATFORMREC" || $_SESSION['branch'] !== "") {
+                            }elseif ($action === "PLATFORMREC" && $_SESSION['branch'] !== "") {
                                 $u = $_SESSION['branch'];
                                 $sql = "SELECT * FROM transaction WHERE branchname='$u'";
                             }
