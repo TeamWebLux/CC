@@ -81,7 +81,6 @@ if (in_array($role, ['Agent', 'Supervisor', 'Manager', 'Admin'])) {
                                     <h4 class="card-title">Search Platform</h4>
                                     <p>Platform by name</p>
                                 </div>
-                                <a href="./platform" style="text-decoration: none;">
                             </div>
 
                             <!-- Select Dropdown -->
