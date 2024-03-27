@@ -30,17 +30,20 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $platformuserid = $conn->real_escape_string($_POST['username']);
-        $platfromname = $$conn->real_escape_string($_POST['platform']);
-        $username = $_GET['u'];
-       $by_add= $_SESSION['username'];
+        $platfromname = $conn->real_escape_string($_POST['platform']);
+        // Assuming $username comes from a session or another source
+        $username = $_SESSION['username'] ?? 'defaultUsername'; // Fallback if not set
+        $by_add = $_SESSION['username'];
 
-        // Insert into the database
-        $sql = "INSERT INTO Platformuser (username,platformuserid, platfromname,by_name) VALUES ('$username', '$platformuserid','$platfromname',$by_add)";
-        if ($conn->query($sql) === TRUE) {
+        // Use prepared statements to insert safely into the database
+        $stmt = $conn->prepare("INSERT INTO Platformuser (username, platformuserid, platfromname, by_name) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $username, $platformuserid, $platfromname, $by_add);
+        if ($stmt->execute()) {
             echo "<div>Submission Successful!</div>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $stmt->error;
         }
+        $stmt->close();
     }
 
     // Fetch platforms from the database
