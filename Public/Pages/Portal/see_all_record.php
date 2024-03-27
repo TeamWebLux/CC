@@ -97,8 +97,6 @@
 
         <div class="content-inner container-fluid pb-0" id="page_layout">
             <br>
-            <br>
-            <br>
 
             <form method="GET" action="#">
                 <input type="hidden" name="u" value="<?php echo isset($_SESSION['u']) ? htmlspecialchars($_SESSION['u']) : ''; ?>">
