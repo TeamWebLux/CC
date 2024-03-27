@@ -691,7 +691,7 @@ class Creation
         $userData = [];
 
         // Prepare and execute a query to fetch data for the given username
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
