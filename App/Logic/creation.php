@@ -306,7 +306,7 @@ class Creation
             if ($stmt = mysqli_prepare($this->conn, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sississssss", $username, $cashoutamount, $pagename,$branchId, $accessamount, $cashupName, $platformName, $tip, $type, $remark, $by_username);
                 if ($stmt->execute()) {
-                    $_SESSION['toast'] = ['type' => 'success', 'message' => 'Recharge Added Sucessfully '];
+                    $_SESSION['toast'] = ['type' => 'success', 'message' => 'Reedem Added Sucessfully '];
 
                     echo "Transaction added successfully. Redirecting...<br>";
                     header("Location: ../../index.php/Portal_User_Management");
