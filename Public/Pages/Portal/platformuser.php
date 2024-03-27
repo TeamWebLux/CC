@@ -31,10 +31,11 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $platformuserid = $conn->real_escape_string($_POST['username']);
         $platfromname = $$conn->real_escape_string($_POST['platform']);
-        $username = $_SESSION['username'];
+        $username = $_GET['u'];
+       $by_add= $_SESSION['username'];
 
         // Insert into the database
-        $sql = "INSERT INTO Platformuser (username,platformuserid, platfromname) VALUES ('$username', '$platformuserid','$platfromname')";
+        $sql = "INSERT INTO Platformuser (username,platformuserid, platfromname,by_name) VALUES ('$username', '$platformuserid','$platfromname',$by_add)";
         if ($conn->query($sql) === TRUE) {
             echo "<div>Submission Successful!</div>";
         } else {
