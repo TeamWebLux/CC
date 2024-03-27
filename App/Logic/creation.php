@@ -681,37 +681,44 @@ class Creation
         $remark = $this->conn->real_escape_string($_POST['remark']);
         $platform = $this->conn->real_escape_string($_POST['platform']);
         $addby = $username;
-        $userData=$this->fetchUserData($this->conn,$username);
-        $type="Free Play";
-        $uid=$userData['id'];
-        $page=$userData['pagename'];
-        $branch=$userData['branchname'];
-        $sql = "INSERT INTO transaction (username, freepik,remark, platform, by_u,type,user_id,page,branch,created_at, updated_at) VALUES (?, ?, ?, ?,?,?,?,?,?,  NOW(), NOW())";
 
-        if ($stmt = $this->conn->prepare($sql)) {
-            $stmt->bind_param("sisssssss", $username, $amount, $remark, $platform,$addby,$type,$uid,$page,$branch);
+        // Fetch user data
+        $userData = $this->fetchUserData($this->conn, $username);
 
-            if ($stmt->execute()) {
-                // Success: Redirect or display a success message
-                $_SESSION['toast'] = ['type' => 'success', 'message' => ' Free Play.'];
-                header("location: ../../index.php/Portal_User_Management");
-                exit();
-            } else {
-                echo "error".$stmt->error;
-                $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error adding page: ' . $stmt->error];
+        // Check if user data is fetched
+        if (!empty($userData)) {
+            // Loop through each row of user data
+            foreach ($userData as $row) {
+                // Extract required fields from the row
+                $uid = $row['id'];
+                $page = $row['pagename'];
+                $branch = $row['branchname'];
+
+                // Prepare SQL statement
+                $sql = "INSERT INTO transaction (username, freepik,remark, platform, by_u,type,user_id,page,branch,created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+                // Prepare and execute the SQL statement
+                if ($stmt = $this->conn->prepare($sql)) {
+                    $stmt->bind_param("sissssss", $username, $amount, $remark, $platform, $addby, $type = "Free Play", $uid, $page, $branch);
+
+                    if ($stmt->execute()) {
+                        // Success: Redirect or display a success message
+                        $_SESSION['toast'] = ['type' => 'success', 'message' => 'Free Play.'];
+                        header("location: ../../index.php/Portal_User_Management");
+                        exit();
+                    } else {
+                        $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error adding page: ' . $stmt->error];
+                    }
+                    $stmt->close();
+                } else {
+                    $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
+                }
             }
-            $stmt->close();
         } else {
-            echo "reee";
-            $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
+            // No user data found
+            $_SESSION['toast'] = ['type' => 'error', 'message' => 'No user data found for the specified username.'];
         }
-
-        
-
-
-
     }
-
     function fetchUserData($conn, $username)
     {
         // Initialize an empty array to store user data
