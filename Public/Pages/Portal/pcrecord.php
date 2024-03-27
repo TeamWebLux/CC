@@ -13,7 +13,7 @@
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
 
-  
+
     if (isset($_SESSION['toast'])) {
         $toast = $_SESSION['toast'];
         echoToastScript($toast['type'], $toast['message']);
@@ -89,6 +89,8 @@
                     <form method="GET" action="#">
                         <input type="hidden" name="u" value="<?php echo isset($_SESSION['u']) ? htmlspecialchars($_SESSION['u']) : ''; ?>">
                         <input type="hidden" name="r" value="<?php echo isset($_SESSION['r']) ? htmlspecialchars($_SESSION['r']) : ''; ?>">
+                        <input type="hidden" name="page" value="<?php echo isset($_SESSION['page']) ? htmlspecialchars($_SESSION['page']) : ''; ?>">
+                        <input type="hidden" name="branch" value="<?php echo isset($_SESSION['branch']) ? htmlspecialchars($_SESSION['branch']) : ''; ?>">
 
                         <div class="form-row align-items-center">
                             <div class="col-auto">
@@ -137,12 +139,15 @@
                             if (isset($action) && isset($_SESSION['r']) && $action === "PLATFORMREC" && $_SESSION['r'] !== "") {
                                 $u = $_SESSION['r'];
                                 $sql = "SELECT * FROM platformRecord WHERE platform='$u'";
-                                // $result = $conn->query($sql);
                             } elseif ($action === "PLATFORMREC" || $_SESSION['u'] !== "") {
                                 $u = $_SESSION['u'];
                                 $sql = "SELECT * FROM cashappRecord WHERE name='$u'";
-                                // echo $sql;
-                                // $result = $conn->query($sql);
+                            }elseif ($action === "PLATFORMREC" || $_SESSION['page'] !== "") {
+                                $u = $_SESSION['page'];
+                                $sql = "SELECT * FROM transaction WHERE pagename='$u'";
+                            }elseif ($action === "PLATFORMREC" || $_SESSION['branch'] !== "") {
+                                $u = $_SESSION['branch'];
+                                $sql = "SELECT * FROM transaction WHERE branchname='$u'";
                             }
                             // if ($_SERVER["REQUEST_METHOD"] == "GET") {
                             if (isset($_SESSION['start_date']) && isset($_SESSION['end_date']) && $_SESSION['start_date'] !== '' && $_SESSION['end_date'] !== '') {
@@ -281,7 +286,7 @@
 
         <?
         include("./Public/Pages/Common/footer.php");
-       
+
         ?>
     </main>
     <!-- Wrapper End-->

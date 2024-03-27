@@ -27,7 +27,7 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-  
+
     ?>
 
 </head>
@@ -58,9 +58,8 @@
             <?php
             include './App/db/db_connect.php';
 
-           
+
             $user = $_POST['state'];
-            echo $user;
             $username = $conn->real_escape_string($_POST['state']);
 
             // Prepare the SQL statement
@@ -120,8 +119,11 @@
                                 </div>
                                 <br>
                                 <br>
+                                <a href="./" class="btn btn-outline-info rounded-pill mt-2" >
+                                    <i class="fas fa-xmark"><?php echo "Transcation Record"  ?></i>
+                                </a>
 
-                                <button type="button" class="btn btn-warning rounded-pill mt-2">Transactions</button>                                <a href="javascript:void(0);" class="btn btn-outline-info rounded-pill mt-2" onclick="status(<?php echo $id; ?>, 'page', 'status','pid')">
+                                <a href="javascript:void(0);" class="btn btn-outline-info rounded-pill mt-2" onclick="status(<?php echo $id; ?>, 'page', 'status','pid')">
                                     <i class="fas fa-xmark"><?php echo $status == 1 ? 'DeActivate' : 'Activate'  ?></i>
                                 </a>
                                 <!-- <button type="button" class="btn btn-success rounded-pill mt-2">Page is Active</button> -->
@@ -135,7 +137,7 @@
 
 
         <script>
-            function status(product_id, table, field,id) {
+            function status(product_id, table, field, id) {
                 if (confirm("Are you sure you want to Activate or Deactivate?")) {
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", "../App/Logic/commonf.php?action=status", true);
@@ -144,7 +146,7 @@
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                     // Include additional parameters in the data sent to the server
-                    const data = "id=" + product_id + "&table=" + table + "&field=" + field+"&cid="+id;
+                    const data = "id=" + product_id + "&table=" + table + "&field=" + field + "&cid=" + id;
 
                     // Log the data being sent
                     console.log("Data sent to server:", data);
@@ -200,7 +202,7 @@
 
         <?
         include("./Public/Pages/Common/footer.php");
-      
+
         ?>
 
     </main>
