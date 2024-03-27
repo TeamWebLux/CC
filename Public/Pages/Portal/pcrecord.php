@@ -144,10 +144,10 @@
                                 $sql = "SELECT * FROM cashappRecord WHERE name='$u'";
                             }elseif ($action === "PLATFORMREC" && $_SESSION['page'] !== "") {
                                 $u = $_SESSION['page'];
-                                $sql = "SELECT * FROM transaction WHERE pagename='$u'";
+                                $sql = "SELECT * FROM transaction WHERE page='$u'";
                             }elseif ($action === "PLATFORMREC" && $_SESSION['branch'] !== "") {
                                 $u = $_SESSION['branch'];
-                                $sql = "SELECT * FROM transaction WHERE branchname='$u'";
+                                $sql = "SELECT * FROM transaction WHERE branch='$u'";
                             }
                             // if ($_SERVER["REQUEST_METHOD"] == "GET") {
                             if (isset($_SESSION['start_date']) && isset($_SESSION['end_date']) && $_SESSION['start_date'] !== '' && $_SESSION['end_date'] !== '') {
