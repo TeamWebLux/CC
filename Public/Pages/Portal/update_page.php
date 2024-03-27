@@ -119,8 +119,8 @@
                                 </div>
                                 <br>
                                 <br>
-                                <a href="./PlatformRec<?php     unset($_SESSION['start_date'],$_SESSION['end_date'],$_SESSION['u'],$_SESSION['r'],$_SESSION['page'],$_SESSION['branch']);
-$_SESSION['page']=$username ; ?>" class="btn btn-outline-info rounded-pill mt-2" >
+                                <a href="./See_All_Reports<?php unset($_SESSION['start_date'], $_SESSION['end_date'], $_SESSION['u'], $_SESSION['r'], $_SESSION['page'], $_SESSION['branch']);
+                                                            $_SESSION['page'] = $username; ?>" class="btn btn-outline-info rounded-pill mt-2">
                                     <i class="fas fa-xmark"><?php echo "Transcation Record"  ?></i>
                                 </a>
 

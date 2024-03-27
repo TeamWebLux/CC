@@ -13,7 +13,7 @@
         echo "<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function() { toastr['$type']('$message'); });</script>";
     }
 
- 
+
     if (isset($_SESSION['toast'])) {
         $toast = $_SESSION['toast'];
         echoToastScript($toast['type'], $toast['message']);
@@ -39,7 +39,7 @@
             $_SESSION[$key] = $value;
         }
     }
-    $_SESSION['timezone']='America/New_York';
+    $_SESSION['timezone'] = 'America/New_York';
     if (isset($_SESSION['timezone'])) {
         $selectedTimezone = $_SESSION['timezone'];
         // Set the default timezone to the selected timezone
@@ -140,8 +140,17 @@
 
                     <?php
                     include "./App/db/db_connect.php";
+                    if (isset($_SESSION['page']) && $_SESSION['page'] !== "") {
+                        $u = $_SESSION['page'];
+                        $sql = "SELECT * FROM transaction WHERE page='$u'";
+                    } elseif (isset($_SESSION['page']) && $_SESSION['page'] !== "") {
+                        $u = $_SESSION['branch'];
+                        $sql = "SELECT * FROM transaction WHERE branch='$u'";
+                    } else {
 
-                    $sql = "SELECT * FROM transaction WHERE 1=1"; // Always true condition to start the WHERE clause
+                        $sql = "SELECT * FROM transaction WHERE 1=1"; // Always true condition to start the WHERE clause
+                    }
+
                     if (isset($_SESSION['start_date']) && isset($_SESSION['end_date']) && $_SESSION['start_date'] !== '' && $_SESSION['end_date'] !== '') {
                         // Both start and end dates are provided
                         $start_date = $_SESSION['start_date'];
@@ -243,7 +252,7 @@
 
         <?
         include("./Public/Pages/Common/footer.php");
-      
+
         ?>
 
     </main>
