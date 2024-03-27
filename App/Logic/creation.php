@@ -707,16 +707,22 @@ class Creation
                         header("location: ../../index.php/Portal_User_Management");
                         exit();
                     } else {
+
                         $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error adding page: ' . $stmt->error];
+                        print_r($_SESSION);
                     }
                     $stmt->close();
                 } else {
                     $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
+                    print_r($_SESSION);
+
                 }
             }
         } else {
             // No user data found
             $_SESSION['toast'] = ['type' => 'error', 'message' => 'No user data found for the specified username.'];
+            print_r($_SESSION);
+
         }
     }
     function fetchUserData($conn, $username)
