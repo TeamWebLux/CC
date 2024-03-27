@@ -101,6 +101,8 @@
             <form method="GET" action="#">
                 <input type="hidden" name="u" value="<?php echo isset($_SESSION['u']) ? htmlspecialchars($_SESSION['u']) : ''; ?>">
                 <input type="hidden" name="r" value="<?php echo isset($_SESSION['r']) ? htmlspecialchars($_SESSION['r']) : ''; ?>">
+                <input type="hidden" name="page" value="<?php echo isset($_SESSION['page']) ? htmlspecialchars($_SESSION['page']) : ''; ?>">
+                        <input type="hidden" name="branch" value="<?php echo isset($_SESSION['branch']) ? htmlspecialchars($_SESSION['branch']) : ''; ?>">
 
                 <div class="form-row align-items-center">
                     <div class="col-auto">
