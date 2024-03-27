@@ -111,9 +111,13 @@
                     </div>
                     <label for="timezone">Select Timezone:</label>
                     <select name="timezone" id="timezone">
-                        <option value="America/New_York" <?php echo ($_SESSION['timezone'] ?? '') === 'America/New_York' ? 'selected' : ''; ?>>EST (America/New York)</option>
-                        <option value="America/Chicago" <?php echo ($_SESSION['timezone'] ?? '') === 'America/Chicago' ? 'selected' : ''; ?>>CST (America/Chicago)</option>
-                        <option value="Asia/Kolkata" <?php echo ($_SESSION['timezone'] ?? '') === 'Asia/Kolkata' ? 'selected' : ''; ?>>IST (Asia/Kolkata)</option>
+                        <?php
+                        $timezones = DateTimeZone::listIdentifiers();
+                        foreach ($timezones as $timezone) {
+                            $selected = ($_SESSION['timezone'] ?? 'UTC') === $timezone ? ' selected' : '';
+                            echo "<option value=\"$timezone\"$selected>$timezone</option>";
+                        }
+                        ?>
                     </select>
 
                     <div class="col-auto">
@@ -257,19 +261,19 @@
 
     </main>
     <script>
-            $(document).ready(function() {
-                $('#example').DataTable({
-                    "order": [
-                        [9, "desc"]
-                    ],
-                    dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "order": [
+                    [9, "desc"]
+                ],
+                dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
 
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ]
-                });
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
             });
-        </script>
+        });
+    </script>
 
     <!-- Wrapper End-->
     <!-- Live Customizer start -->
