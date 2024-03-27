@@ -119,7 +119,7 @@
                                 </div>
                                 <br>
                                 <br>
-                                <a href="./" class="btn btn-outline-info rounded-pill mt-2" >
+                                <a href="./PlatformRec<?php $_SESSION['page']=$username ?>" class="btn btn-outline-info rounded-pill mt-2" >
                                     <i class="fas fa-xmark"><?php echo "Transcation Record"  ?></i>
                                 </a>
 

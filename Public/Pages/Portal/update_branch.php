@@ -19,6 +19,7 @@
         echoToastScript($toast['type'], $toast['message']);
         unset($_SESSION['toast']); // Clear the toast message from session
     }
+    unset($_SESSION['start_date'], $_SESSION['end_date'], $_SESSION['u'], $_SESSION['r'], $_SESSION['page'], $_SESSION['branch']);
 
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
@@ -28,7 +29,7 @@
         unset($_SESSION['login_error']); // Clear the error message
     }
 
-   
+
     ?>
 
 </head>
@@ -59,7 +60,7 @@
             <?php
             include './App/db/db_connect.php';
 
-           
+
             $user = $_POST['state'];
             echo $user;
             $username = $conn->real_escape_string($_POST['state']);
@@ -96,27 +97,29 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                           while($row = $result->fetch_assoc()){
-                                           
-                                            echo "<tr>
+                                            while ($row = $result->fetch_assoc()) {
+
+                                                echo "<tr>
                                                 <td>{$row['bid']}</td>
                                                 <td>{$row['name']}</td>
                                                 <td>" . ($row['status'] == 1 ? 'Activated' : 'Not Active') . "</td>
                                                 <td>{$row['created_at']}</td>
                                                 <td>{$row['updated_at']}</td>
                                                 </tr>";
-                                            $id = $row['bid'];
-                                            $status=$row['status'];
-                                           }
+                                                $id = $row['bid'];
+                                                $status = $row['status'];
+                                            }
                                             ?>
                                         </tbody>
                                     </table>
                                     <a href="./Edit_Branch?u=<?php echo $username; ?>" style="text-decoration: none;">
-                                    <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Branch Details</button>
-                                </a>
-                                    <button type="button" class="btn btn-outline-info rounded-pill mt-2">Transaction Record</button>
+                                        <button type="button" class="btn btn-danger rounded-pill mt-2">Edit Branch Details</button>
+                                    </a>
+                                    <a href="./PlatformRec<?php $_SESSION['page'] = $username ?>" class="btn btn-outline-info rounded-pill mt-2">
+                                        <i class="fas fa-xmark"><?php echo "Transcation Record"  ?></i>
+                                    </a>
                                     <a href="javascript:void(0);" class="btn btn-outline-info rounded-pill mt-2" onclick="status(<?php echo $id; ?>, 'branch', 'status','bid')">
-                                        <i class="fas fa-xmark"><?php echo $status == 1 ?'DeActive': 'Activate'  ?></i>
+                                        <i class="fas fa-xmark"><?php echo $status == 1 ? 'DeActive' : 'Activate'  ?></i>
                                     </a>
                                     <!-- <a href="javascript:void(0);" class="btn btn-outline-info rounded-pill mt-2" onclick="delete1(<?php echo $id; ?>, 'branch','bid')">
                                         <i class="fas fa-xmark">Delete</i>
@@ -134,7 +137,7 @@
         </div>
         </div>
         <script>
-            function delete1(product_id, table,field) {
+            function delete1(product_id, table, field) {
                 if (confirm("Are you sure you want to Delete")) {
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", "../App/Logic/commonf.php?action=delete", true);
@@ -143,7 +146,7 @@
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                     // Include additional parameters in the data sent to the server
-                    const data = "id=" + product_id + "&table=" + table+"&field="+field ;
+                    const data = "id=" + product_id + "&table=" + table + "&field=" + field;
 
                     // Log the data being sent
                     console.log("Data sent to server:", data);
@@ -193,7 +196,7 @@
                 }
             }
 
-            function status(product_id, table, field,id) {
+            function status(product_id, table, field, id) {
                 if (confirm("Are you sure you want to Activate or Deactivate?")) {
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", "../App/Logic/commonf.php?action=status", true);
@@ -202,7 +205,7 @@
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                     // Include additional parameters in the data sent to the server
-                    const data = "id=" + product_id + "&table=" + table + "&field=" + field+"&cid="+id;
+                    const data = "id=" + product_id + "&table=" + table + "&field=" + field + "&cid=" + id;
 
                     // Log the data being sent
                     console.log("Data sent to server:", data);
@@ -260,7 +263,7 @@
 
         <?
         include("./Public/Pages/Common/footer.php");
-     
+
         ?>
 
     </main>
