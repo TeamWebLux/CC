@@ -26,23 +26,25 @@
         echo '<p class="error">' . $_SESSION['login_error'] . '</p>';
         unset($_SESSION['login_error']); // Clear the error message
     }
+    include './App/db/db_connect.php';
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $platformuserid = $mysqli->real_escape_string($_POST['username']);
-        $platfromname = $$mysqli->real_escape_string($_POST['platform']);
+        $platformuserid = $conn->real_escape_string($_POST['username']);
+        $platfromname = $$conn->real_escape_string($_POST['platform']);
         $username = $_SESSION['username'];
 
         // Insert into the database
         $sql = "INSERT INTO Platformuser (username,platformuserid, platfromname) VALUES ('$username', '$platformuserid','$platfromname')";
-        if ($mysqli->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE) {
             echo "<div>Submission Successful!</div>";
         } else {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 
     // Fetch platforms from the database
     $sql = "SELECT * FROM platform where status=1";
-    $result = $mysqli->query($sql);
+    $result = $conn->query($sql);
 
     $platforms = [];
     if ($result->num_rows > 0) {
