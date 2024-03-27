@@ -139,7 +139,7 @@
                             if (isset($action) && isset($_SESSION['r']) && $action === "PLATFORMREC" && $_SESSION['r'] !== "") {
                                 $u = $_SESSION['r'];
                                 $sql = "SELECT * FROM platformRecord WHERE platform='$u'";
-                            } elseif ($action === "PLATFORMREC" && $_SESSION['u'] !== "") {
+                            } elseif ($action === "PLATFORMREC" && isset($_SESSION['u']) && $_SESSION['u'] !== "") {
                                 $u = $_SESSION['u'];
                                 $sql = "SELECT * FROM cashappRecord WHERE name='$u'";
                             }elseif ($action === "PLATFORMREC" && $_SESSION['page'] !== "") {
