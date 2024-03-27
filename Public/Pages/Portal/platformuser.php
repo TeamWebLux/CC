@@ -95,7 +95,7 @@
                         <label for="platformSelect">Platform</label>
                         <select class="form-control" id="platformSelect" name="platform">
                             <?php foreach ($platforms as $platform) : ?>
-                                <option value="<?= htmlspecialchars($platform['id']) ?>"><?= htmlspecialchars($platform['name']) ?></option>
+                                <option value="<?= htmlspecialchars($platform['name']) ?>"><?= htmlspecialchars($platform['name']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
