@@ -256,6 +256,21 @@
         ?>
 
     </main>
+    <script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    "order": [
+                        [4, "desc"]
+                    ],
+                    dom: 'Bfrtip', // Add the Bfrtip option to enable buttons
+
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ]
+                });
+            });
+        </script>
+
     <!-- Wrapper End-->
     <!-- Live Customizer start -->
     <!-- Setting offcanvas start here -->
