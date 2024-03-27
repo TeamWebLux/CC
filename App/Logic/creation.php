@@ -682,7 +682,32 @@ class Creation
         $platform = $this->conn->real_escape_string($_POST['platform']);
         $addby = $username;
         $userData=$this->fetchUserData($this->conn,$username);
-        print_r($userData);
+        $type="Free Play";
+        $uid=$userData['id'];
+        $page=$userData['page'];
+        $branch=$userData['branch'];
+        $sql = "INSERT INTO transaction (username, freepik,remark, platform, by_u,type,user_id,page,branch,created_at, updated_at) VALUES (?, ?, ?, ?,?,?,?,?,?,  NOW(), NOW())";
+
+        if ($stmt = $this->conn->prepare($sql)) {
+            $stmt->bind_param("sisssssss", $username, $amount, $remark, $platform,$addby,$type,$uid,$page,$branch);
+
+            if ($stmt->execute()) {
+                // Success: Redirect or display a success message
+                $_SESSION['toast'] = ['type' => 'success', 'message' => ' Free Play.'];
+                header("location: ../../index.php/Portal_User_Management");
+                exit();
+            } else {
+                $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error adding page: ' . $stmt->error];
+            }
+            $stmt->close();
+        } else {
+            $_SESSION['toast'] = ['type' => 'error', 'message' => 'Error preparing statement: ' . $this->conn->error];
+        }
+
+        
+
+
+
     }
 
     function fetchUserData($conn, $username)
