@@ -55,6 +55,7 @@
 
                 if ($stmt->execute()) {
                     $successMessage = 'Withdrawal successful.';
+                    echo $successMessage;
                     // Reset amount in the session if needed or perform additional actions
                 } else {
                     $errorMessage = 'Error processing your request.';
