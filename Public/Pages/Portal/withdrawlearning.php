@@ -61,10 +61,13 @@
                     // Reset amount in the session if needed or perform additional actions
                 } else {
                     $errorMessage = 'Error processing your request.';
+                    echo $errorMessage;
                 }
                 $stmt->close();
             } else {
                 $errorMessage = 'Error preparing the database statement.';
+                echo $errorMessage;
+
             }
         }
         $conn->close();
