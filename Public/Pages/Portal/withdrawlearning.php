@@ -102,7 +102,7 @@
                                 <h4>Withdraw Funds</h4>
                             </div>
                             <div class="card-body">
-                                <form action="process_withdrawal.php" method="post">
+                                <form action="" method="post">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" readonly>
