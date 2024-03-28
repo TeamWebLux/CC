@@ -107,10 +107,11 @@
             </div>
             <?php
             // Assuming $conn is your database connection from include './App/db/db_connect.php';
+            include './App/db/db_connect.php';
 
             $sql = "SELECT * FROM PlatformUser where username='$username'"; // Replace 'other_user_info' with other columns you might want to display
             $result = $conn->query($sql);
-                    ?>
+            ?>
 
             <div class="container mt-5">
                 <div class="row">
